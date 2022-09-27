@@ -1,0 +1,36 @@
+<body>
+    <div class="row">
+        <div class="left">
+            <app-navbar-logsign></app-navbar-logsign>
+            <div class="container">
+                <h1>Registrarse</h1>
+            
+                <form [formGroup]="myForm" autocomplete="off">  
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput formControlName="name" placeholder="Nombre">
+                    </mat-form-field> <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput formControlName="lastname" placeholder="Apellido">
+                    </mat-form-field> <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="Email">
+                    </mat-form-field> <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput type="password" formControlName="password" placeholder="Contraseña">
+                    </mat-form-field> <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Confimar contraseña</mat-label>
+                        <input matInput type="password" formControlName="confirmpassword" placeholder="Confirmar contraseña">
+                    </mat-form-field> <br>
+                </form>
+            
+                <button mat-raised-button style="background-color: #2c3646; color: white;" (click)="saveUser()">Crear cuenta</button>
+            </div>
+        </div>
+        <div class="right"></div>
+    </div>
+</body>

@@ -1,0 +1,39 @@
+body{
+    margin:0%;
+}
+.row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+.row .right{
+    background: url(/assets/images/imagen_2022-09-27_173051404.jpg);
+    background-size: cover;
+    background-position-x: center;
+}
+.container{
+    margin-left: 2rem;
+}
+.container h1{
+
+    color: #2c3646;
+    font-size: 20px;
+    margin-left: 2rem;
+    margin-top: 0.5rem;
+    font-family: --poppinsfont;
+}
+.container form{
+    margin-left: 3rem;
+}
+form mat-form-field{
+    margin-top: 1px;
+    width: 28rem;
+    font-size: medium;
+}
+
+button{
+    margin-left: 3rem;
+    margin-top: 2rem;
+    padding-right: 11.5rem;
+    padding-left: 11.5rem;
+}

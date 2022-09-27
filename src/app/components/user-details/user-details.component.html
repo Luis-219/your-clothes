@@ -1,0 +1,27 @@
+<app-global-navbar></app-global-navbar>
+
+<div class="title"><h1>Ajustes de usuario</h1></div>
+<div class="container">
+  <div class="img">
+    <img src="./assets/images/Eduardo-Yañez-Mezcalent-1200_q5wvaa.jpg" alt="">
+  </div>
+  <div class="details">
+    <mat-card class="card">
+      <mat-card-title>Detalles del usuario</mat-card-title>
+      <mat-card-subtitle style="color: white;">{{user.name}}</mat-card-subtitle>
+      <mat-card-content style="color: #f5e2d0;">
+        <ul>
+          <li *ngIf="user.name">Nombre completo: <span>{{user.name}} {{user.lastname}}</span></li>
+          <li *ngIf="user.email">Email: <span> {{user.email}}</span></li>
+          <li *ngIf="user.phone">Teléfono: <span> {{user.phone}}</span></li>
+          <li *ngIf="user.adress">Dirección: <span>{{user.adress}}</span></li>
+          <li *ngIf="user.dni">DNI: <span>{{user.dni}}</span></li>
+        </ul>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button style="background-color: #f5e2d0; color: #2c3646; font-weight: bold;" routerLink="/edit/{{user.id}}" >Editar datos</button>
+        <button mat-raised-button style="background-color: #9b887d; color: #f5e2d0; font-weight: light;"  (click)="openDialog()" >Eliminar usuario</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

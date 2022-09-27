@@ -1,0 +1,47 @@
+body{
+    margin:0%;
+}
+.row{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+}
+.row .right{
+    background: url(/assets/images/DohlKDaX4AAcdpL.jpg), center;
+    background-size: cover;
+}
+.container{
+    margin-top: 4rem;
+    margin-left: 3rem;
+}
+.container h1{
+    color: #2c3646;
+    font-size: 20px;
+    margin-left: 2rem;
+    margin-top: 1rem;
+    font-family: --poppinsfont;
+}
+.container form{
+    margin-left: 3rem;
+}
+form mat-form-field{
+    margin-top: 1px;
+    width: 28rem;
+    font-size: medium;
+}
+
+button{
+    margin-left: 3rem;
+    margin-top: 2rem;
+    padding-right: 12.5rem;
+    padding-left: 12.5rem;
+}
+.container p{
+    margin-top: 3rem;
+    margin-left: 3rem;
+}
+.container p a{
+    text-decoration: none;
+    color: #2c3646;
+    font-weight: bold;
+}

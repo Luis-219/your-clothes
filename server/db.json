@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Eduardo",
+      "lastname": "Rojas",
+      "email": "e@gmail.com",
+      "dni": "12",
+      "phone": "",
+      "adress": "",
+      "password": "eduardito"
+    },
+    {
+      "id": 2,
+      "name": "José",
+      "lastname": "Montes",
+      "email": "j@gmail.com",
+      "password": "josesito",
+      "dni": 0,
+      "phone": 0,
+      "adress": ""
+    },
+    {
+      "id": 3,
+      "name": "",
+      "lastname": "",
+      "email": "",
+      "password": "",
+      "dni": 0,
+      "phone": 0,
+      "adress": ""
+    },
+    {
+      "id": 5,
+      "name": "",
+      "lastname": "",
+      "email": "",
+      "password": "",
+      "dni": 0,
+      "phone": 0,
+      "adress": ""
+    },
+    {
+      "id": 7,
+      "name": "Mario",
+      "lastname": "bros",
+      "email": "m@gmail.com",
+      "password": "mario",
+      "dni": 0,
+      "phone": 0,
+      "adress": ""
+    }
+  ]
+}
