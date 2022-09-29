@@ -1,3 +1,4 @@
+import { User } from './../../models/User';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from './../../models/Product';
 import { ShopsService } from './../../services/shops.service';
@@ -23,6 +24,7 @@ export class MainPageComponent implements OnInit {
     this.id= this.activatedRouter.snapshot.params["id"];
     this.getShops();
     this.getProducts();
+    this.getMyShop();
   }
 
   
@@ -36,13 +38,47 @@ export class MainPageComponent implements OnInit {
     );
   }
   products: Product[] = [];
+  winterProd: Product[] = [];
   getProducts()
   {
     this.productServices.getProducts().subscribe(
       (data:Product[]) => {
         this.products = data;
+        this.products.forEach(winter => {
+          if(winter.season == "Invierno") this.winterProd.push(winter);
+        })
       }
     );
+    console.log("productos: " + this.products.length);
   }
+
+  shop!: Shop;
+  getMyShop()
+  {
+    this.http.get<any>("http://localhost:3000/shops").subscribe(
+      res=>{
+        const shopfound = res.find((a:Shop)=>{
+          return a.idUser == this.id;
+        });
+        if(shopfound){
+          this.shop = shopfound;
+          console.log("tiene tienda");
+        }else{
+          console.log("Este usuario no tiene tienda");
+        }
+    });
+  }
+
+  ReceiveProduct(idproduct:number):boolean
+  {
+    if(this.shop.id == idproduct)
+    {
+      return true;
+    }
+    else return false;
+  }
+
+
+  
 
 }

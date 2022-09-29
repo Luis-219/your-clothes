@@ -18,6 +18,7 @@ import { ShopComponent } from './components/shop/shop.component';
 import { ShopPageComponent } from './components/shop-page/shop-page.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { MainPageComponent } from './components/main-page/main-page.component';
     ShopPageComponent,
     ProductFormComponent,
     MainPageComponent,
+    ProductDetailsComponent,
   ],
   imports: [
     BrowserModule,

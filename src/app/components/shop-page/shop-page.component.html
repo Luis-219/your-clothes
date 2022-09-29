@@ -1,33 +1,35 @@
 <app-global-navbar [userID]="shopfound.idUser"></app-global-navbar>
-<h1>{{shopfound.name}}</h1>
 
-<h1>DUEÑO DE LA TIENDA {{shopfound.idUser}} {{userfound.name}}</h1>
-<h1></h1>
-
-
-<div *ngIf="userVerification()">
-    <h1>Dueño de la tienda</h1>
-    <button mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Agregar producto</button>
+<div class="heading">
+    <div class="up">
+        <h1>{{shopfound.name}}</h1>
+        <div class="actions">
+            <button *ngIf="userVerification()" style="background-color: #9b887d;" mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Eliminar</button>
+            <button *ngIf="userVerification()" mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Editar tienda</button>
+            <button *ngIf="userVerification()" mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Agregar producto</button>
+            <button *ngIf="!userVerification()" mat-raised-button>Realizar reseña</button>
+        </div>
+    </div>
+    <div class="linea"></div>
+    <mat-hint>por {{userfound.name}}</mat-hint>
 </div>
-<div *ngIf="!userVerification()">
-    <h1>CLIENTE</h1>
-    <button mat-raised-button>AGREGAR COMENTARIO</button>
-</div>
-<div>
-    <h2>Productos</h2>
-    <ul>
-        <li *ngFor="let product of products">
-            <h1>{{product.name}}</h1>
-            <div class="buttons">
-                <button *ngIf="!userVerification()">Agregar</button>
-                <div *ngIf="userVerification()">
-                    <button mat-raised-button>Editar</button><button >Borrar</button>
-                </div>
+
+<div class="content">
+    <div *ngFor="let product of products">
+        <mat-card>
+            <div class="container">
+                <p>Nombre: {{product.name}}</p>
+                <h5>Tienda: {{product.shopname}}</h5>
+                <h5>Precio: {{product.price}}</h5>
             </div>
-        </li>
-    </ul>
+            <div class="buttons">
+                <a class="redirect" *ngIf="userVerification()">Editar</a>
+                <a class="redirect">Ver</a>
+                <mat-icon mat-raised-button *ngIf="!userVerification()">add</mat-icon>
+            </div>
+        </mat-card>
+    </div>
 </div>
-
 
 
 

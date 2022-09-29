@@ -1,28 +1,63 @@
-<app-global-navbar></app-global-navbar>
+<app-global-navbar [userID] = "id"></app-global-navbar>
 
-<section class="first-view">
-    <h1>PAGINA DE INICIO</h1>
-    <button mat-raised-button routerLink="/user/{{id}}">AJUSTES DE USUARIO</button>
-</section>
-<section class="shops">
-    <h3>Nuestras tiendas</h3>
-    <ul>
-        <li *ngFor="let shop of shops">
-            <h1>{{shop.name}}</h1>
-            <div class="buttons">
-                <button routerLink="/shop-page/{{shop.name}}/{{id}}">Ver tienda</button>
+<div class="first-view">
+    <div class="items">
+        <h1>YourClothes</h1>
+    </div>
+</div>
+<div class="sections">
+    <div class="shops">
+        <h1 class="heading">Nuestras <span>tiendas</span></h1>
+        <div class="content">
+            <div *ngFor="let shop of shops">
+                <mat-card class="mat-elevation-z4">
+                    <div class="container">
+                        <p>{{shop.name}}</p>
+                        <h5>Teléfono: {{shop.phone}}</h5>
+                    </div>
+                    <div class="buttons">
+                        <a class="redirect" routerLink="/shop-page/{{shop.name}}/{{id}}"> Ver tienda</a>
+                    </div>
+                </mat-card>
             </div>
-        </li>
-    </ul>
-</section>
-<section class="shops">
-    <h3>Nuestros productos</h3>
-    <ul>
-        <li *ngFor="let product of products">
-            <h1>{{product.name}}</h1>
-            <div class="buttons">
-                <button>Ver producto</button>
+        </div>
+    </div>
+    <div class="products">
+        <h1 class="heading">Nuestros <span>productos</span></h1>
+        <div class="content">
+            <div *ngFor="let product of products">
+                <mat-card>
+                    <div class="container">
+                        <p>Nombre: {{product.name}}</p>
+                        <h5>Tienda: {{product.shopname}}</h5>
+                        <h5>Precio: {{product.price}}</h5>
+                    </div>
+                    <div class="buttons">
+                        <a class="redirect" *ngIf="ReceiveProduct(product.idShop)">Editar</a>
+                        <a class="redirect">Ver</a>
+                        <mat-icon mat-raised-button *ngIf="!ReceiveProduct(product.idShop)">add</mat-icon>
+                    </div>
+                </mat-card>
             </div>
-        </li>
-    </ul>
-</section>
+        </div>
+    </div>
+    <div class="winter">
+        <h1 class="heading">Productos de <span>Invierno</span></h1>
+        <div class="content">
+            <div *ngFor="let product of winterProd">
+                <mat-card>
+                    <div class="container">
+                        <p>Nombre: {{product.name}}</p>
+                        <h5>Tienda: {{product.shopname}}</h5>
+                        <h5>Precio: {{product.price}}</h5>
+                    </div>
+                    <div class="buttons">
+                        <a class="redirect" *ngIf="ReceiveProduct(product.idShop)">Editar</a>
+                        <a class="redirect">Ver</a>
+                        <mat-icon mat-raised-button *ngIf="!ReceiveProduct(product.idShop)">add</mat-icon>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

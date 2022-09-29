@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
+import { Shop } from './../../models/Shop';
 import { Component, Input, OnInit } from '@angular/core';
+import { ShopsService } from 'src/app/services/shops.service';
 
 @Component({
   selector: 'app-global-navbar',
@@ -8,10 +11,27 @@ import { Component, Input, OnInit } from '@angular/core';
 export class GlobalNavbarComponent implements OnInit {
 
   @Input() userID!: number;
-  constructor() { }
+  constructor(private shopService:ShopsService,
+              private http:HttpClient) { }
 
   ngOnInit(): void {
-    console.log("ID: " + this.userID);
+    this.HaveAShop();
+  }
+
+  shopUser?:Shop;
+  HaveAShop()
+  {
+    this.http.get<any>("http://localhost:3000/shops").subscribe(
+      res=>{
+        const shop = res.find((a:Shop)=>{
+          return a.idUser == this.userID;
+        });
+        if(shop){
+          this.shopUser= shop;
+        }else{
+          console.log("No tiene tienda");
+        }
+    });
   }
 
 }

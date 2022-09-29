@@ -115,7 +115,6 @@ export class ProductFormComponent implements OnInit {
     );
   }
 
-
   saveProduct():void
   {
     let date: Date = new Date();

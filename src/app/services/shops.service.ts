@@ -17,4 +17,7 @@ export class ShopsService {
   {
     return this.http.get<Shop[]>("http://localhost:3000/shops");
   }
+  getShopId(id:number){
+    return this.http.get<Shop>("http://localhost:3000/shops/"+id.toString());
+  }
 }

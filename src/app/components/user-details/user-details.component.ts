@@ -6,7 +6,7 @@ import { User } from './../../models/User';
 import { UsersService } from './../../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
+import {  MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-details',
@@ -67,4 +67,6 @@ export class UserDetailsComponent implements OnInit {
       }
     );
   }
+
+
 }

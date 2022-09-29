@@ -1,28 +1,42 @@
-<app-global-navbar [userID]="id"></app-global-navbar>
+<app-global-navbar></app-global-navbar>
 
-<div class="title"><h1>Ajustes de usuario</h1></div>
-<div class="container">
-  <div class="img">
-    <img src="./assets/images/Eduardo-Yañez-Mezcalent-1200_q5wvaa.jpg" alt="">
-  </div>
-  <div class="details">
-    <mat-card class="card">
-      <mat-card-title>Detalles del usuario</mat-card-title>
-      <mat-card-subtitle style="color: white;">{{user.name}}</mat-card-subtitle>
-      <mat-card-content style="color: #f5e2d0;">
-        <ul>
-          <li *ngIf="user.name">Nombre completo: <span>{{user.name}} {{user.lastname}}</span></li>
-          <li *ngIf="user.email">Email: <span> {{user.email}}</span></li>
-          <li *ngIf="user.phone">Teléfono: <span> {{user.phone}}</span></li>
-          <li *ngIf="user.adress">Dirección: <span>{{user.adress}}</span></li>
-          <li *ngIf="user.dni">DNI: <span>{{user.dni}}</span></li>
-        </ul>
-      </mat-card-content>
-      <mat-card-actions>
+<div class="heading">
+  <div class="up">
+      <h1>{{user.name}}<mat-hint> {{user.lastname}}</mat-hint></h1> 
+      <div class="actions">
         <button mat-raised-button style="background-color: #f5e2d0; color: #2c3646; font-weight: bold;" routerLink="/edit/{{user.id}}" >Editar datos</button>
         <button mat-raised-button style="background-color: #9b887d; color: #f5e2d0; font-weight: light;"  (click)="openDialog()" >Eliminar usuario</button>
-      </mat-card-actions>
-    </mat-card>
+      </div>
+  </div>
+  <div class="linea"></div>
+</div>
+<div class="content">
+  <div class="row">
+    <div class="img">
+      <img src="./assets/images/Eduardo-Yañez-Mezcalent-1200_q5wvaa.jpg" alt="">
+    </div>
+    <div class="details">
+      <div class="title">
+        <h1>Detalles de usuario</h1>
+        <div class="linea"></div>
+      </div>
+      <div class="things">
+        <div class="data">
+          <h3 *ngIf="user.name">Nombre completo: <span>{{user.name}} {{user.lastname}}</span></h3>
+          <h3 *ngIf="user.email">Email: <span> {{user.email}}</span></h3>
+          <h3 *ngIf="user.phone">Teléfono: <span> {{user.phone}}</span></h3>
+          <h3 *ngIf="user.adress">Dirección: <span>{{user.adress}}</span></h3>
+          <h3 *ngIf="user.dni">DNI: <span>{{user.dni}}</span></h3>
+          <h3 *ngIf="!user.name">Nombre completo: <span>Dato no encontrado</span></h3>
+          <h3 *ngIf="!user.email">Email: <span>Dato no encontrado</span></h3>
+          <h3 *ngIf="!user.phone">Teléfono: <span>Dato no encontrado</span></h3>
+          <h3 *ngIf="!user.adress">Dirección: <span>Dato no encontrado</span></h3>
+          <h3 *ngIf="!user.dni">DNI: <span>Dato no encontrado</span></h3>
+        </div>
+        <div class="store">
+          <app-shop [UseriD]="user.id"></app-shop>
+        </div>
+      </div>
+    <div>
   </div>
 </div>
-<app-shop [UseriD]="user.id"></app-shop>

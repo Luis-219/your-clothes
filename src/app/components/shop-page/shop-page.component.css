@@ -1,4 +1,60 @@
-ul{
-    list-style: none;
+
+.heading h1{
+    margin-bottom: 0rem;
+}
+.heading{
+
+    color: #2c3646;
+    margin: 2rem 3rem;
+    font-weight: lighter;
+
+}
+.linea{
+    border-top: 1px solid black;
+    height: 2px;
+    padding: 0;
+    margin-left: 0rem;
+    margin-right: 2rem;
+}
+.up{
     display: flex;
+    justify-content: space-between;
+}
+.up .actions{
+    margin-right: 2rem;
+}
+.up .actions button{
+    margin-bottom: 0.5rem;
+    margin-left: 0.5rem;
+    font-size: smaller;
+    background-color: #2c3646;
+    color: #f5e2d0;
+    font-weight: lighter;
+}
+.content{
+
+    margin-left: 1rem;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px 200px 200px;
+    grid-template-rows: 250px;
+    padding-bottom: 3rem;
+}
+.content mat-card{
+    width: 150px;
+    height: 180px;
+    margin-left: 2rem;
+}
+.redirect{
+    color: #2c3646;
+    cursor: pointer;
+    font-weight: lighter;
+}
+mat-card{
+    display: grid;
+    grid-template-rows: 90% 10%;
+}
+.content .buttons{
+    padding: 3px;
+    display: flex;
+    justify-content: space-between;
 }

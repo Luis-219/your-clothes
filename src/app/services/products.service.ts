@@ -16,6 +16,9 @@ export class ProductsService {
   getProducts(){
     return this.http.get<Product[]>("http://localhost:3000/products");
   }
+  getProductId(id:number){
+    return this.http.get<Product>("http://localhost:3000/products/"+id.toString());
+  }
   getGender()
   {
     return this.http.get<Condition[]>("http://localhost:3000/genders");
