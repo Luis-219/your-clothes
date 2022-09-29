@@ -1,0 +1,10 @@
+.container{
+    width: 1000px;
+    margin-left: 4rem;
+    margin-top: 2rem;
+}
+form mat-form-field{
+    margin-top: 1rem;
+    width: 25rem;
+    font-size: medium;
+}

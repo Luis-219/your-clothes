@@ -25,10 +25,10 @@
       "name": "Mario",
       "lastname": "bros",
       "email": "m@gmail.com",
-      "password": "mario",
       "dni": 0,
       "phone": 0,
-      "adress": ""
+      "adress": "",
+      "password": "mario"
     },
     {
       "id": 8,
@@ -45,10 +45,154 @@
       "name": "Finn",
       "lastname": "theHuman",
       "email": "finn@gmail.com",
-      "dni": "9824282",
+      "dni": "2424",
       "phone": "123456789",
       "adress": "Land of Ooo",
       "password": "finn"
+    }
+  ],
+  "shops": [
+    {
+      "id": 1,
+      "idUser": 7,
+      "name": "hoy no fio mañana si",
+      "phone": "13515",
+      "adress": "sdgg",
+      "Descripción": "dsgdsgs",
+      "amountProducts": 0,
+      "Aceptación": 0
+    },
+    {
+      "id": 2,
+      "idUser": 1,
+      "name": "try 1",
+      "phone": "125",
+      "adress": "sg",
+      "Descripción": "asi es",
+      "amountProducts": 0,
+      "Aceptación": 0
+    },
+    {
+      "id": 3,
+      "idUser": 2,
+      "name": "sdgds",
+      "phone": "352",
+      "adress": "sdgds",
+      "Descripción": "sgwe",
+      "amountProducts": 0,
+      "Aceptación": 0
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "idShop": 2,
+      "name": "Buenas",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 2,
+      "idShop": 2,
+      "name": "tardes",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 3,
+      "idShop": 2,
+      "name": "señor",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 4,
+      "idShop": 2,
+      "name": "",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 5,
+      "idShop": 1,
+      "name": "",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 6,
+      "idShop": 1,
+      "name": "",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 7,
+      "idShop": 1,
+      "name": "",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 8,
+      "idShop": 2,
+      "name": "",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 9,
+      "idShop": 3,
+      "name": "",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 10,
+      "idShop": 3,
+      "name": "",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
+    },
+    {
+      "id": 11,
+      "idShop": 3,
+      "name": "",
+      "shopname": "",
+      "pubdate": 0,
+      "condition": "",
+      "amount": 0,
+      "price": 0
     }
   ]
 }

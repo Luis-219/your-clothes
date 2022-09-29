@@ -1,3 +1,6 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Shop } from './../../models/Shop';
+import { HttpClient } from '@angular/common/http';
 import { DialogdeleteComponent } from './../dialogdelete/dialogdelete.component';
 import { User } from './../../models/User';
 import { UsersService } from './../../services/users.service';
@@ -13,29 +16,32 @@ import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 export class UserDetailsComponent implements OnInit {
 
   id!:number;
-  user!:User;
   constructor(private router:Router,
               private activatedRouter:ActivatedRoute,
               private userService:UsersService,
-              private dialog:MatDialog) { }
+              private dialog:MatDialog,
+              private http:HttpClient,
+              private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     this.id= this.activatedRouter.snapshot.params["id"];
     this.loadDetails();
   }
 
-
+  user!: User;
   loadDetails()
   {
     this.userService.getUserId(this.id).subscribe(
-      (data:User) =>{
-        this.user = data;
+      {
+        next: (data:User) =>{
+          this.user = data;
+        },
+        error: (err) =>{
+          this.router.navigate([""]);
+          console.log(err);
+        }
       }
     );
-  }
-  editUser()
-  {
-    console.log("edit");
   }
   openDialog(): void {
     const dialogREF = this.dialog.open(DialogdeleteComponent,{
@@ -60,7 +66,5 @@ export class UserDetailsComponent implements OnInit {
         }
       }
     );
-
   }
-
 }

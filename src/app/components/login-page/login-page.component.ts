@@ -15,8 +15,6 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class LoginPageComponent implements OnInit {
 
-  users:User[]= [];
-
   myForm!:FormGroup;
   constructor(private formBuilder:FormBuilder,
               private http:HttpClient,
@@ -48,8 +46,6 @@ export class LoginPageComponent implements OnInit {
       res=>{
         const user = res.find((a:any)=>{
           return a.email == email && a.password == password;
-          console.log("email " + a.email + " " + a.password);
-          console.log("email " + email + " " + password);
         });
         if(user){
           this.snackBar.open("Ingresó correctamente.", "ok");

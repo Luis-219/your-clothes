@@ -69,7 +69,6 @@ export class EditUserComponent implements OnInit {
       adress:this.myForm.get("adress")?.value,
       password: this.password
     }
-    console.log("adress" +  this.myForm.get("adress")?.value)
 
     this.userService.editUser(user).subscribe(
       {

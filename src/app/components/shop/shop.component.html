@@ -1,0 +1,14 @@
+<mat-card class="shopcard">
+    <mat-card-title>Tienda</mat-card-title>
+    <mat-card-content style="color: #2c3646;" *ngIf="shopUser">
+      <mat-card-subtitle style="color: 2c3646;">{{shopUser.name}}</mat-card-subtitle>
+      <ul>
+        <li *ngIf="shopUser.name">Nombre completo: <span>{{shopUser.name}}</span></li>
+      </ul>
+      <button mat-raised-button style="color: #2c3646;" routerLink="/shop-page/{{shopUser.name}}/{{UseriD}}">Revisar tienda</button>
+    </mat-card-content>
+    <mat-card-content style="color: #2c3646;" *ngIf="!shopUser">
+      <mat-card-subtitle style="color: 2c3646;">Aún no tiene una tienda.</mat-card-subtitle>
+      <button mat-raised-button style="color: #2c3646;" routerLink="/shop-create/{{UseriD}}">Crear Tienda</button>
+    </mat-card-content>
+</mat-card>

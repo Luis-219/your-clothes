@@ -40,7 +40,6 @@ export class SignupPageComponent implements OnInit {
   saveUser():void
   {
     const user:User = {
-      
       id:0,
       name: this.myForm.get("name")?.value,
       lastname: this.myForm.get("lastname")?.value,

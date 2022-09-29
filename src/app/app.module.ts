@@ -13,6 +13,10 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { GlobalNavbarComponent } from './components/global-navbar/global-navbar.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { DialogdeleteComponent } from './components/dialogdelete/dialogdelete.component';
+import { ShopFormComponent } from './components/shop-form/shop-form.component';
+import { ShopComponent } from './components/shop/shop.component';
+import { ShopPageComponent } from './components/shop-page/shop-page.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +28,10 @@ import { DialogdeleteComponent } from './components/dialogdelete/dialogdelete.co
     GlobalNavbarComponent,
     EditUserComponent,
     DialogdeleteComponent,
+    ShopFormComponent,
+    ShopComponent,
+    ShopPageComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,

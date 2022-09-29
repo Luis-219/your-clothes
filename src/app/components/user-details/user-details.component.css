@@ -54,3 +54,10 @@ mat-card-actions button{
     margin-right: -5rem;
     margin-left: -2rem;
 }
+.details{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.details .shopcard{
+    margin-left: 6rem;
+}

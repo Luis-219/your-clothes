@@ -47,11 +47,11 @@ button{
 }
 ::ng-deep .mat-focused .mat-form-field-label {
     /*change color of label*/
-    color: #2c3646 !important;
+    color: #7c8491 !important;
 }
 ::ng-deep .mat-form-field-label {
     /*change color of label*/
-    color: #2c3646 !important;
+    color: #7c8491 !important;
 } 
 ::ng-deep.mat-form-field-underline {
     /*change color of underline*/
