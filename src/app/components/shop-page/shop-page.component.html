@@ -1,4 +1,4 @@
-<app-global-navbar></app-global-navbar>
+<app-global-navbar [userID]="shopfound.idUser"></app-global-navbar>
 <h1>{{shopfound.name}}</h1>
 
 <h1>DUEÑO DE LA TIENDA {{shopfound.idUser}} {{userfound.name}}</h1>
@@ -7,7 +7,7 @@
 
 <div *ngIf="userVerification()">
     <h1>Dueño de la tienda</h1>
-    <button mat-raised-button (click)="addProduct()" routerLink="/add-product/{{shopfound.name}}" >Agregar producto</button>
+    <button mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Agregar producto</button>
 </div>
 <div *ngIf="!userVerification()">
     <h1>CLIENTE</h1>
@@ -21,15 +21,11 @@
             <div class="buttons">
                 <button *ngIf="!userVerification()">Agregar</button>
                 <div *ngIf="userVerification()">
-                    <button>Editar</button><button>Borrar</button>
+                    <button mat-raised-button>Editar</button><button >Borrar</button>
                 </div>
             </div>
         </li>
     </ul>
-</div>
-
-<div>
-
 </div>
 
 

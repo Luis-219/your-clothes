@@ -1,0 +1,8 @@
+ul{
+    display: flex;
+}
+li{
+    list-style: none;
+    max-width: 10rem;
+    max-height: 10rem;
+}

@@ -3,8 +3,38 @@ export interface Product{
     idShop: number;
     name: string;
     shopname: string;
-    pubdate: number;
+    pubdate: Date;
     condition: string;
-    amount: number;
+    quantity: number;
     price: number;
+    size: string;
+    material: string;
+    brand: string;
+    type: string;
+    season: string;
+    year: string;
+}
+export interface Condition{
+    id: number;
+    name: string;
+}
+export interface Gender{
+    id: number;
+    name: string;
+}
+export interface Size{
+    id: number;
+    name: string;
+}
+export interface Material{
+    id: number;
+    name: string;
+}
+export interface Type{
+    id: number;
+    name: string;
+}
+export interface Season{
+    id: number;
+    name: string;
 }

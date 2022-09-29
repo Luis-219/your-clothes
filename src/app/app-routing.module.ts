@@ -1,3 +1,4 @@
+import { MainPageComponent } from './components/main-page/main-page.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ShopFormComponent } from './components/shop-form/shop-form.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
@@ -10,15 +11,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { ShopPageComponent } from './components/shop-page/shop-page.component';
 
 const routes: Routes = [
-  {path:"", component:LoginPageComponent},
-  {path:"login", component:LoginPageComponent},
-  {path:"signup", component:SignupPageComponent},
-  {path:"user/:id", component:UserDetailsComponent},
+  {path: "", component:LoginPageComponent},
+  {path: "login", component:LoginPageComponent},
+  {path: "signup", component:SignupPageComponent},
+  {path: "main-page/:id", component: MainPageComponent},
+  {path: "user/:id", component:UserDetailsComponent},
   {path: "edit/:id", component: EditUserComponent},
   {path: "shop-create/:id", component: ShopFormComponent},
   {path: "shop-page/:name/:id", component: ShopPageComponent},
   {path: "add-product/:shop", component: ProductFormComponent},
-  {path:"**", component:LoginPageComponent},
+  {path: "**", component:LoginPageComponent},
 ];
 
 @NgModule({

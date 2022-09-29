@@ -1,0 +1,28 @@
+<app-global-navbar></app-global-navbar>
+
+<section class="first-view">
+    <h1>PAGINA DE INICIO</h1>
+    <button mat-raised-button routerLink="/user/{{id}}">AJUSTES DE USUARIO</button>
+</section>
+<section class="shops">
+    <h3>Nuestras tiendas</h3>
+    <ul>
+        <li *ngFor="let shop of shops">
+            <h1>{{shop.name}}</h1>
+            <div class="buttons">
+                <button routerLink="/shop-page/{{shop.name}}/{{id}}">Ver tienda</button>
+            </div>
+        </li>
+    </ul>
+</section>
+<section class="shops">
+    <h3>Nuestros productos</h3>
+    <ul>
+        <li *ngFor="let product of products">
+            <h1>{{product.name}}</h1>
+            <div class="buttons">
+                <button>Ver producto</button>
+            </div>
+        </li>
+    </ul>
+</section>

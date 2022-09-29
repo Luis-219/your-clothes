@@ -1,1 +1,80 @@
-<p>product-form works! {{shopname}}</p>
+<body>
+    <app-global-navbar></app-global-navbar>
+<mat-card class="card">
+    <mat-card-title>Agregar Producto  a {{shopname}}</mat-card-title>
+    <mat-card-content style="color: #f5e2d0;">
+        <form [formGroup]="myForm" autocomplete="off" color="secondary">
+            <mat-form-field appearance="legacy">
+                <mat-label>Nombre del producto</mat-label>
+                <input matInput formControlName="name" placeholder="Nombre del producto">
+            </mat-form-field> <br>
+            <mat-form-field appearance="legacy">
+                <mat-label>Cantidad</mat-label>
+                <input matInput formControlName="quantity" placeholder="Cantidad">
+            </mat-form-field> <br>
+            <mat-form-field appearance="legacy">
+                <mat-label>Precio</mat-label>
+                <input matInput formControlName="price" placeholder="Precio">
+            </mat-form-field> <br>
+
+            <mat-form-field appearance = "legacy">
+                <mat-label>Género</mat-label>
+                <mat-select formControlName = "type">
+                    <mat-option *ngFor="let gender of genders" [value]="gender.name">
+                        {{gender.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> <br>
+
+            <mat-form-field appearance = "legacy">
+                <mat-label>Tipo de prenda</mat-label>
+                <mat-select formControlName = "type">
+                    <mat-option *ngFor="let type of types" [value]="type.name">
+                        {{type.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> <br>
+
+            <mat-form-field appearance = "legacy">
+                <mat-label>Material</mat-label>
+                <mat-select formControlName = "material">
+                    <mat-option *ngFor="let material of materials" [value]="material.name">
+                        {{material.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> <br>
+
+            <mat-form-field appearance = "legacy">
+                <mat-label>Talla</mat-label>
+                <mat-select formControlName = "size">
+                    <mat-option *ngFor="let size of sizes" [value]="size.name">
+                        {{size.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> <br>
+                
+            <mat-form-field appearance="legacy">
+                <mat-label>Marca</mat-label>
+                <input matInput formControlName="brand" placeholder="Marca">
+            </mat-form-field> <br>
+
+            <mat-form-field appearance = "legacy">
+                <mat-label>Temporada</mat-label>
+                <mat-select formControlName = "season">
+                    <mat-option *ngFor="let season of seasons" [value]="season.name">
+                        {{season.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> <br>
+
+            <mat-form-field appearance="legacy">
+                <mat-label>Año</mat-label>
+                <input matInput formControlName="year" placeholder="Año">
+            </mat-form-field> <br>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button style="background-color: #f5e2d0; color: #2c3646; font-weight: light;" (click)="saveProduct()" >Agregar producto</button>
+    </mat-card-actions>
+</mat-card>
+</body>

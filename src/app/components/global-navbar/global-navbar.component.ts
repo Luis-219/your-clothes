@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-global-navbar',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GlobalNavbarComponent implements OnInit {
 
+  @Input() userID!: number;
   constructor() { }
 
   ngOnInit(): void {
+    console.log("ID: " + this.userID);
   }
 
 }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,7 @@ import { ShopFormComponent } from './components/shop-form/shop-form.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { ShopPageComponent } from './components/shop-page/shop-page.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     ShopComponent,
     ShopPageComponent,
     ProductFormComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,

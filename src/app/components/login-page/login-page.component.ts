@@ -49,7 +49,8 @@ export class LoginPageComponent implements OnInit {
         });
         if(user){
           this.snackBar.open("Ingresó correctamente.", "ok");
-          this.route.navigate(["/user", user.id]);
+          this.route.navigate(["/main-page", user.id]);
+          //this.route.navigate(["/user", user.id]);
         }else{
           this.snackBar.open("Usuario no encontrado", "pipipi");
         }

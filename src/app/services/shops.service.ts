@@ -13,4 +13,8 @@ export class ShopsService {
   {
     return this.http.post<Shop>("http://localhost:3000/shops", shop);
   }
+  getShops()
+  {
+    return this.http.get<Shop[]>("http://localhost:3000/shops");
+  }
 }

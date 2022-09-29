@@ -118,81 +118,217 @@
       "id": 4,
       "idShop": 2,
       "name": "",
-      "shopname": "",
-      "pubdate": 0,
-      "condition": "",
-      "amount": 0,
-      "price": 0
+      "shopname": "try 1",
+      "pubdate": "2022-09-29T06:10:35.722Z",
+      "condition": "si hay",
+      "quantity": "",
+      "price": "",
+      "size": "",
+      "material": "",
+      "brand": "",
+      "type": "",
+      "season": "",
+      "year": ""
     },
     {
       "id": 5,
-      "idShop": 1,
-      "name": "",
-      "shopname": "",
-      "pubdate": 0,
-      "condition": "",
-      "amount": 0,
-      "price": 0
+      "idShop": 2,
+      "name": "CocaCola",
+      "shopname": "try 1",
+      "pubdate": "2022-09-29T06:12:34.637Z",
+      "condition": "si hay",
+      "quantity": "2",
+      "price": "120",
+      "size": "Invierno",
+      "material": "Lino",
+      "brand": "CocaCola",
+      "type": "Pantalón",
+      "season": "",
+      "year": "2020"
     },
     {
       "id": 6,
-      "idShop": 1,
+      "idShop": 2,
       "name": "",
-      "shopname": "",
-      "pubdate": 0,
-      "condition": "",
-      "amount": 0,
-      "price": 0
+      "shopname": "try 1",
+      "pubdate": "2022-09-29T06:12:57.549Z",
+      "condition": "si hay",
+      "quantity": "",
+      "price": "",
+      "size": "Invierno",
+      "material": "",
+      "brand": "",
+      "type": "",
+      "season": "",
+      "year": ""
     },
     {
       "id": 7,
-      "idShop": 1,
+      "idShop": 2,
       "name": "",
-      "shopname": "",
-      "pubdate": 0,
-      "condition": "",
-      "amount": 0,
-      "price": 0
+      "shopname": "try 1",
+      "pubdate": "2022-09-29T06:13:35.425Z",
+      "condition": "si hay",
+      "quantity": "",
+      "price": "",
+      "size": "",
+      "material": "",
+      "brand": "",
+      "type": "",
+      "season": "Verano",
+      "year": ""
     },
     {
       "id": 8,
-      "idShop": 2,
-      "name": "",
-      "shopname": "",
-      "pubdate": 0,
-      "condition": "",
-      "amount": 0,
-      "price": 0
+      "idShop": 1,
+      "name": "Pantalon verde",
+      "shopname": "hoy no fio mañana si",
+      "pubdate": "2022-09-29T06:32:50.780Z",
+      "condition": "si hay",
+      "quantity": "1",
+      "price": "200",
+      "size": "S",
+      "material": "Seda",
+      "brand": "Pionier",
+      "type": "Pantalón",
+      "season": "Invierno",
+      "year": "2020"
+    }
+  ],
+  "genders": [
+    {
+      "id": 1,
+      "name": "Hombre"
     },
     {
-      "id": 9,
-      "idShop": 3,
-      "name": "",
-      "shopname": "",
-      "pubdate": 0,
-      "condition": "",
-      "amount": 0,
-      "price": 0
+      "id": 2,
+      "name": "Mujer"
     },
     {
-      "id": 10,
-      "idShop": 3,
-      "name": "",
-      "shopname": "",
-      "pubdate": 0,
-      "condition": "",
-      "amount": 0,
-      "price": 0
+      "id": 3,
+      "name": "Ambos"
     },
     {
-      "id": 11,
-      "idShop": 3,
-      "name": "",
-      "shopname": "",
-      "pubdate": 0,
-      "condition": "",
-      "amount": 0,
-      "price": 0
+      "id": 4,
+      "name": "Niños"
+    }
+  ],
+  "conditions": [
+    {
+      "id": 1,
+      "name": "En Stock"
+    },
+    {
+      "id": 2,
+      "name": "Agotado"
+    }
+  ],
+  "sizes": [
+    {
+      "id": 1,
+      "name": "XS"
+    },
+    {
+      "id": 2,
+      "name": "S"
+    },
+    {
+      "id": 3,
+      "name": "M"
+    },
+    {
+      "id": 4,
+      "name": "L"
+    },
+    {
+      "id": 5,
+      "name": "XL"
+    },
+    {
+      "id": 6,
+      "name": "XLL"
+    }
+  ],
+  "materials": [
+    {
+      "id": 1,
+      "name": "Algodón"
+    },
+    {
+      "id": 2,
+      "name": "Poliéster"
+    },
+    {
+      "id": 3,
+      "name": "Lino"
+    },
+    {
+      "id": 4,
+      "name": "Lana"
+    },
+    {
+      "id": 5,
+      "name": "Seda"
+    },
+    {
+      "id": 6,
+      "name": "Nylon"
+    },
+    {
+      "id": 6,
+      "name": "Lycra"
+    },
+    {
+      "id": 7,
+      "name": "Cuero"
+    }
+  ],
+  "types": [
+    {
+      "id": 1,
+      "name": "Casaca"
+    },
+    {
+      "id": 2,
+      "name": "Pantalón"
+    },
+    {
+      "id": 3,
+      "name": "Camiseta"
+    },
+    {
+      "id": 4,
+      "name": "Short"
+    },
+    {
+      "id": 5,
+      "name": "Zapatilla"
+    },
+    {
+      "id": 6,
+      "name": "Camisa"
+    },
+    {
+      "id": 7,
+      "name": "Chompa"
+    }
+  ],
+  "seasons": [
+    {
+      "id": 1,
+      "name": "Verano"
+    },
+    {
+      "id": 2,
+      "name": "Invierno"
+    },
+    {
+      "id": 3,
+      "name": "Otoño"
+    },
+    {
+      "id": 4,
+      "name": "Primavera"
     }
   ]
 }

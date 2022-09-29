@@ -8,6 +8,7 @@ mat-toolbar{
 }
 mat-toolbar h1{
     margin-left: 3rem;
+    cursor: pointer;
 }
 mat-toolbar span{
     color: #f5e2d0;

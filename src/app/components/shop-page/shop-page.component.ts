@@ -38,7 +38,6 @@ export class ShopPageComponent implements OnInit {
   shopfound!:Shop;
   loadShop()
   {
-    console.log("init");
     this.http.get<any>("http://localhost:3000/shops").subscribe(
       res=>{
         const shop = res.find((a:Shop)=>{
@@ -76,30 +75,6 @@ export class ShopPageComponent implements OnInit {
       }
     );
   }
-  addProduct()
-  {
-    const product:Product = {
-      id: 0,
-      idShop: Number(this.shopfound.id),
-      name: '',
-      shopname: '',
-      pubdate: 0,
-      condition: '',
-      amount: 0,
-      price: 0
-    }
-
-
-    this.productService.addProduct(product).subscribe({
-      next: (data)=>{
-        this.snackBar.open("El producto se agregó correctamente.", "ok");
-        this.router.navigate(["/shop-page", this.shopname, this.shopfound.idUser]);
-      }
-    });
-
-  }
-
-
   Allproducts:Product[] = [];
   products:Product[] = [];
   getProducts()
