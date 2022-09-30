@@ -59,6 +59,16 @@
       "dni": 0,
       "phone": 0,
       "adress": ""
+    },
+    {
+      "id": 11,
+      "name": "María",
+      "lastname": "La del barrio",
+      "email": "maria@gmail.com",
+      "dni": "123",
+      "phone": 0,
+      "adress": "en el barrio",
+      "password": "maria"
     }
   ],
   "shops": [
@@ -101,6 +111,16 @@
       "Descripción": "buena tienda:)",
       "amountProducts": 0,
       "Aceptación": 0
+    },
+    {
+      "id": 5,
+      "idUser": 11,
+      "name": "Barrio Store",
+      "phone": "876543234",
+      "adress": "Barrio-3 (cambio de dirección)",
+      "Descripción": "buen servicio :)",
+      "amountProducts": 0,
+      "Aceptación": 0
     }
   ],
   "products": [
@@ -132,22 +152,6 @@
       "condition": "",
       "amount": 0,
       "price": 0,
-      "shopname": "Better-Clothes"
-    },
-    {
-      "id": 4,
-      "idShop": 2,
-      "name": "",
-      "pubdate": "2022-09-29T06:10:35.722Z",
-      "condition": "si hay",
-      "quantity": "",
-      "price": "",
-      "size": "",
-      "material": "",
-      "brand": "",
-      "type": "",
-      "season": "",
-      "year": "",
       "shopname": "Better-Clothes"
     },
     {
@@ -277,6 +281,22 @@
       "type": "Ambos",
       "season": "Invierno",
       "year": "2020"
+    },
+    {
+      "id": 13,
+      "idShop": 5,
+      "name": "Vestido azul",
+      "shopname": "Barrio Store",
+      "pubdate": "2022-09-30T15:56:59.431Z",
+      "condition": "En Stock",
+      "quantity": "1",
+      "price": "345",
+      "size": "M",
+      "material": "Seda",
+      "brand": "ice cream",
+      "type": "Otro",
+      "season": "Primavera",
+      "year": "2021"
     }
   ],
   "genders": [

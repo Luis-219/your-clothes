@@ -96,10 +96,7 @@ export class ShopPageComponent implements OnInit {
     this.productService.deleteProduct(id).subscribe(
       next=>{
         console.log("se eliminó");
-        this.router.navigated = false;
-        this.router.navigate(["/shop-page/", this.shopfound.name, this.userfound.id]).then(()=>{
-          window.location.reload();
-        });
+        this.router.navigate(["/shop-page/", this.shopfound.name, this.userfound.id]);
       }
     );
   }
