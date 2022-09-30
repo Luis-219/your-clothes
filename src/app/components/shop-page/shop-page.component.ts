@@ -90,4 +90,17 @@ export class ShopPageComponent implements OnInit {
       }
     );
   }
+
+  deleteProduct(id:number)
+  {
+    this.productService.deleteProduct(id).subscribe(
+      next=>{
+        console.log("se eliminó");
+        this.router.navigated = false;
+        this.router.navigate(["/shop-page/", this.shopfound.name, this.userfound.id]).then(()=>{
+          window.location.reload();
+        });
+      }
+    );
+  }
 }

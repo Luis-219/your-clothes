@@ -6,7 +6,7 @@
       "lastname": "Rojas",
       "email": "e@gmail.com",
       "dni": "12345678",
-      "phone": "",
+      "phone": "12",
       "adress": "",
       "password": "eduardito"
     },
@@ -49,13 +49,23 @@
       "phone": "123456789",
       "adress": "Land of Ooo",
       "password": "finn"
+    },
+    {
+      "id": 10,
+      "name": "Julio",
+      "lastname": "Iglesias",
+      "email": "julito@gmail.com",
+      "password": "julito",
+      "dni": 0,
+      "phone": 0,
+      "adress": ""
     }
   ],
   "shops": [
     {
       "id": 1,
       "idUser": 7,
-      "name": "hoy no fio mañana si",
+      "name": "HOYNOFIO",
       "phone": "13515",
       "adress": "sdgg",
       "Descripción": "dsgdsgs",
@@ -65,20 +75,30 @@
     {
       "id": 2,
       "idUser": 1,
-      "name": "try 1",
-      "phone": "125",
-      "adress": "sg",
-      "Descripción": "asi es",
+      "name": "Better-Clothes",
+      "phone": "936288234",
+      "adress": "Jr. Gamarra",
+      "Descripción": "si",
       "amountProducts": 0,
       "Aceptación": 0
     },
     {
       "id": 3,
       "idUser": 2,
-      "name": "sdgds",
+      "name": "Mario World",
       "phone": "352",
-      "adress": "sdgds",
-      "Descripción": "sgwe",
+      "adress": "Castillo de Luiggi",
+      "Descripción": "si",
+      "amountProducts": 0,
+      "Aceptación": 0
+    },
+    {
+      "id": 4,
+      "idUser": 10,
+      "name": "Church Store",
+      "phone": "135235",
+      "adress": "a la vuelta",
+      "Descripción": "buena tienda:)",
       "amountProducts": 0,
       "Aceptación": 0
     }
@@ -88,37 +108,36 @@
       "id": 1,
       "idShop": 2,
       "name": "Buenas",
-      "shopname": "",
       "pubdate": 0,
       "condition": "",
       "amount": 0,
-      "price": 0
+      "price": 0,
+      "shopname": "Better-Clothes"
     },
     {
       "id": 2,
       "idShop": 2,
       "name": "tardes",
-      "shopname": "",
       "pubdate": 0,
       "condition": "",
       "amount": 0,
-      "price": 0
+      "price": 0,
+      "shopname": "Better-Clothes"
     },
     {
       "id": 3,
       "idShop": 2,
       "name": "señor",
-      "shopname": "",
       "pubdate": 0,
       "condition": "",
       "amount": 0,
-      "price": 0
+      "price": 0,
+      "shopname": "Better-Clothes"
     },
     {
       "id": 4,
       "idShop": 2,
       "name": "",
-      "shopname": "try 1",
       "pubdate": "2022-09-29T06:10:35.722Z",
       "condition": "si hay",
       "quantity": "",
@@ -128,13 +147,13 @@
       "brand": "",
       "type": "",
       "season": "",
-      "year": ""
+      "year": "",
+      "shopname": "Better-Clothes"
     },
     {
       "id": 5,
       "idShop": 2,
       "name": "CocaCola",
-      "shopname": "try 1",
       "pubdate": "2022-09-29T06:12:34.637Z",
       "condition": "si hay",
       "quantity": "2",
@@ -144,13 +163,13 @@
       "brand": "CocaCola",
       "type": "Pantalón",
       "season": "",
-      "year": "2020"
+      "year": "2020",
+      "shopname": "Better-Clothes"
     },
     {
       "id": 6,
       "idShop": 2,
       "name": "",
-      "shopname": "try 1",
       "pubdate": "2022-09-29T06:12:57.549Z",
       "condition": "si hay",
       "quantity": "",
@@ -160,13 +179,13 @@
       "brand": "",
       "type": "",
       "season": "",
-      "year": ""
+      "year": "",
+      "shopname": "Better-Clothes"
     },
     {
       "id": 7,
       "idShop": 2,
       "name": "",
-      "shopname": "try 1",
       "pubdate": "2022-09-29T06:13:35.425Z",
       "condition": "si hay",
       "quantity": "",
@@ -176,13 +195,13 @@
       "brand": "",
       "type": "",
       "season": "Verano",
-      "year": ""
+      "year": "",
+      "shopname": "Better-Clothes"
     },
     {
       "id": 8,
       "idShop": 1,
       "name": "Pantalon verde",
-      "shopname": "hoy no fio mañana si",
       "pubdate": "2022-09-29T06:32:50.780Z",
       "condition": "si hay",
       "quantity": "1",
@@ -191,6 +210,71 @@
       "material": "Seda",
       "brand": "Pionier",
       "type": "Pantalón",
+      "season": "Invierno",
+      "year": "2020",
+      "shopname": "HOYNOFIO"
+    },
+    {
+      "id": 9,
+      "idShop": 2,
+      "name": "Camiseta azul",
+      "pubdate": "2022-09-29T22:25:17.267Z",
+      "condition": "En Stock",
+      "quantity": "1",
+      "price": "200",
+      "size": "M",
+      "material": "Lino",
+      "brand": "Nike",
+      "type": "Camiseta",
+      "season": "Verano",
+      "year": "2050",
+      "shopname": "Better-Clothes"
+    },
+    {
+      "id": 10,
+      "idShop": 2,
+      "name": "Pantalón beige",
+      "shopname": "Better-Clothes",
+      "pubdate": "2022-09-29T23:05:10.413Z",
+      "condition": "En Stock",
+      "quantity": "1",
+      "price": "123",
+      "size": "S",
+      "material": "Poliéster",
+      "brand": "si",
+      "type": "Pantalón",
+      "season": "Verano",
+      "year": "2020"
+    },
+    {
+      "id": 11,
+      "idShop": 3,
+      "name": "Casaca gris",
+      "shopname": "Mario World",
+      "pubdate": "2022-09-29T23:30:31.490Z",
+      "condition": "En Stock",
+      "quantity": "1",
+      "price": "200",
+      "size": "M",
+      "material": "Cuero",
+      "brand": "Cueritos",
+      "type": "Casaca",
+      "season": "Invierno",
+      "year": "2023"
+    },
+    {
+      "id": 12,
+      "idShop": 4,
+      "name": "Bata para cura",
+      "shopname": "Church Store",
+      "pubdate": "2022-09-30T06:57:11.454Z",
+      "condition": "En Stock",
+      "quantity": "1",
+      "price": "100",
+      "size": "M",
+      "material": "Algodón",
+      "brand": "bettercuras",
+      "type": "Ambos",
       "season": "Invierno",
       "year": "2020"
     }
@@ -311,6 +395,10 @@
     {
       "id": 7,
       "name": "Chompa"
+    },
+    {
+      "id": 8,
+      "name": "Otro"
     }
   ],
   "seasons": [

@@ -3,7 +3,8 @@
         <div class="left">
             <app-global-navbar></app-global-navbar>
             <div class="container">
-                <h1>Crear una tienda</h1>
+                <h1 *ngIf="!shopid">Crear una tienda</h1>
+                <h1 *ngIf="shopid">Editar una tienda</h1>
                 <form [formGroup]="myForm" autocomplete="off">  
                     <mat-form-field appearance="legacy">
                         <mat-label>Nombre</mat-label>
@@ -22,7 +23,7 @@
                         <textarea matInput formControlName="description"></textarea>
                       </mat-form-field>
                 </form>
-                <button mat-raised-button (click)="saveShop()"> Crear Tienda</button>
+                <button mat-raised-button (click)="saveShop()"> Guardar</button>
                 <button mat-stroked-button routerLink="/user/{{id}}"> Cancelar</button>
             </div>
         </div>

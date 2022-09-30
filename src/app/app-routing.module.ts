@@ -1,3 +1,5 @@
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ShopFormComponent } from './components/shop-form/shop-form.component';
@@ -18,8 +20,11 @@ const routes: Routes = [
   {path: "user/:id", component:UserDetailsComponent},
   {path: "edit/:id", component: EditUserComponent},
   {path: "shop-create/:id", component: ShopFormComponent},
+  {path: "shop-edit/:shopid", component: ShopFormComponent},
   {path: "shop-page/:name/:id", component: ShopPageComponent},
-  {path: "add-product/:shop", component: ProductFormComponent},
+  {path: "product-form/:shop", component: ProductFormComponent},
+  {path: "product-details/:shop/:idproduct/:id", component: ProductDetailsComponent},
+  {path: "shopping-cart/:name/:id", component:ShoppingCartComponent},
   {path: "**", component:LoginPageComponent},
 ];
 

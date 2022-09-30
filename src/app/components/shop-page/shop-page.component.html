@@ -5,8 +5,8 @@
         <h1>{{shopfound.name}}</h1>
         <div class="actions">
             <button *ngIf="userVerification()" style="background-color: #9b887d;" mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Eliminar</button>
-            <button *ngIf="userVerification()" mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Editar tienda</button>
-            <button *ngIf="userVerification()" mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Agregar producto</button>
+            <button *ngIf="userVerification()" mat-raised-button routerLink="/shop-edit/{{shopfound.id}}" >Editar tienda</button>
+            <button *ngIf="userVerification()" mat-raised-button routerLink="/product-form/{{shopfound.name}}" >Agregar producto</button>
             <button *ngIf="!userVerification()" mat-raised-button>Realizar reseña</button>
         </div>
     </div>
@@ -18,14 +18,15 @@
     <div *ngFor="let product of products">
         <mat-card>
             <div class="container">
-                <p>Nombre: {{product.name}}</p>
-                <h5>Tienda: {{product.shopname}}</h5>
+                <p>{{product.name}}</p>
+                <h5>Tienda: {{shopfound.name}}</h5>
                 <h5>Precio: {{product.price}}</h5>
             </div>
             <div class="buttons">
-                <a class="redirect" *ngIf="userVerification()">Editar</a>
-                <a class="redirect">Ver</a>
-                <mat-icon mat-raised-button *ngIf="!userVerification()">add</mat-icon>
+                <a class="fa fa-edit" *ngIf="userVerification()" routerLink="/product-form/{{shopfound.name}}"></a>
+                <a class="redirect" *ngIf="!userVerification()">Ver</a>
+                <a class= "fa fa-trash" (click)="deleteProduct(product.id)" *ngIf="userVerification()"></a>
+                <a class="fas fa-shopping-cart" *ngIf="!userVerification()"></a>
             </div>
         </mat-card>
     </div>

@@ -31,6 +31,10 @@ button{
     font-weight: lighter;
     font-size: 10px;
 }
+.buttons a{
+    text-decoration: none;
+    color: black;
+}
 .first-view{
     display: flex;
     min-height: 100vh;
@@ -81,7 +85,5 @@ mat-card{
 }
 a{
     text-decoration: none;
-}
-mat-icon{
     cursor: pointer;
 }

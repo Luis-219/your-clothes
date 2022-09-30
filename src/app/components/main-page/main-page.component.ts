@@ -1,3 +1,4 @@
+import { UsersService } from './../../services/users.service';
 import { User } from './../../models/User';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from './../../models/Product';
@@ -18,15 +19,26 @@ export class MainPageComponent implements OnInit {
   constructor(private activatedRouter:ActivatedRoute,
               private http:HttpClient,
               private shopServices:ShopsService,
-              private productServices:ProductsService) { }
+              private productServices:ProductsService,
+              private userService:UsersService) { }
 
   ngOnInit(): void {
     this.id= this.activatedRouter.snapshot.params["id"];
+    this.loadUser();
     this.getShops();
     this.getProducts();
     this.getMyShop();
   }
 
+  usernow!:User;
+  loadUser()
+  {
+    this.userService.getUserId(this.id).subscribe(
+      (data:User)=>{
+        this.usernow = data;
+      }
+    );
+  }
   
   shops: Shop[] = [];
   getShops()
@@ -49,10 +61,21 @@ export class MainPageComponent implements OnInit {
         })
       }
     );
-    console.log("productos: " + this.products.length);
   }
 
-  shop!: Shop;
+  ReceiveProduct(idproduct:number):boolean
+  {
+    if(this.shop){
+      if(this.shop.id != idproduct)
+      {
+        return false;
+      }
+      else return true;
+    }
+    else return false;
+  }
+
+  shop?: Shop;
   getMyShop()
   {
     this.http.get<any>("http://localhost:3000/shops").subscribe(
@@ -67,15 +90,6 @@ export class MainPageComponent implements OnInit {
           console.log("Este usuario no tiene tienda");
         }
     });
-  }
-
-  ReceiveProduct(idproduct:number):boolean
-  {
-    if(this.shop.id == idproduct)
-    {
-      return true;
-    }
-    else return false;
   }
 
 

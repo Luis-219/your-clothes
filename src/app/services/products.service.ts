@@ -19,6 +19,14 @@ export class ProductsService {
   getProductId(id:number){
     return this.http.get<Product>("http://localhost:3000/products/"+id.toString());
   }
+  editProduct(product:Product)
+  {
+    return this.http.put<Product>("http://localhost:3000/products/"+product.id.toString(), product);
+  }
+  deleteProduct(id:number)
+  {
+    return this.http.delete("http://localhost:3000/products/"+id.toString());
+  }
   getGender()
   {
     return this.http.get<Condition[]>("http://localhost:3000/genders");

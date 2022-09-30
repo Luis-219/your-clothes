@@ -1,0 +1,43 @@
+.form{
+    margin-top: 2rem;
+    margin-left: 5rem;
+}
+.form .heading{
+    color: #2c3646;
+}
+.form .heading h1{
+    font-weight: lighter;
+    margin-bottom: 0.5rem;
+}
+.form .heading span{
+    font-weight: 450;
+}
+.form .linea{
+    border-top: 1px solid #2c3646;
+    height: 2px;
+    padding: 0;
+    margin-left: 0rem;
+    margin-right: 2rem;
+}
+.form-content{
+    margin-top: 0.8rem;
+}
+.form-content mat-form-field{
+    width: 440px;
+} 
+.model2 mat-form-field{
+    margin-right: 20px;
+    width: 210px;
+}
+.actions{
+    margin-top: 2rem;
+    display: flex;
+}
+.actions .add button{
+    background-color: #2c3646;
+    color: #f5e2d0;
+    font-weight: lighter;
+}
+.actions button{
+    margin-right: 1rem;
+}

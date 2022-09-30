@@ -19,6 +19,7 @@ import { ShopPageComponent } from './components/shop-page/shop-page.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
     ProductFormComponent,
     MainPageComponent,
     ProductDetailsComponent,
+    ShoppingCartComponent,
   ],
   imports: [
     BrowserModule,

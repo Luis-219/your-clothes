@@ -1,1 +1,33 @@
-<p>product-details works!</p>
+<body>
+    <app-global-navbar [userID]="shop.idUser"></app-global-navbar>
+
+    <div class="product-page">
+        <div class="backarrow">
+            <a class="fas fa-caret-square-left" routerLink="/main-page/{{iduser}}"></a>
+        </div>
+        <div class="image">
+            <img src="/assets/images/magnifica-modelo-femenina-falda-midi-bailando-riendo-pared-rosa-mujer-caucasica-emocionada-ropa-azul-que-expresa-emociones-positivas_197531-5249.webp" alt="">
+        </div>
+        <div class="content">
+            <div class="up">
+                <h1>{{product.name}}</h1>
+                <div class="actions">
+                    <a class= "fa fa-tasks" *ngIf="userVerification()"></a>
+                    <a class= "fa fa-trash" *ngIf="userVerification()"></a>
+                </div>
+            </div>
+            <div class="linea"></div>
+            <mat-hint>vendido por {{shop.name}}</mat-hint>
+            <div class="details">
+                <h5>Tipo de ropa: {{product.type}}</h5>
+                <h5>Precio: {{product.price}}</h5>
+                <h5>Talla: {{product.size}}</h5>
+                <h5>Material: {{product.material}}</h5>
+                <h5>Marca de la prenda: {{product.brand}}</h5>
+                <h5>Temporada: {{product.season}}</h5>
+                <button *ngIf="!userVerification()" mat-raised-button routerLink="/shopping-cart/{{usernow.name}}/{{usernow.id}}">Agregar al Carrito</button>
+            </div> 
+        </div>
+    </div>
+</body>
+

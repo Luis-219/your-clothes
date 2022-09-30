@@ -20,4 +20,12 @@ export class ShopsService {
   getShopId(id:number){
     return this.http.get<Shop>("http://localhost:3000/shops/"+id.toString());
   }
+  editShop(shop:Shop)
+  {
+    return this.http.put<Shop>("http://localhost:3000/shops/"+shop.id.toString(), shop);
+  }
+  deleteShop(id:number)
+  {
+    return this.http.delete("http://localhost:3000/shops/"+id.toString());
+  }
 }

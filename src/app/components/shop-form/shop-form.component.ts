@@ -1,3 +1,6 @@
+import { ProductsService } from './../../services/products.service';
+import { Product } from './../../models/Product';
+import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShopsService } from './../../services/shops.service';
 import { Shop } from './../../models/Shop';
@@ -13,15 +16,19 @@ import { Component, OnInit } from '@angular/core';
 export class ShopFormComponent implements OnInit {
 
   id!:number;
+  shopid!:number;
   myForm!:FormGroup;
   constructor(private formBuilder:FormBuilder,
               private activatedrouter:ActivatedRoute,
               private router:Router,
               private shopService:ShopsService,
-              private snackBar:MatSnackBar) { }
+              private snackBar:MatSnackBar,
+              private http:HttpClient,
+              private productService:ProductsService) { }
 
   ngOnInit(): void {
     this.id= this.activatedrouter.snapshot.params["id"];
+    this.shopid= this.activatedrouter.snapshot.params["shopid"];
     this.formShop();
   }
 
@@ -35,12 +42,27 @@ export class ShopFormComponent implements OnInit {
         description:["", Validators.required]
       }
     )
+    if((this.shopid != undefined && this.shopid != 0)){
+      this.shopService.getShopId(this.shopid).subscribe(
+        (data:Shop) =>{
+          this.id = data.idUser;
+          this.myForm.get("name")!.setValue(data.name);
+          this.myForm.get("phone")!.setValue(data.phone);
+          this.myForm.get("adress")!.setValue(data.adress);
+          this.myForm.get("description")!.setValue(data.Descripción);
+        }
+      );
+    }
+    else{
+      this.shopid = 0;
+    }
   }
-  
+
+
   saveShop()
   {
     const shop:Shop = {
-      id: 0,
+      id: this.shopid,
       idUser: Number(this.id),
       name: this.myForm.get("name")?.value,
       phone: this.myForm.get("phone")?.value,
@@ -49,11 +71,41 @@ export class ShopFormComponent implements OnInit {
       amountProducts: 0,
       Aceptación: 0
     }
-    this.shopService.addShopUser(shop).subscribe({
-      next: (data)=>{
-        this.snackBar.open("La cuenta se creo correctamente.", "ok");
-        this.router.navigate(["/user",shop.idUser]);
-      }
-    });
+    if(shop.id != 0)
+    {
+      this.shopService.editShop(shop).subscribe({
+        next: (data) =>{
+
+          this.productService.getProducts().subscribe(
+            (data:Product[]) => {
+              data.forEach(product => {
+                if(product.idShop == shop.id){
+                  product.shopname = shop.name;
+                  this.productService.editProduct(product).subscribe();
+                }
+              });
+            }
+          );
+          this.snackBar.open("La tienda se editó correctamente", "ok", {duration:2000});
+          this.router.navigate(["/shop-page/", shop.name, shop.idUser]);
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      })
+    }
+    else{
+      this.shopService.addShopUser(shop).subscribe(
+        {
+          next:(data) =>{
+            this.snackBar.open("La tienda se agregó", "ok");
+            this.router.navigate(["/shop-page", shop.name, shop.idUser]);
+          },
+          error:(err)=>{
+            console.log(err);
+          }
+        }
+      );
+    }
   }
 }
