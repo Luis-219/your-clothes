@@ -57,6 +57,7 @@ export class EditUserComponent implements OnInit {
       }
     );
   }
+  
   editUser()
   {
     const user:User = {
