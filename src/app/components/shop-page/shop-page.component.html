@@ -23,7 +23,7 @@
                 <h5>Precio: {{product.price}}</h5>
             </div>
             <div class="buttons">
-                <a class="fa fa-edit" *ngIf="userVerification()" routerLink="/product-form/{{shopfound.name}}"></a>
+                <a class="fa fa-edit" *ngIf="userVerification()" routerLink="/product-edit/{{shopfound.name}}/{{product.id}}"></a>
                 <a class="redirect" *ngIf="!userVerification()">Ver</a>
                 <a class= "fa fa-trash" (click)="deleteProduct(product.id)" *ngIf="userVerification()"></a>
                 <a class="fas fa-shopping-cart" *ngIf="!userVerification()"></a>

@@ -23,6 +23,7 @@ const routes: Routes = [
   {path: "shop-edit/:shopid", component: ShopFormComponent},
   {path: "shop-page/:name/:id", component: ShopPageComponent},
   {path: "product-form/:shop", component: ProductFormComponent},
+  {path: "product-edit/:shop/:id", component: ProductFormComponent},
   {path: "product-details/:shop/:idproduct/:id", component: ProductDetailsComponent},
   {path: "shopping-cart/:name/:id", component:ShoppingCartComponent},
   {path: "**", component:LoginPageComponent},
