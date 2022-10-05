@@ -1,1 +1,12 @@
-<p>shopping-cart works!</p>
+<app-global-navbar [userID] = "user_id"></app-global-navbar>
+
+
+<div class="all" *ngIf="user && mycart">
+    <p>shopping-cart works!</p>
+    <p>Bienvenido a su carrito de compras</p>
+    <p>{{user.name}}</p>
+    
+    <p>{{mycart.quantity_products}}</p>
+    <p>{{mycart.total_purchase}}</p>
+    
+</div>

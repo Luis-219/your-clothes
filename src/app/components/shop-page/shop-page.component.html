@@ -1,10 +1,10 @@
-<app-global-navbar [userID]="shopfound.idUser"></app-global-navbar>
+<app-global-navbar [userID]="id"></app-global-navbar>
 
-<div class="heading">
-    <div class="up">
+<div class="heading" *ngIf="userfound">
+    <div class="up" *ngIf="shopfound">
         <h1>{{shopfound.name}}</h1>
         <div class="actions">
-            <button *ngIf="userVerification()" style="background-color: #9b887d;" mat-raised-button routerLink="/add-product/{{shopfound.name}}" >Eliminar</button>
+            <button (click)="deleteStore()" *ngIf="userVerification()" style="background-color: #9b887d;" mat-raised-button>Eliminar</button>
             <button *ngIf="userVerification()" mat-raised-button routerLink="/shop-edit/{{shopfound.id}}" >Editar tienda</button>
             <button *ngIf="userVerification()" mat-raised-button routerLink="/product-form/{{shopfound.name}}" >Agregar producto</button>
             <button *ngIf="!userVerification()" mat-raised-button>Realizar reseña</button>

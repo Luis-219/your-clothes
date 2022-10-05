@@ -5,7 +5,7 @@ import { Product } from './../../models/Product';
 import { ShopsService } from './../../services/shops.service';
 import { HttpClient } from '@angular/common/http';
 import { Shop } from './../../models/Shop';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,12 +15,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  id!:number;
+  id?:number;
   constructor(private activatedRouter:ActivatedRoute,
               private http:HttpClient,
               private shopServices:ShopsService,
               private productServices:ProductsService,
-              private userService:UsersService) { }
+              private userService:UsersService,
+              private router:Router) { }
 
   ngOnInit(): void {
     this.id= this.activatedRouter.snapshot.params["id"];
@@ -30,14 +31,21 @@ export class MainPageComponent implements OnInit {
     this.getMyShop();
   }
 
-  usernow!:User;
+  usernow?:User;
   loadUser()
   {
-    this.userService.getUserId(this.id).subscribe(
-      (data:User)=>{
-        this.usernow = data;
-      }
-    );
+    if(this.id!= undefined && this.id!= 0)
+    {
+      this.userService.getUserId(this.id).subscribe(
+        (data:User)=>{
+          this.usernow = data;
+        }
+      );
+    }
+    else
+    {
+      this.router.navigate(["/login"]);
+    }
   }
   
   shops: Shop[] = [];
@@ -49,14 +57,26 @@ export class MainPageComponent implements OnInit {
       }
     );
   }
+
+
+  
   products: Product[] = [];
+  allproducts: Product[] = [];
   winterProd: Product[] = [];
   getProducts()
   {
     this.productServices.getProducts().subscribe(
       (data:Product[]) => {
-        this.products = data;
-        this.products.forEach(winter => {
+
+        this.allproducts = data;
+        
+        while(this.products.length < 5)
+        {
+          let random = Math.floor(Math.random() * (data.length))
+          this.products.push(data[random]);
+        }
+
+        this.allproducts.forEach(winter => {
           if(winter.season == "Invierno") this.winterProd.push(winter);
         })
       }

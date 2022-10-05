@@ -1,63 +1,29 @@
-<app-global-navbar [userID] = "id"></app-global-navbar>
+<body>
+    <app-global-navbar [userID] = "id"></app-global-navbar>
 
-<div class="first-view">
-    <div class="items">
-        <h1>YourClothes</h1>
-    </div>
-</div>
-<div class="sections">
-    <div class="shops">
-        <h1 class="heading">Nuestras <span>tiendas</span></h1>
-        <div class="content">
-            <div *ngFor="let shop of shops">
-                <mat-card class="mat-elevation-z4">
-                    <div class="container">
-                        <p>{{shop.name}}</p>
-                        <h5>Teléfono: {{shop.phone}}</h5>
-                    </div>
-                    <div class="buttons">
-                        <a class="fa fa-tasks" routerLink="/shop-page/{{shop.name}}/{{id}}"></a>
-                    </div>
-                </mat-card>
-            </div>
+    <div class="first-view">
+        <div class="items">
+            <h1>YourClothes</h1>
         </div>
     </div>
-    <div class="products">
-        <h1 class="heading">Nuestros <span>productos</span></h1>
-        <div class="content">
-            <div *ngFor="let product of products">
-                <mat-card>
-                    <div class="container">
-                        <p>Nombre: {{product.name}}</p>
-                        <h5>Tienda: {{product.shopname}}</h5>
-                        <h5>Precio: {{product.price}}</h5>
-                    </div>
-                    <div class="buttons">
-                        <a class= "fa fa-tasks" routerLink="/product-details/{{product.shopname}}/{{product.id}}/{{id}}"></a>
-                        <a class= "fas fa-shopping-cart" *ngIf="!ReceiveProduct(product.idShop)" routerLink="/shopping-cart/{{usernow.name}}/{{usernow.id}}"></a>
-                    </div>
-                </mat-card>
+
+    <div class="main">
+        <div class="products">
+            <div class="title">
+                <h1>Nuestros <span>Productos</span></h1>
             </div>
+            <app-show-products [productslist]="products" [iduser]="id"></app-show-products>
+        </div>
+        <div class="products">
+            <div class="title">
+                <h1>Productos de <span>Invierno</span></h1>
+            </div>
+            <app-show-products [productslist]="winterProd" [iduser]="id" ></app-show-products>
         </div>
     </div>
-    <div class="winter">
-        <h1 class="heading">Productos de <span>Invierno</span></h1>
-        <div class="content">
-            <div *ngFor="let product of winterProd">
-                <mat-card>
-                    <div class="container">
-                        <p>Nombre: {{product.name}}</p>
-                        <h5>Tienda: {{product.shopname}}</h5>
-                        <h5>Precio: {{product.price}}</h5>
-                    </div>
-                    <div class="buttons">
-                        <a class="fa fa-tasks" routerLink="/product-details/{{product.shopname}}/{{product.id}}/{{id}}"></a>
-                        <a class= "fas fa-shopping-cart" *ngIf="!ReceiveProduct(product.idShop)" routerLink="/shopping-cart/{{usernow.name}}/{{usernow.id}}"></a>
-                    </div>
-                </mat-card>
-            </div>
-        </div>
-    </div>
-</div>
+</body>
+
+
+
 
 

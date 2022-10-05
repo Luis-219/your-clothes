@@ -1,0 +1,20 @@
+<body>
+    <div class="list">
+        <div *ngFor="let product of products" class="card">
+            <div routerLink="/product-details/{{product.shopname}}/{{product.id}}/{{iduser}}">
+                <a class="container">
+                    <div *ngFor="let image of imgs" class="image">
+                        <img *ngIf="image.id_product == product.id" src="{{image.img}}" alt="">
+                    </div>
+                    <div class="description">
+                        <mat-hint>{{product.brand}}</mat-hint> <br>
+                        <h4>{{product.name}}</h4>
+                    </div>
+                    <div class="price">
+                        <strong>S/.{{product.price}}</strong>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>

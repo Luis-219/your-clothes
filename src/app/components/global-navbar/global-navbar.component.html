@@ -1,7 +1,8 @@
 <mat-toolbar>
     <h1 routerLink="/main-page/{{userID}}">Your<span>Clothes</span></h1>
     <nav>
-        <a *ngIf="userID" routerLink="/user/{{userID}}">Ajustes</a>
+        <a *ngIf="userID" routerLink="/user/{{userID}}">Cuenta</a>
+        <a *ngIf="user && userID" routerLink="/shopping-cart/{{user.name}}/{{userID}}">MyCart</a>
         <a routerLink="/login">Cerrar Sesión</a>
     </nav>
 </mat-toolbar>

@@ -1,4 +1,4 @@
-import { Product, Condition, Size, Material, Type, Season } from './../models/Product';
+import { Product, Condition, Size, Material, Type, Season, ProductImage } from './../models/Product';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -26,6 +26,24 @@ export class ProductsService {
   deleteProduct(id:number)
   {
     return this.http.delete("http://localhost:3000/products/"+id.toString());
+  }
+  addImage(productimg:ProductImage)
+  {
+    return this.http.post<ProductImage>("http://localhost:3000/prodimages", productimg);
+  }
+  getImage(id:number){
+    return this.http.get<ProductImage>("http://localhost:3000/prodimages/"+id.toString());
+  }
+  getImages(){
+    return this.http.get<ProductImage[]>("http://localhost:3000/prodimages");
+  }
+  editImage(productimg:ProductImage)
+  {
+    return this.http.put<ProductImage>("http://localhost:3000/prodimages/"+productimg.id.toString(), productimg);
+  }
+  deleteImg(id:number)
+  {
+    return this.http.delete("http://localhost:3000/prodimages/"+id.toString());
   }
   getGender()
   {

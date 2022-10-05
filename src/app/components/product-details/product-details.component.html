@@ -25,7 +25,7 @@
                 <h5>Material: {{product.material}}</h5>
                 <h5>Marca de la prenda: {{product.brand}}</h5>
                 <h5>Temporada: {{product.season}}</h5>
-                <button *ngIf="!userVerification()" mat-raised-button routerLink="/shopping-cart/{{usernow.name}}/{{usernow.id}}">Agregar al Carrito</button>
+                <button mat-raised-button  *ngIf="!userVerification()" (click)="addtoCart(product.id)" >Agregar al Carrito</button>
             </div> 
         </div>
     </div>

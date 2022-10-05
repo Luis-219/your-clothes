@@ -1,11 +1,15 @@
+import { DomSanitizer } from '@angular/platform-browser';
+import { UploadImageComponent } from './../upload-image/upload-image.component';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { Shop } from './../../models/Shop';
-import { Product, Size, Material, Type, Season, Gender } from './../../models/Product';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { Product, Size, Material, Type, Season, Gender, ProductImage } from './../../models/Product';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-product-form',
@@ -15,34 +19,64 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductFormComponent implements OnInit {
 
   myForm!:FormGroup;
+  idproduct!:number;
+  idimg!: number;
   shopname!:string;
+  preview!:string;
+  files:any = [];
   constructor(private activatedRouter:ActivatedRoute,
               private router:Router,
               private formBuilder:FormBuilder,
               private productService:ProductsService,
               private http:HttpClient,
-              private snackBar:MatSnackBar ) { }
+              private snackBar:MatSnackBar,
+              private location: Location,
+              private sanitizer: DomSanitizer,) { }
 
   ngOnInit(): void {
     this.shopname = this.activatedRouter.snapshot.params["shop"];
+    this.idproduct= this.activatedRouter.snapshot.params["id"];
     this.getGenders();
     this.getSizes();
     this.getMaterials();
     this.getTypes();
     this.getSeasons();
     this.findShop();
+    this.getProduct();
     this.loadForm();
   }
 
+  product!:Product;
+  getProduct()
+  {
+    if(this.idproduct != 0 && this.idproduct!= undefined)
+    {
+      this.productService.getProductId(this.idproduct).subscribe(
+        (data:Product)=>{
+          this.product = data;
+        }
+      );
+    }
+  }
+  verifyProduct():boolean{
+    if(this.idproduct != undefined && this.idproduct != 0)
+    {
+      return true;
+    }
+    else return false;
+  }
+
+
+  image!: ProductImage;
   loadForm()
   {
-    
     this.myForm = this.formBuilder.group(
       {
         name:[""],
         quantity: [""],
         price: [""],
         size: [""],
+        gender:[""],
         material: [""],
         brand: [""],
         type: [""],
@@ -50,6 +84,43 @@ export class ProductFormComponent implements OnInit {
         year: [""],
       }
     )
+    if((this.idproduct != undefined && this.idproduct != 0)){
+      this.productService.getProductId(this.idproduct).subscribe(
+        (data:Product) =>{
+          this.myForm.get("name")!.setValue(data.name);
+          this.myForm.get("quantity")!.setValue(data.quantity);
+          this.myForm.get("price")!.setValue(data.price);
+          this.myForm.get("brand")!.setValue(data.brand);
+          this.myForm.get("year")!.setValue(data.year);
+          this.myForm.get("material")!.setValue(data.material);
+          this.myForm.get("type")!.setValue(data.type);
+          this.myForm.get("size")!.setValue(data.size);
+          this.myForm.get("gender")!.setValue(data.gender);
+          this.myForm.get("season")!.setValue(data.season);
+
+          this.http.get<any>("http://localhost:3000/prodimages").subscribe(
+            res=>{
+              const img = res.find((a:ProductImage)=>{
+                return a.id_product == data.id;
+              });
+              if(img){
+                this.image = img;
+                this.productService.getImage(img.id).subscribe(
+                  (data:ProductImage)=>{
+                    this.preview = data.img;
+                    console.log(this.preview);
+                  }
+                );
+              }
+          });
+          
+        }
+      );
+    }
+    else{
+      this.idproduct = 0;
+      this.idimg = 0;
+    }
   }
 
   shopfound!:Shop;
@@ -119,7 +190,7 @@ export class ProductFormComponent implements OnInit {
   {
     let date: Date = new Date();
     const product:Product = {
-      id: 0,
+      id: this.idproduct,
       idShop: this.shopfound.id,
       name: this.myForm.get("name")?.value,
       shopname: this.shopfound.name,
@@ -127,6 +198,7 @@ export class ProductFormComponent implements OnInit {
       condition: 'En Stock',
       quantity: this.myForm.get("quantity")?.value,
       price: this.myForm.get("price")?.value,
+      gender: this.myForm.get("gender")?.value,
       size: this.myForm.get("size")?.value,
       material: this.myForm.get("material")?.value,
       brand: this.myForm.get("brand")?.value,
@@ -134,11 +206,79 @@ export class ProductFormComponent implements OnInit {
       season: this.myForm.get("season")?.value,
       year: this.myForm.get("year")?.value,
     }
-    this.productService.addProduct(product).subscribe({
-      next: (data)=>{
-        this.snackBar.open("El producto se agregó correctamente.", "ok");
-        this.router.navigate(["/shop-page", this.shopname, this.shopfound.idUser]);
-      }
-    });
+
+    if(product.id != 0)
+    {
+      this.productService.editProduct(product).subscribe(
+        next=>{
+          this.saveImage(product.id);
+          this.snackBar.open("El producto se editó correctamente", "ok", {duration:2000});
+          this.location.back();
+        }
+      );
+    }
+    else{
+      this.productService.addProduct(product).subscribe({
+        next: (data)=>{
+          this.saveImage(data.id);
+          this.snackBar.open("El producto se agregó correctamente.", "ok");
+          this.router.navigate(["/shop-page", this.shopname, this.shopfound.idUser]);
+        }
+      });
+    }
+
   }
+
+  capturefile(event: any):any{
+    const filecaptured = event.target.files[0];
+    this.base64(filecaptured).then((image:any)=>{
+      this.preview = image.base;
+      console.log(image);
+    });
+
+    this.files.push(filecaptured);
+    console.log(event.target.files);
+  }
+
+  base64 =async($event: any) => new Promise((resolve) =>{
+    const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () =>{
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error =>{
+        resolve({
+          base: null
+        });
+      };
+  })
+
+  saveImage(id:number)
+  {
+
+    if(this.image != undefined)
+    {
+      const imgProduct: ProductImage = {
+        id: this.image.id,
+        id_product: id,
+        img: this.preview
+      }
+      this.productService.addImage(imgProduct).subscribe();
+    }
+    else
+    {
+      const imgProduct: ProductImage = {
+        id: 0,
+        id_product: id,
+        img: this.preview
+      }
+      this.productService.addImage(imgProduct).subscribe();
+    }
+  }
+
+  
 }

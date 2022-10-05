@@ -20,6 +20,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ShowProductsComponent } from './components/show-products/show-products.component';
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     MainPageComponent,
     ProductDetailsComponent,
     ShoppingCartComponent,
+    ShowProductsComponent,
+    UploadImageComponent,
   ],
   imports: [
     BrowserModule,

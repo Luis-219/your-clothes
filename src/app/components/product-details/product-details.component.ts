@@ -1,3 +1,5 @@
+import { CartxProduct, ShoppingCart } from './../../models/Shopping-Cart';
+import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { ShopsService } from 'src/app/services/shops.service';
 import { Shop } from './../../models/Shop';
 import { Product } from './../../models/Product';
@@ -9,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from './../../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { NotExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-details',
@@ -29,7 +32,8 @@ export class ProductDetailsComponent implements OnInit {
               private http:HttpClient,
               private snackBar:MatSnackBar,
               private productService:ProductsService,
-              private shopService:ShopsService) { }
+              private shopService:ShopsService,
+              private shoppingService:ShoppingCartService) { }
 
   ngOnInit(): void {
     this.iduser= this.activatedRouter.snapshot.params["id"];
@@ -46,6 +50,7 @@ export class ProductDetailsComponent implements OnInit {
     this.userService.getUserId(this.iduser).subscribe(
       (data:User)=>{
         this.usernow = data;
+        this.getMycart();
       }
     );
   }
@@ -91,4 +96,43 @@ export class ProductDetailsComponent implements OnInit {
     }
     else return true;
   }
+
+  mycart!: ShoppingCart;
+  getMycart(){
+    this.shoppingService.getShoppingcart().subscribe(
+      (data:ShoppingCart[])=>{
+        data.forEach(cart => {
+          if(cart.id_user == this.usernow.id)
+          {
+            this.mycart = cart;
+          }
+        })
+      }
+    );
+  }
+
+  addtoCart(id:number)
+  {
+    const cartproduct:CartxProduct = {
+      id: 0,
+      product_id: this.product.id,
+      shopcart_id: this.mycart.id,
+      quantity: 1,
+      price: this.product.price,
+    }
+
+    this.shoppingService.addcartproduct(cartproduct).subscribe(
+      next=>{
+        let total = cartproduct.price * cartproduct.quantity;
+        this.mycart.quantity_products = this.mycart.quantity_products + cartproduct.quantity;
+        this.mycart.total_purchase = this.mycart.total_purchase + total;
+
+        this.shoppingService.updateShoppingcart(this.mycart).subscribe();
+
+        this.router.navigate(["/shopping-cart/", this.usernow.name, this.usernow.id]);
+      }
+    );
+  }
+
+
 }

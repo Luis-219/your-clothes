@@ -1,3 +1,5 @@
+import { ShoppingCartService } from './../../services/shopping-cart.service';
+import { CartxProduct, ShoppingCart } from './../../models/Shopping-Cart';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { UsersService } from './../../services/users.service';
 import { User } from './../../models/User';
@@ -18,7 +20,8 @@ export class SignupPageComponent implements OnInit {
               private userService:UsersService,
               private snackBar:MatSnackBar,
               private route:Router,
-              private activatedRoute:ActivatedRoute) { }
+              private activatedRoute:ActivatedRoute,
+              private shoppingcartService:ShoppingCartService) { }
 
   ngOnInit(): void {
     this.formSignUp();
@@ -52,6 +55,13 @@ export class SignupPageComponent implements OnInit {
 
     this.userService.addUser(user).subscribe({
       next: (data)=>{
+        const cart:ShoppingCart ={
+          id:0,
+          id_user: data.id,
+          total_purchase: 0,
+          quantity_products: 0,
+        }
+        this.shoppingcartService.createShoppingCart(cart).subscribe();
         this.snackBar.open("La cuenta se creo correctamente.", "ok");
         this.route.navigate(["/login"]);
       }

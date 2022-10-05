@@ -1,3 +1,4 @@
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: "product-edit/:shop/:id", component: ProductFormComponent},
   {path: "product-details/:shop/:idproduct/:id", component: ProductDetailsComponent},
   {path: "shopping-cart/:name/:id", component:ShoppingCartComponent},
+  {path: "upload-images", component:UploadImageComponent},
   {path: "**", component:LoginPageComponent},
 ];
 

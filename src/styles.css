@@ -3,5 +3,5 @@
 :root{
     --poppinsfont: 'Poppins', sans-serif;
 }
-html, body { height: 100%; background-color:white}
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body { height: 100%; background-color:white;}
+body { margin: 0; font-family: sans-serif; }

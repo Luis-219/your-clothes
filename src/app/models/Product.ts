@@ -7,12 +7,18 @@ export interface Product{
     condition: string;
     quantity: number;
     price: number;
+    gender: string;
     size: string;
     material: string;
     brand: string;
     type: string;
     season: string;
     year: string;
+}
+export interface ProductImage{
+    id: number;
+    id_product: number;
+    img:string;
 }
 export interface Condition{
     id: number;

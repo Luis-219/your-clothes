@@ -1,7 +1,7 @@
 <app-global-navbar [userID]="id"></app-global-navbar>
 
 <div class="heading">
-  <div class="up">
+  <div class="up" *ngIf="user">
       <h1>{{user.name}}<mat-hint> {{user.lastname}}</mat-hint></h1> 
       <div class="actions">
         <button mat-raised-button style="background-color: #f5e2d0; color: #2c3646; font-weight: bold;" routerLink="/edit/{{user.id}}" >Editar datos</button>
@@ -21,7 +21,7 @@
         <div class="linea"></div>
       </div>
       <div class="things">
-        <div class="data">
+        <div class="data" *ngIf="user">
           <h3 *ngIf="user.name">Nombre completo: <span>{{user.name}} {{user.lastname}}</span></h3>
           <h3 *ngIf="user.email">Email: <span> {{user.email}}</span></h3>
           <h3 *ngIf="user.phone">Teléfono: <span> {{user.phone}}</span></h3>
@@ -34,7 +34,7 @@
           <h3 *ngIf="!user.dni">DNI: <span>Dato no encontrado</span></h3>
         </div>
         <div class="store">
-          <app-shop [UseriD]="user.id"></app-shop>
+          <app-shop *ngIf="user" [UseriD]="user.id"></app-shop>
         </div>
       </div>
     <div>

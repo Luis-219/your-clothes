@@ -1,3 +1,4 @@
+import { ShopsService } from 'src/app/services/shops.service';
 import { User } from './../../models/User';
 import { UsersService } from './../../services/users.service';
 import { Product } from './../../models/Product';
@@ -24,6 +25,7 @@ export class ShopPageComponent implements OnInit {
               private productService:ProductsService,
               private router:Router,
               private userService: UsersService,
+              private shopService:ShopsService,
               ) { }
 
   ngOnInit(): void {
@@ -52,11 +54,18 @@ export class ShopPageComponent implements OnInit {
 
   userVerification():boolean
   {
-    if(this.shopfound.idUser != this.id)
+    if(this.shopfound)
+    {
+      if(this.shopfound.idUser != this.id)
+      {
+        return false;
+      }
+      else return true;
+    }
+    else
     {
       return false;
     }
-    else return true;
   }
 
 
@@ -66,7 +75,6 @@ export class ShopPageComponent implements OnInit {
       {
         next: (data:User) =>{
           this.userfound = data;
-          console.log("mañana");
         },
         error: (err) =>{
           this.router.navigate([""]);
@@ -75,16 +83,17 @@ export class ShopPageComponent implements OnInit {
       }
     );
   }
-  Allproducts:Product[] = [];
   products:Product[] = [];
   getProducts()
   {
-    console.log("mañana")
     this.productService.getProducts().subscribe(
       (data:Product[]) => {
         data.forEach( product => {
-          if(product.idShop == this.shopfound.id){
-            this.products.push(product);
+          if(this.shopfound!= undefined)
+          {
+            if(product.idShop == this.shopfound.id){
+              this.products.push(product);
+            }
           }
         })
       }
@@ -95,9 +104,26 @@ export class ShopPageComponent implements OnInit {
   {
     this.productService.deleteProduct(id).subscribe(
       next=>{
-        console.log("se eliminó");
-        this.router.navigate(["/shop-page/", this.shopfound.name, this.userfound.id]);
+        if(this.shopfound!= undefined)
+        {
+          this.router.navigate(["/shop-page/", this.shopfound.name, this.userfound.id]);
+        }
       }
     );
+  }
+
+  deleteStore(){
+    if(this.shopfound != undefined)
+    {
+      this.shopService.deleteShop(this.shopfound.id).subscribe(
+        next=>{
+          this.products.forEach(product => {
+            console.log("eliminando producto...- " + product.id + " " + product.name + " " + product.shopname);
+            this.productService.deleteProduct(product.id).subscribe();
+          })
+          this.router.navigate(["user/", this.userfound.id]);
+        }
+      );
+    }
   }
 }

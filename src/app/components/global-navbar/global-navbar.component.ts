@@ -1,3 +1,5 @@
+import { UsersService } from './../../services/users.service';
+import { User } from './../../models/User';
 import { HttpClient } from '@angular/common/http';
 import { Shop } from './../../models/Shop';
 import { Component, Input, OnInit } from '@angular/core';
@@ -10,12 +12,28 @@ import { ShopsService } from 'src/app/services/shops.service';
 })
 export class GlobalNavbarComponent implements OnInit {
 
-  @Input() userID!: number;
+  @Input() userID?: number;
   constructor(private shopService:ShopsService,
-              private http:HttpClient) { }
+              private http:HttpClient,
+              private userService:UsersService) { }
 
   ngOnInit(): void {
+    this.getuser();
     this.HaveAShop();
+  }
+
+
+  user?:User;
+  getuser()
+  {
+    if(this.userID != undefined && this.userID != 0)
+    {
+      this.userService.getUserId(this.userID).subscribe(
+        (data:User)=>{
+          this.user = data;
+        }
+      );
+    }
   }
 
   shopUser?:Shop;

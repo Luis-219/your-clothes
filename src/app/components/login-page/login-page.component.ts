@@ -44,7 +44,7 @@ export class LoginPageComponent implements OnInit {
 
     this.http.get<any>("http://localhost:3000/users").subscribe(
       res=>{
-        const user = res.find((a:any)=>{
+        const user = res.find((a:User)=>{
           return a.email == email && a.password == password;
         });
         if(user){

@@ -26,7 +26,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatTabsModule,
     MatCardModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
   ],
   exports:[
     CommonModule,
