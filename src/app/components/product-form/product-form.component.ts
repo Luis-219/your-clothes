@@ -271,12 +271,15 @@ export class ProductFormComponent implements OnInit {
     }
     else
     {
-      const imgProduct: ProductImage = {
-        id: 0,
-        id_product: id,
-        img: this.preview
+      if(this.preview != undefined)
+      {
+        const imgProduct: ProductImage = {
+          id: 0,
+          id_product: id,
+          img: this.preview
+        }
+        this.productService.addImage(imgProduct).subscribe();
       }
-      this.productService.addImage(imgProduct).subscribe();
     }
   }
 

@@ -1,9 +1,11 @@
+import { ProductsService } from 'src/app/services/products.service';
 import { CartxProduct, ShoppingCart } from './../../models/Shopping-Cart';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { UsersService } from './../../services/users.service';
 import { User } from './../../models/User';
 import { ActivatedRoute, ActivationStart } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { Product, ProductImage } from 'src/app/models/Product';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -17,11 +19,13 @@ export class ShoppingCartComponent implements OnInit {
   user_name!:string;
   constructor(private activatedRouter:ActivatedRoute,
               private userService:UsersService,
-              private shoppingcartService: ShoppingCartService) { }
+              private shoppingcartService: ShoppingCartService,
+              private productService: ProductsService) { }
 
   ngOnInit(): void {
     this.user_id= this.activatedRouter.snapshot.params["id"];
     this.getUser();
+    this.getimages();
   }
 
   user!: User;
@@ -31,7 +35,6 @@ export class ShoppingCartComponent implements OnInit {
       (userfound:User)=>{
         this.user = userfound;
         this.getMycart();
-        this.allcart();
       }
     );
   }
@@ -44,13 +47,14 @@ export class ShoppingCartComponent implements OnInit {
           if(cart.id_user == this.user.id)
           {
             this.mycart = cart;
+            this.allcart();
+            this.getProducts();
           }
         })
       }
     );
   }
 
-  
   products_cart:CartxProduct[] = [];
   allcart()
   {
@@ -67,8 +71,37 @@ export class ShoppingCartComponent implements OnInit {
     );
   }
 
-  
 
+  total:number = 0;
+  products: Product[] =[];
+  getProducts()
+  {
+    this.productService.getProducts().subscribe(
+      (data:Product[])=>
+      {
+        this.products_cart.forEach(cart =>{
+          data.forEach(prod=>
+            {
+              if(cart.product_id == prod.id)
+              {
+                this.products.push(prod);
+                this.total = this.total + Number(prod.price);
+              }
+            })
+        })
+      }
+    );
+  }
 
+  images: ProductImage[]=[];
+  getimages()
+  {
+    this.productService.getImages().subscribe(
+      (data:ProductImage[]) =>
+      {
+        this.images = data;
+      }
+    );
+  }
 
 }

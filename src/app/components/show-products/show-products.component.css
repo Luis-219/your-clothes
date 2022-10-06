@@ -17,6 +17,10 @@ body{
 }
 .card a{
     font-family: sans-serif;
+    cursor: pointer;
+}
+.card a:hover{
+    text-decoration: underline;
 }
 .card .image img{
     width: 100%;

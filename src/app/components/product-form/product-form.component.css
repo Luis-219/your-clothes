@@ -3,7 +3,7 @@
     margin-left: 5rem;
 }
 .form .heading{
-    color: #2c3646;
+    color: var(--principal);
 }
 .form .heading h1{
     font-weight: lighter;
@@ -13,7 +13,7 @@
     font-weight: 450;
 }
 .form .linea{
-    border-top: 1px solid #2c3646;
+    border-top: 1px solid var(--principal);
     height: 2px;
     padding: 0;
     margin-left: 0rem;
@@ -34,12 +34,12 @@
     display: flex;
 }
 .actions .save button{
-    background-color: #2c3646;
-    color: #f5e2d0;
-    font-weight: lighter;
+    background-color: var(--principal);
+    color: var(--wall);
 }
 .actions button{
     margin-right: 1rem;
+    color: var(--principal);
 }
 .content{
     width: 100%;
@@ -60,8 +60,8 @@
 .contenedor-btn-file {
     display: inline-block;
     position: relative;
-    background-color: #2c3646;
-    color: #f5e2d0;
+    background-color: var(--principal);
+    color: var(--wall);
     font-weight: lighter;
     border: 0;
     padding: 12px 20px;
@@ -70,10 +70,10 @@
     margin-bottom: 1rem;
 }
 .contenedor-btn-file:hover {
-    background-color:#2c3646;
+    background-color:var(--principal);
 }
 .contenedor-btn-file:active {
-    background-color: #2c3646;
+    background-color: var(--principal);
 }
 .contenedor-btn-file > i {
     margin-right: 15px;
@@ -99,4 +99,22 @@
     object-fit: cover;
 }
 
-
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: var(--principallight) !important;
+}
+::ng-deep .mat-form-field-label {
+    /*change color of label*/
+    color: var(--principallight) !important;
+} 
+::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: var(--principallight) !important;
+} 
+::ng-deep.mat-form-field-ripple {
+   /*change color of underline when focused*/
+   background-color: var(--principallight) !important;
+}
+::ng-deep .mat-input-element::placeholder{
+    color: var(--principallight) !important;
+}

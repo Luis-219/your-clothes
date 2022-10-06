@@ -10,6 +10,5 @@ export interface CartxProduct{
     product_id: number;
     shopcart_id:number;
     quantity: number;
-    price: number;
 }
 

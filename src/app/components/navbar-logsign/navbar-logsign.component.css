@@ -9,11 +9,11 @@ header h1{
     margin-left: 2rem;
     margin-top: 2rem;
     margin-right: 10rem;
-    color: #2c3646;
+    color: var(--principal);
     font-weight: bold;
 }
 header h1 span{
-    color: #7c8491;
+    color: var(--principallight);
 }
 header nav{
     margin-top: 2.5rem;
@@ -23,11 +23,11 @@ header nav{
 header nav a{
     margin-left: 2rem;
     text-decoration: none;
-    color: #9b887d;
+    color: var(--sub);
 }
 
 header a:hover{
-    color:#2c3646;
+    color: var(--sub);
     font-weight: bold;
     cursor:pointer;
 }

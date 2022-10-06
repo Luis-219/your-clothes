@@ -1,12 +1,32 @@
 <app-global-navbar [userID] = "user_id"></app-global-navbar>
-
-
-<div class="all" *ngIf="user && mycart">
-    <p>shopping-cart works!</p>
-    <p>Bienvenido a su carrito de compras</p>
-    <p>{{user.name}}</p>
+<body>
+    <div class="header" *ngIf="user && mycart">
+        <div class="details">
+            <div class="user">
+                <h1>Carrito de compras</h1>
+                <p>de {{user.name}}</p>
+            </div>
+            <div class="data">
+                <p>Cantidad de productos: <strong>{{mycart.quantity_products}}</strong></p>
+                <p>Total: <strong>S/.{{total}}</strong></p>
+            </div>
+        </div>
+    </div>
     
-    <p>{{mycart.quantity_products}}</p>
-    <p>{{mycart.total_purchase}}</p>
-    
-</div>
+    <div class="list" *ngFor="let product of products">
+        <mat-card class="product">
+            <div class="elements">
+                <div *ngFor="let img of images">
+                    <img *ngIf="img.id_product == product.id" src="{{img.img}}" alt="">
+                </div>
+                <div class="specs">
+                    <mat-hint>{{product.brand}}</mat-hint>
+                    <p>{{product.name}}</p>
+                    <div class="price">
+                        <strong>S/.{{product.price}}</strong>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</body>

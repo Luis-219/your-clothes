@@ -1,37 +1,39 @@
 <body>
     <app-global-navbar></app-global-navbar>
-<mat-card class="card">
-    <mat-card-title>Editar Usuario</mat-card-title>
-    <mat-card-content style="color: #f5e2d0;">
-        <form [formGroup]="myForm" autocomplete="off" color="secondary">
-            <mat-form-field appearance="legacy">
-                <mat-label>Name</mat-label>
-                <input matInput formControlName="name" placeholder="Name" color="secondary">
-            </mat-form-field> <br>
-            <mat-form-field appearance="legacy">
-                <mat-label>Apellido</mat-label>
-                <input matInput formControlName="lastname" placeholder="Apellido">
-            </mat-form-field> <br> 
-            <mat-form-field appearance="legacy">
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" placeholder="Email">
-            </mat-form-field> <br>
-            <mat-form-field appearance="legacy">
-                <mat-label>DNI</mat-label>
-                <input matInput formControlName="dni" placeholder="DNI">
-            </mat-form-field> <br>
-            <mat-form-field appearance="legacy">
-                <mat-label>Teléfono</mat-label>
-                <input matInput formControlName="phone" placeholder="Teléfono">
-            </mat-form-field> <br>
-            <mat-form-field appearance="legacy">
-                <mat-label>Dirección</mat-label>
-                <input matInput formControlName="adress" placeholder="Dirección">
-            </mat-form-field> <br>
-        </form>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button style="background-color: #f5e2d0; color: #2c3646; font-weight: light;" (click)="editUser()" >Editar Usuario</button>
-    </mat-card-actions>
-</mat-card>
+    <div class="cardup">
+        <mat-card class="card">
+            <mat-card-title>Editar Usuario</mat-card-title>
+            <mat-card-content style="color: #f5e2d0;">
+                <form [formGroup]="myForm" autocomplete="off" color="secondary">
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Name</mat-label>
+                        <input matInput formControlName="name" placeholder="Name" color="secondary">
+                    </mat-form-field> <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput formControlName="lastname" placeholder="Apellido">
+                    </mat-form-field> <br> 
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Email</mat-label>
+                        <input matInput formControlName="email" placeholder="Email">
+                    </mat-form-field> <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>DNI</mat-label>
+                        <input matInput formControlName="dni" placeholder="DNI">
+                    </mat-form-field> <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Teléfono</mat-label>
+                        <input matInput formControlName="phone" placeholder="Teléfono">
+                    </mat-form-field> <br>
+                    <mat-form-field appearance="legacy">
+                        <mat-label>Dirección</mat-label>
+                        <input matInput formControlName="adress" placeholder="Dirección">
+                    </mat-form-field> <br>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button style="background-color: var(--wall); color: var(--principal); font-weight: bold;" (click)="editUser()" >Editar Usuario</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
 </body>

@@ -4,13 +4,13 @@
 }
 .heading{
 
-    color: #2c3646;
+    color: var(--principal);
     margin: 2rem 3rem;
     font-weight: lighter;
 
 }
 .linea{
-    border-top: 1px solid #2c3646;
+    border-top: 1px solid var(--principallight);
     height: 2px;
     padding: 0;
     margin-left: 0rem;
@@ -24,7 +24,7 @@
     font-weight: lighter;
 }
 .up mat-hint{
-    color: #2c3646;
+    color: var(--principal);
     font-weight: lighter;
 }
 .up .actions{
@@ -54,11 +54,11 @@
     margin-left: 2rem;
 }
 .content .row .details .title h1{
-    color: #2c3646;
+    color: var(--principal);
     font-weight: lighter;
 }
 .content .row .details .linea{
-    border-top: 1px solid black;
+    border-top: 1px solid var(--principal);
     height: 2px;
     padding: 0;
     margin-left: 0rem;

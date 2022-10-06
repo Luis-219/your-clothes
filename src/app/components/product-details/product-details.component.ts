@@ -1,3 +1,4 @@
+import { ProductImage } from 'src/app/models/Product';
 import { CartxProduct, ShoppingCart } from './../../models/Shopping-Cart';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { ShopsService } from 'src/app/services/shops.service';
@@ -19,10 +20,8 @@ import { NotExpr } from '@angular/compiler';
   styleUrls: ['./product-details.component.css']
 })
 export class ProductDetailsComponent implements OnInit {
-
-
   idproduct!: number;
-  iduser!: number;
+  iduser?: number;
   shopname!: string;
 
   constructor(private router:Router,
@@ -47,21 +46,37 @@ export class ProductDetailsComponent implements OnInit {
   usernow!:User;
   loadUser()
   {
-    this.userService.getUserId(this.iduser).subscribe(
-      (data:User)=>{
-        this.usernow = data;
-        this.getMycart();
-      }
-    );
+    if(this.iduser != undefined && this.iduser!= 0){
+      this.userService.getUserId(this.iduser).subscribe(
+        (data:User)=>{
+          this.usernow = data;
+          this.getMycart();
+        }
+      );
+    }
   }
 
   product!: Product;
+  img!: string;
   loadProduct()
   {
     this.productService.getProductId(this.idproduct).subscribe(
       {
         next: (data:Product) =>{
           this.product = data;
+
+          this.productService.getImages().subscribe(
+            (data: ProductImage[]) =>{
+              data.forEach(image =>{
+                if(image.id_product == this.product.id)
+                {
+                  this.img = image.img;
+                }
+              });
+            }
+          );
+
+
         },
         error: (err) =>{
           this.router.navigate([""]);
@@ -72,6 +87,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   shop!:Shop;
+  shopiduser?:number;
   findShop()
   {
     this.http.get<any>("http://localhost:3000/shops").subscribe(
@@ -81,6 +97,7 @@ export class ProductDetailsComponent implements OnInit {
         });
         if(shopfound){
           this.shop = shopfound;
+          this.shopiduser = this.shop.idUser;
           console.log("Tienda");
         }else{
           this.snackBar.open("Usuario no encontrado", "pipipi");
@@ -90,11 +107,15 @@ export class ProductDetailsComponent implements OnInit {
 
   userVerification():boolean
   {
-    if(this.shop.idUser != this.iduser)
+    if(this.shop)
     {
-      return false;
+      if(this.shop.idUser != this.iduser)
+      {
+        return false;
+      }
+      else return true;
     }
-    else return true;
+    else return false;
   }
 
   mycart!: ShoppingCart;
@@ -118,14 +139,11 @@ export class ProductDetailsComponent implements OnInit {
       product_id: this.product.id,
       shopcart_id: this.mycart.id,
       quantity: 1,
-      price: this.product.price,
     }
 
     this.shoppingService.addcartproduct(cartproduct).subscribe(
       next=>{
-        let total = cartproduct.price * cartproduct.quantity;
-        this.mycart.quantity_products = this.mycart.quantity_products + cartproduct.quantity;
-        this.mycart.total_purchase = this.mycart.total_purchase + total;
+        this.mycart.quantity_products = this.mycart.quantity_products + Number(cartproduct.quantity);
 
         this.shoppingService.updateShoppingcart(this.mycart).subscribe();
 

@@ -23,8 +23,14 @@
                         <textarea matInput formControlName="description"></textarea>
                       </mat-form-field>
                 </form>
-                <button mat-raised-button (click)="saveShop()"> Guardar</button>
-                <button mat-stroked-button routerLink="/user/{{id}}"> Cancelar</button>
+                <div class="actions">
+                    <div class="save">
+                        <button mat-raised-button (click)="saveShop()"> Guardar</button>
+                    </div>
+                    <div class="cancel">
+                        <button mat-raised-button routerLink="/user/{{id}}"> Cancelar</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

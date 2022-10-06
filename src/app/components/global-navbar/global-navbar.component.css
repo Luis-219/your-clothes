@@ -1,7 +1,7 @@
 
 mat-toolbar{
-    color: #d7e1e5;
-    background-color: #2c3646;
+    color: var(--wall);
+    background-color: var(--principal);
     font-weight: bold;
     height: 4.5rem;
     justify-content: space-between;
@@ -11,13 +11,11 @@ mat-toolbar h1{
     cursor: pointer;
 }
 mat-toolbar span{
-    color: #f5e2d0;
+    color: var(--wall);
 }
 mat-toolbar a{
-    color: #f5e2d0;
-    font-size: 70%;
-    font-weight: lighter;
-    margin-right: 3rem;
+    color: var(--wall);
+    font-size: 15px;
+    margin-right: 1rem;
     text-decoration: none;
 }
-

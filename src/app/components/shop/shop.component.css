@@ -3,7 +3,7 @@
     margin-bottom: 3rem;
 }
 .heading h1{
-    color: #2c3646;
+    color: var(--principal);
     font-weight: lighter;
 }
 .heading{
@@ -12,7 +12,7 @@
 
 }
 .linea{
-    border-top: 1px solid black;
+    border-top: 1px solid var(--principal);
     height: 2px;
     padding: 0;
     margin-left: 0rem;
@@ -34,7 +34,6 @@
     margin-bottom: 0.5rem;
     margin-left: 0.5rem;
     font-size: smaller;
-    background-color: #2c3646;
-    color: #f5e2d0;
-    font-weight: lighter;
+    background-color: var(--principal);
+    color: var(--wall);
 }

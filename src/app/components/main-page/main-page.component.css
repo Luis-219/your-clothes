@@ -1,35 +1,10 @@
-.first-view{
-    display: flex;
-    min-height: 30vh;
-    background: url(/assets/images/2224745.webp) no-repeat;
-    background-size: cover;
-    background-position: center;
-    align-items: center;
-}
-.first-view .items{
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-    max-width: 40rem;
-    margin-left: 55rem;
-}
-.first-view .items h1{
-    color: #2c3646;
-    font-size: 3rem;
-    font-family: 'Courier New', Courier, monospace;
-}
-.first-view .items a{
-    color: #2c3646;
-    display: flex;
-    font-size: 1rem;
-    font-family: 'Courier New', Courier, monospace;
-    text-decoration: none;
-}
+
 .main .title{
     text-align: center;
     margin-top: 30px;
 }
 .main h1{
-    color: #2c3646;
+    color: var(--principal);
     font-family: sans-serif;
     font-size: 30px;
 }

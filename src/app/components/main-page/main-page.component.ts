@@ -73,7 +73,11 @@ export class MainPageComponent implements OnInit {
         while(this.products.length < 5)
         {
           let random = Math.floor(Math.random() * (data.length))
-          this.products.push(data[random]);
+          
+          if(!this.products.includes(data[random]))
+          {
+            this.products.push(data[random])
+          }
         }
 
         this.allproducts.forEach(winter => {

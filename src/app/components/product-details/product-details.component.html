@@ -1,15 +1,15 @@
 <body>
-    <app-global-navbar [userID]="shop.idUser"></app-global-navbar>
+    <app-global-navbar [userID]="iduser"></app-global-navbar>
 
     <div class="product-page">
         <div class="backarrow">
             <a class="fas fa-caret-square-left" routerLink="/main-page/{{iduser}}"></a>
         </div>
         <div class="image">
-            <img src="/assets/images/magnifica-modelo-femenina-falda-midi-bailando-riendo-pared-rosa-mujer-caucasica-emocionada-ropa-azul-que-expresa-emociones-positivas_197531-5249.webp" alt="">
+            <img *ngIf="img" src="{{img}}" alt="">
         </div>
         <div class="content">
-            <div class="up">
+            <div class="up" *ngIf="product">
                 <h1>{{product.name}}</h1>
                 <div class="actions">
                     <a class= "fa fa-tasks" *ngIf="userVerification()"></a>
@@ -17,8 +17,8 @@
                 </div>
             </div>
             <div class="linea"></div>
-            <mat-hint>vendido por {{shop.name}}</mat-hint>
-            <div class="details">
+            <mat-hint *ngIf="shop">vendido por {{shop.name}}</mat-hint>
+            <div class="details" *ngIf="product">
                 <h5>Tipo de ropa: {{product.type}}</h5>
                 <h5>Precio: {{product.price}}</h5>
                 <h5>Talla: {{product.size}}</h5>

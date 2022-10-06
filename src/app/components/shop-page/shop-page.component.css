@@ -4,13 +4,13 @@
 }
 .heading{
 
-    color: #2c3646;
+    color: var(--principal);
     margin: 2rem 3rem;
     font-weight: lighter;
 
 }
 .linea{
-    border-top: 1px solid black;
+    border-top: 1px solid var(--principal);
     height: 2px;
     padding: 0;
     margin-left: 0rem;
@@ -27,9 +27,8 @@
     margin-bottom: 0.5rem;
     margin-left: 0.5rem;
     font-size: smaller;
-    background-color: #2c3646;
-    color: #f5e2d0;
-    font-weight: lighter;
+    background-color: var(--principal);
+    color: var(--wall);
 }
 .content{
 
@@ -45,7 +44,7 @@
     margin-left: 2rem;
 }
 .redirect{
-    color: #2c3646;
+    color: var(--principal);
     cursor: pointer;
     font-weight: lighter;
 }
