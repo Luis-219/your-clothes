@@ -1,3 +1,4 @@
+import { ProductsFiltersComponent } from './components/products-filters/products-filters.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
@@ -17,11 +18,12 @@ const routes: Routes = [
   {path: "", component:LoginPageComponent},
   {path: "login", component:LoginPageComponent},
   {path: "signup", component:SignupPageComponent},
-  {path: "main-page/:id", component: MainPageComponent},
   {path: "user/:id", component:UserDetailsComponent},
   {path: "edit/:id", component: EditUserComponent},
   {path: "shop-create/:id", component: ShopFormComponent},
   {path: "shop-edit/:shopid", component: ShopFormComponent},
+  {path: "main-page/:id", component: MainPageComponent},
+  {path: "products-page/:id", component: ProductsFiltersComponent},
   {path: "shop-page/:name/:id", component: ShopPageComponent},
   {path: "product-form/:shop", component: ProductFormComponent},
   {path: "product-edit/:shop/:id", component: ProductFormComponent},

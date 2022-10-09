@@ -19,7 +19,7 @@
                             <input matInput formControlName="name" placeholder="Nombre del producto">
                         </mat-form-field>
         
-                        <div class="model2">
+                        <div class="model3">
                             <mat-form-field appearance="legacy">
                                 <mat-label>Cantidad</mat-label>
                                 <input matInput formControlName="quantity" placeholder="Cantidad">
@@ -29,8 +29,21 @@
                                 <mat-label>Precio</mat-label>
                                 <input matInput formControlName="price" placeholder="Precio">
                             </mat-form-field>
+                            <mat-form-field appearance = "legacy">
+                                <mat-label>Tipo de precio</mat-label>
+                                <mat-select formControlName = "pricetype">
+                                    <mat-option *ngFor="let pricetype of pricetypes" [value]="pricetype.type">
+                                        {{pricetype.type}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
                         </div>
-                
+
+                        <mat-form-field appearance="legacy">
+                            <mat-label>Marca</mat-label>
+                            <input matInput formControlName="brand" placeholder="Marca">
+                        </mat-form-field> <br>
+
                         <div class="model2">
                             <mat-form-field appearance = "legacy">
                                 <mat-label>Género</mat-label>
@@ -70,11 +83,6 @@
                                 </mat-select>
                             </mat-form-field>
                         </div>
-                            
-                        <mat-form-field appearance="legacy">
-                            <mat-label>Marca</mat-label>
-                            <input matInput formControlName="brand" placeholder="Marca">
-                        </mat-form-field> <br>
                 
                         <div class="model2">
                             <mat-form-field appearance = "legacy">

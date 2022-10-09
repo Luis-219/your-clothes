@@ -1,4 +1,4 @@
-import { Product, Condition, Size, Material, Type, Season, ProductImage } from './../models/Product';
+import { Product, Condition, Size, Material, Type, Season, ProductImage, Pricetype } from './../models/Product';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -68,5 +68,9 @@ export class ProductsService {
   getSeasons()
   {
     return this.http.get<Season[]>("http://localhost:3000/seasons");
+  }
+  getPricetype()
+  {
+    return this.http.get<Pricetype[]>("http://localhost:3000/pricetype");
   }
 }

@@ -24,8 +24,8 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_id= this.activatedRouter.snapshot.params["id"];
-    this.getUser();
     this.getimages();
+    this.getUser();
   }
 
   user!: User;
@@ -44,13 +44,12 @@ export class ShoppingCartComponent implements OnInit {
     this.shoppingcartService.getShoppingcart().subscribe(
       (data:ShoppingCart[])=>{
         data.forEach(cart => {
-          if(cart.id_user == this.user.id)
+          if(cart.id_user == this.user_id)
           {
             this.mycart = cart;
-            this.allcart();
-            this.getProducts();
           }
         })
+        this.allcart();
       }
     );
   }
@@ -66,7 +65,7 @@ export class ShoppingCartComponent implements OnInit {
             this.products_cart.push(prodcart);
           }
         });
-
+        this.getProducts(); 
       }
     );
   }
@@ -89,6 +88,9 @@ export class ShoppingCartComponent implements OnInit {
               }
             })
         })
+        this.mycart.quantity_products = this.products.length;
+        this.mycart.total_purchase = this.total;
+        this.shoppingcartService.updateShoppingcart(this.mycart).subscribe();
       }
     );
   }

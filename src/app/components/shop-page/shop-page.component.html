@@ -14,21 +14,14 @@
     <mat-hint>por {{userfound.name}}</mat-hint>
 </div>
 
-<div class="content">
-    <div *ngFor="let product of products">
-        <mat-card>
-            <div class="container">
-                <p>{{product.name}}</p>
-                <h5>Tienda: {{shopfound.name}}</h5>
-                <h5>Precio: {{product.price}}</h5>
-            </div>
-            <div class="buttons">
-                <a class="fa fa-edit" *ngIf="userVerification()" routerLink="/product-edit/{{shopfound.name}}/{{product.id}}"></a>
-                <a class="redirect" *ngIf="!userVerification()">Ver</a>
-                <a class= "fa fa-trash" (click)="deleteProduct(product.id)" *ngIf="userVerification()"></a>
-                <a class="fas fa-shopping-cart" *ngIf="!userVerification()"></a>
-            </div>
-        </mat-card>
+<div class="products">
+    <div class="list">
+        <h2>Productos Disponibles</h2>
+        <app-show-products [productslist]="available" [quantity]="available.length" [iduser]="id"></app-show-products>
+    </div> 
+    <div class="list">
+        <h2>Productos Agotados</h2>
+        <app-show-products [productslist]="soldout" [quantity]="soldout.length" [iduser]="id"></app-show-products>
     </div>
 </div>
 

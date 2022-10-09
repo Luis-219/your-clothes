@@ -13,6 +13,7 @@ import { UsersService } from './../../services/users.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NotExpr } from '@angular/compiler';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-product-details',
@@ -32,7 +33,8 @@ export class ProductDetailsComponent implements OnInit {
               private snackBar:MatSnackBar,
               private productService:ProductsService,
               private shopService:ShopsService,
-              private shoppingService:ShoppingCartService) { }
+              private shoppingService:ShoppingCartService,
+              private location: Location) { }
 
   ngOnInit(): void {
     this.iduser= this.activatedRouter.snapshot.params["id"];
@@ -41,6 +43,11 @@ export class ProductDetailsComponent implements OnInit {
     this.loadProduct();
     this.findShop();
     this.loadUser();
+  }
+
+  back()
+  {
+    this.location.back();
   }
 
   usernow!:User;
@@ -75,8 +82,7 @@ export class ProductDetailsComponent implements OnInit {
               });
             }
           );
-
-
+          this.getMyProducts();
         },
         error: (err) =>{
           this.router.navigate([""]);
@@ -118,6 +124,16 @@ export class ProductDetailsComponent implements OnInit {
     else return false;
   }
 
+  soldoout():boolean
+  {
+    if(this.product.condition == "Agotado")
+    {
+      return true;
+    }
+    else return false;
+  }
+
+
   mycart!: ShoppingCart;
   getMycart(){
     this.shoppingService.getShoppingcart().subscribe(
@@ -132,6 +148,24 @@ export class ProductDetailsComponent implements OnInit {
     );
   }
 
+  added:boolean = false;
+  myproducts: CartxProduct[] = [];
+  getMyProducts()
+  {
+    this.shoppingService.getcartproduct().subscribe(
+      (data:CartxProduct[])=>
+      {
+        data.forEach(prod => {
+          if(prod.product_id == this.product.id)
+          {
+            this.added = true;
+          }
+        });
+      }
+    );
+  }
+
+
   addtoCart(id:number)
   {
     const cartproduct:CartxProduct = {
@@ -143,11 +177,50 @@ export class ProductDetailsComponent implements OnInit {
 
     this.shoppingService.addcartproduct(cartproduct).subscribe(
       next=>{
-        this.mycart.quantity_products = this.mycart.quantity_products + Number(cartproduct.quantity);
-
-        this.shoppingService.updateShoppingcart(this.mycart).subscribe();
-
         this.router.navigate(["/shopping-cart/", this.usernow.name, this.usernow.id]);
+      }
+    );
+  }
+
+  deletecart()
+  {
+    this.shoppingService.getcartproduct().subscribe(
+      (data:CartxProduct[])=>
+      {
+        data.forEach(prod=>
+          {
+            console.log("prod product id : " + prod.product_id);
+            console.log("product id: " + this.product.id);
+            console.log("shopcart id: " + prod.shopcart_id);
+            console.log("prod shopcart id: " + this.mycart.id);
+            if(prod.product_id == this.product.id && prod.shopcart_id == this.mycart.id)
+            {
+              this.shoppingService.deletecartproduct(prod.id).subscribe(
+                next=>{
+                  this.router.navigate(["/shopping-cart/", this.usernow.name, this.usernow.id]);
+                }
+              );
+              
+            }
+          })
+      }
+    );
+  }
+
+  workingdelete()
+  {
+    this.shoppingService.getcartproduct().subscribe(
+      (data:CartxProduct[])=>
+      {
+        data.forEach(prod=>
+          {
+            if(prod.product_id == this.product.id)
+            {
+              this.shoppingService.deletecartproduct(prod.id);
+            }
+          })
+
+          this.productService.deleteProduct(this.product.id).subscribe();
       }
     );
   }

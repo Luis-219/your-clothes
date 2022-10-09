@@ -2,13 +2,13 @@
     box-sizing: border-box;
 }
 body{
-    padding: 40px;
+    margin: 25px;
 }
 .list{
     width: 100%;
     display: flex;
-    justify-content: space-around;
     flex-wrap: wrap;
+    margin: 1rem;
 }
 .card{
     margin: 10px;
@@ -31,9 +31,14 @@ body{
 }
 .price{
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: space-between;
     margin-right: 1rem;
+    margin-left: 1rem;
     font-weight: bold;
+}
+.price p{
+    
+    color: #ff7673;
 }
 .description{
     margin-top: 10px;
@@ -41,4 +46,17 @@ body{
 }
 .description{
     margin-left: 1rem;
+}
+.all{
+    display: flex;
+
+}
+.filter
+{
+    margin-left: 3rem;
+    margin-right: 5rem;
+}
+.filter h3{
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
 }

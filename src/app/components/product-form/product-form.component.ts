@@ -4,7 +4,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { Shop } from './../../models/Shop';
-import { Product, Size, Material, Type, Season, Gender, ProductImage } from './../../models/Product';
+import { Product, Size, Material, Type, Season, Gender, ProductImage, Pricetype } from './../../models/Product';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -36,6 +36,7 @@ export class ProductFormComponent implements OnInit {
   ngOnInit(): void {
     this.shopname = this.activatedRouter.snapshot.params["shop"];
     this.idproduct= this.activatedRouter.snapshot.params["id"];
+    this.getpricetypes();
     this.getGenders();
     this.getSizes();
     this.getMaterials();
@@ -82,6 +83,7 @@ export class ProductFormComponent implements OnInit {
         type: [""],
         season: [""],
         year: [""],
+        pricetype: [""],
       }
     )
     if((this.idproduct != undefined && this.idproduct != 0)){
@@ -97,6 +99,7 @@ export class ProductFormComponent implements OnInit {
           this.myForm.get("size")!.setValue(data.size);
           this.myForm.get("gender")!.setValue(data.gender);
           this.myForm.get("season")!.setValue(data.season);
+          this.myForm.get("pricetype")!.setValue(data.pricetype);
 
           this.http.get<any>("http://localhost:3000/prodimages").subscribe(
             res=>{
@@ -185,6 +188,15 @@ export class ProductFormComponent implements OnInit {
       }
     );
   }
+  pricetypes:Pricetype[] = [];
+  getpricetypes()
+  {
+    this.productService.getPricetype().subscribe(
+      (data:Pricetype[]) => {
+        this.pricetypes = data;
+      }
+    );
+  }
 
   saveProduct():void
   {
@@ -195,8 +207,8 @@ export class ProductFormComponent implements OnInit {
       name: this.myForm.get("name")?.value,
       shopname: this.shopfound.name,
       pubdate: date,
-      condition: 'En Stock',
-      quantity: this.myForm.get("quantity")?.value,
+      condition: 'Disponible',
+      quantity: Number(this.myForm.get("quantity")?.value),
       price: this.myForm.get("price")?.value,
       gender: this.myForm.get("gender")?.value,
       size: this.myForm.get("size")?.value,
@@ -205,10 +217,15 @@ export class ProductFormComponent implements OnInit {
       type: this.myForm.get("type")?.value,
       season: this.myForm.get("season")?.value,
       year: this.myForm.get("year")?.value,
+      pricetype:this.myForm.get("pricetype")?.value
     }
 
     if(product.id != 0)
     {
+      if(product.quantity == 0)
+      {
+        product.condition = "Agotado";
+      }
       this.productService.editProduct(product).subscribe(
         next=>{
           this.saveImage(product.id);
@@ -222,7 +239,6 @@ export class ProductFormComponent implements OnInit {
         next: (data)=>{
           this.saveImage(data.id);
           this.snackBar.open("El producto se agregó correctamente.", "ok");
-          this.router.navigate(["/shop-page", this.shopname, this.shopfound.idUser]);
         }
       });
     }
@@ -267,7 +283,7 @@ export class ProductFormComponent implements OnInit {
         id_product: id,
         img: this.preview
       }
-      this.productService.addImage(imgProduct).subscribe();
+      this.productService.editImage(imgProduct).subscribe();
     }
     else
     {
@@ -278,7 +294,11 @@ export class ProductFormComponent implements OnInit {
           id_product: id,
           img: this.preview
         }
-        this.productService.addImage(imgProduct).subscribe();
+        this.productService.addImage(imgProduct).subscribe(
+          next=>{
+            this.router.navigate(["/shop-page", this.shopname, this.shopfound.idUser]);
+          }
+        );
       }
     }
   }

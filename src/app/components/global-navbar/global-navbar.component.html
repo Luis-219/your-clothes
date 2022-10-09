@@ -2,8 +2,8 @@
     <h1 routerLink="/main-page/{{userID}}">Your<span>Clothes</span></h1>
     <nav>
         <a *ngIf="user && userID" class="fas fa-shopping-cart" routerLink="/shopping-cart/{{user.name}}/{{userID}}"></a>
-        <a *ngIf="userID" routerLink="/user/{{userID}}">Cuenta</a>
-        <a routerLink="/login">Cerrar Sesión</a>
+        <a *ngIf="shopUser" class="fa-solid fa-shop" routerLink="/shop-page/{{shopUser.name}}/{{userID}}"></a>
+        <a *ngIf="userID" routerLink="/user/{{userID}}"> <span class="fa-solid fa-user" ></span> Mi cuenta</a>
     </nav>
 </mat-toolbar>
 

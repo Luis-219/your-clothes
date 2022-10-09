@@ -14,6 +14,7 @@ export interface Product{
     type: string;
     season: string;
     year: string;
+    pricetype: string;
 }
 export interface ProductImage{
     id: number;
@@ -43,4 +44,8 @@ export interface Type{
 export interface Season{
     id: number;
     name: string;
+}
+export interface Pricetype{
+    id: number;
+    type: string;
 }

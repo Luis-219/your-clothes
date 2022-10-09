@@ -69,16 +69,7 @@ export class MainPageComponent implements OnInit {
       (data:Product[]) => {
 
         this.allproducts = data;
-        
-        while(this.products.length < 5)
-        {
-          let random = Math.floor(Math.random() * (data.length))
-          
-          if(!this.products.includes(data[random]))
-          {
-            this.products.push(data[random])
-          }
-        }
+        this.products = this.allproducts;
 
         this.allproducts.forEach(winter => {
           if(winter.season == "Invierno") this.winterProd.push(winter);
@@ -99,7 +90,7 @@ export class MainPageComponent implements OnInit {
     else return false;
   }
 
-  shop?: Shop;
+  shop!: Shop;
   getMyShop()
   {
     this.http.get<any>("http://localhost:3000/shops").subscribe(

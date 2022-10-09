@@ -2,7 +2,6 @@
 
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
     margin-top: 2rem;
     margin-left: 3rem;
 }
@@ -16,7 +15,6 @@
 .linea{
     border-top: 1px solid var(--principal);
     width: 400px;
-    height: 2px;
     padding: 0;
     margin-left: 0rem;
     margin-right: 0rem;
@@ -30,10 +28,12 @@
     font-size: 2rem;
     text-decoration: none;
     color: var(--principal);
+    
 }
 .product-page .image{
     margin-left: 50px;
     margin-right: 50px;
+
 }
 .product-page .image img{
     width: 500px;
@@ -44,16 +44,13 @@
     box-shadow: 2px 2px 5px #999
 }
 .product-page .content{
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
     margin-left: 2rem;
     color: var(--principal);
 }
-.product-page .content .up{
-    display: flex;
-    justify-content: space-between;
-}
-.product-page .content .up .actions{
-    display: flex;
-}
+
 .product-page .content .up a{
     display: flex;
     justify-content: space-between;
@@ -63,16 +60,39 @@
 .product-page .content .up h1{
     font-weight: lighter;
 }
+
+.product-page .content .mod mat-hint{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 .product-page .content .details{
     
     margin-top: 1rem;
 }
 .product-page .content .details{
+    display: flex;
+    flex-direction: column;
     margin-top: 1rem;
 }
-.product-page .content .details button{
-    
+.product-page .content .actions button{
     margin-top: 1rem;
+    margin-right: 1rem;
+}
+
+.product-page .content .up .actions{
+    display: flex;
+}
+.actions .client button{
     background-color: var(--principal);
     color: var(--wall);
+}
+.actions .owner button{
+    background-color: var(--wall);
+    color: var(--principallight);
+}
+.actions .client .warn p{
+    color: #c20000;
+    font-size: 18px;
+    font-weight: bold;
 }

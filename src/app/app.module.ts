@@ -22,6 +22,7 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ShowProductsComponent } from './components/show-products/show-products.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
+import { ProductsFiltersComponent } from './components/products-filters/products-filters.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { UploadImageComponent } from './components/upload-image/upload-image.com
     ShoppingCartComponent,
     ShowProductsComponent,
     UploadImageComponent,
+    ProductsFiltersComponent,
   ],
   imports: [
     BrowserModule,

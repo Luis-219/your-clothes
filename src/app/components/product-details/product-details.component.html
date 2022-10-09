@@ -1,33 +1,51 @@
-<body>
-    <app-global-navbar [userID]="iduser"></app-global-navbar>
-
-    <div class="product-page">
-        <div class="backarrow">
-            <a class="fas fa-caret-square-left" routerLink="/main-page/{{iduser}}"></a>
+<app-global-navbar [userID]="iduser"></app-global-navbar>
+<div class="product-page">
+    <div class="backarrow">
+        <a class="fas fa-caret-square-left" (click)="back()" style="cursor: pointer;"></a>
+    </div>
+    <div class="image">
+        <img *ngIf="img" src="{{img}}" alt="">
+    </div>
+    <div class="content">
+        <div class="up" *ngIf="product">
+            <mat-hint> {{product.brand}} </mat-hint>
+            <h1>{{product.name}}</h1>
         </div>
-        <div class="image">
-            <img *ngIf="img" src="{{img}}" alt="">
+        <div class="linea"></div>
+        <div class="mod">
+            <mat-hint *ngIf="shop">vendido por {{shop.name}}</mat-hint>
         </div>
-        <div class="content">
-            <div class="up" *ngIf="product">
-                <h1>{{product.name}}</h1>
-                <div class="actions">
-                    <a class= "fa fa-tasks" *ngIf="userVerification()"></a>
-                    <a class= "fa fa-trash" *ngIf="userVerification()"></a>
+        <div class="details" *ngIf="product">
+            <div class="specs">
+                <div class="size" style="margin-top: 1rem;">
+                    <p style="font-weight: bold; font-size: 20px;"> Talla disponible <span style="font-size: 1.5rem;"> {{product.size}} </span></p>
+                    <div class="num">
+                        
+                    </div>
+                </div>
+                <div class="price">
+                    <h1>S/.{{product.price}}</h1>
                 </div>
             </div>
-            <div class="linea"></div>
-            <mat-hint *ngIf="shop">vendido por {{shop.name}}</mat-hint>
-            <div class="details" *ngIf="product">
-                <h5>Tipo de ropa: {{product.type}}</h5>
-                <h5>Precio: {{product.price}}</h5>
-                <h5>Talla: {{product.size}}</h5>
-                <h5>Material: {{product.material}}</h5>
-                <h5>Marca de la prenda: {{product.brand}}</h5>
-                <h5>Temporada: {{product.season}}</h5>
-                <button mat-raised-button  *ngIf="!userVerification()" (click)="addtoCart(product.id)" >Agregar al Carrito</button>
-            </div> 
-        </div>
+            <div class="actions">
+                <div class="client">
+                    <div *ngIf="!added">
+                        <button mat-raised-button  *ngIf="!userVerification() && !soldoout()" (click)="addtoCart(product.id)">Agregar al Carrito</button>
+                    </div>
+                    <div *ngIf="added">
+                        <button mat-raised-button *ngIf="!userVerification()" (click)="deletecart()">Eliminar del carrito</button>
+                    </div>
+                    <div *ngIf="soldoout()" class="warn">
+                        <p mat-raised-button *ngIf="!userVerification()">Agotado</p>
+                    </div>
+                </div>
+                <div class="owner">
+                    <button mat-raised-button  *ngIf="userVerification()" routerLink="/product-edit/{{shopname}}/{{product.id}}" > Editar Producto </button>
+                    <button mat-raised-button  *ngIf="userVerification()" (click)="workingdelete()" >Eliminar producto de mi tienda</button>
+                </div>
+            </div>
+        </div> 
     </div>
-</body>
+</div>
+
 

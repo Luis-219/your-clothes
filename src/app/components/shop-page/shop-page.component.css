@@ -62,3 +62,10 @@ mat-card{
     text-decoration: none;
     color: black;
 }
+.products .list h2
+{
+    margin-left: 3rem;
+    margin-bottom: -1rem;
+    color: var(--principal);
+    font-weight: bold;
+}

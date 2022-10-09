@@ -31,4 +31,8 @@ export class ShoppingCartService {
   addcartproduct(cartproduct: CartxProduct){
     return this.http.post<CartxProduct>("http://localhost:3000/cartxproduct", cartproduct);
   }
+  deletecartproduct(id:number)
+  {
+    return this.http.delete("http://localhost:3000/cartxproduct/"+id.toString());
+  }
 }

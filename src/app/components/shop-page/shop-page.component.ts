@@ -84,6 +84,8 @@ export class ShopPageComponent implements OnInit {
     );
   }
   products:Product[] = [];
+  available:Product[] = [];
+  soldout:Product[] = [];
   getProducts()
   {
     this.productService.getProducts().subscribe(
@@ -93,6 +95,14 @@ export class ShopPageComponent implements OnInit {
           {
             if(product.idShop == this.shopfound.id){
               this.products.push(product);
+              if(product.condition == "Disponible")
+              {
+                this.available.push(product);
+              }
+              else
+              {
+                this.soldout.push(product);
+              }
             }
           }
         })
