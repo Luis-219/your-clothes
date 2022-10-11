@@ -22,6 +22,9 @@ export class ShoppingCartService {
   updateShoppingcart(shoppingcart:ShoppingCart){
     return this.http.put<ShoppingCart>("http://localhost:3000/shoppingcarts/" + shoppingcart.id.toString(), shoppingcart);
   }
+  getShoppingcartID(id:number){
+    return this.http.get<ShoppingCart>("http://localhost:3000/shoppingcarts/"+id.toString());
+  }
 
 
 

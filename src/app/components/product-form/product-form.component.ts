@@ -47,6 +47,10 @@ export class ProductFormComponent implements OnInit {
     this.loadForm();
   }
 
+  back()
+  {
+    this.location.back();
+  }
   product!:Product;
   getProduct()
   {

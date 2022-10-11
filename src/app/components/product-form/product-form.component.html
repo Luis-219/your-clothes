@@ -108,12 +108,12 @@
                         <button *ngIf="verifyProduct()" mat-raised-button (click)="saveProduct()" >Guardar cambios</button>
                     </div>
                     <div class="cancel" *ngIf="shopfound">
-                        <button mat-raised-button routerLink="/shop-page/{{shopname}}/{{shopfound.idUser}}" >Cancelar</button>
+                        <button mat-raised-button (click)="back()" >Cancelar</button>
                     </div>
                 </div>
             </div>
             <div class="image">
-                <button class="contenedor-btn-file">
+                <button mat-raised-button class="contenedor-btn-file">
                     <i class="fas fa-file"></i>
                     Agregar Imagen
                     <label for="btn-file"></label>

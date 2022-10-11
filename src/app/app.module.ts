@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { SignupPageComponent } from './components/signup-page/signup-page.component';
 import { NavbarLogsignComponent } from './components/navbar-logsign/navbar-logsign.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 import { AngularMaterialModule } from './components/shared/angular-material/angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,6 +23,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { ShowProductsComponent } from './components/show-products/show-products.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { ProductsFiltersComponent } from './components/products-filters/products-filters.component';
+import { PurchasePageComponent } from './components/purchase-page/purchase-page.component';
+import { OrdersComponent } from './components/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { ProductsFiltersComponent } from './components/products-filters/products
     ShowProductsComponent,
     UploadImageComponent,
     ProductsFiltersComponent,
+    PurchasePageComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +55,8 @@ import { ProductsFiltersComponent } from './components/products-filters/products
     AngularMaterialModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

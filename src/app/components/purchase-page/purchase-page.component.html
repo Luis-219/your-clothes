@@ -1,0 +1,50 @@
+<app-global-navbar [userID] = "user_id"></app-global-navbar>
+
+
+<div class="all">
+    <div class="container">
+        <div class="header">
+            <h1>Bienvenido al proceso de pago, <span>{{user_name}}</span></h1>
+        </div>
+        <mat-stepper [linear]="isLinear" #stepper>
+            <mat-step [stepControl]="firstFormGroup">
+              <form [formGroup]="firstFormGroup">
+                <ng-template matStepLabel><i class="fas fa-shipping-fast"></i> Método de envío</ng-template>
+                <mat-radio-group class="example-radio-group">
+                  <mat-radio-button class="example-radio-button" *ngFor="let method of shipmethods" (change)="value($event, 1)" [value]="method">
+                    {{method.name}}
+                  </mat-radio-button>
+                </mat-radio-group>
+                <div *ngIf="shipping">Método de envío seleccionado: {{shipping.name}}</div>
+                <div>
+                  <button  class="next" mat-raised-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step [stepControl]="secondFormGroup">
+              <form [formGroup]="secondFormGroup">
+                <ng-template matStepLabel><i class="fa fa-money"></i>  Método de pago</ng-template>
+                <mat-radio-group class="example-radio-group">
+                  <mat-radio-button class="example-radio-button" *ngFor="let method of paymentsmethod" (change)="value($event, 2)" [value]="method">
+                    {{method.name}}
+                  </mat-radio-button>
+                </mat-radio-group>
+                <div *ngIf="payment">Método de pago seleccionado: {{payment.name}}</div>
+                <div>
+                  <button class="back" mat-raised-button matStepperPrevious>Back</button>
+                  <button class="next" mat-raised-button matStepperNext>Next</button>
+                </div>
+              </form>
+            </mat-step>
+            <mat-step>
+              <ng-template matStepLabel>Realizar pago</ng-template>
+              <p>Estarás realizando el pago.</p>
+              <div>
+                <button class="back" mat-raised-button matStepperPrevious>Back</button>
+                <button  [disabled]="!payment || !shipping" class="next" mat-raised-button (click)="paymentorder()">Pagar</button>
+              </div>
+            </mat-step>
+          </mat-stepper>
+    </div>    
+</div>
+

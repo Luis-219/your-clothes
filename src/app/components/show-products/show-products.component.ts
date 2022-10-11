@@ -26,11 +26,11 @@ export class ShowProductsComponent implements OnInit {
   @Input() iduser?: number;
   @Input() quantity?: number;
   @Input() filters?: boolean;
+  @Input() shoppage?: boolean;
 
   constructor(
     private productServices: ProductsService,
-    private http: HttpClient
-  ) {}
+    private http: HttpClient) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -39,7 +39,11 @@ export class ShowProductsComponent implements OnInit {
     this.productsfilter();
   }
 
+
+
+
   allproducts!: Product[];
+  getproducts!: Product[];
   products: Product[] = [];
   getProducts() {
     this.productServices.getProducts().subscribe((data: Product[]) => {
@@ -54,7 +58,36 @@ export class ShowProductsComponent implements OnInit {
         }
       }
       this.allproducts = this.products;
+      this.getproducts = this.products;
+      this.paginator();
     });
+  }
+
+  max:number = 12;
+  pagenow: number = 1;
+  pages: number = 1;
+  pagesarray:number[] = [];
+  paginator()
+  {
+    console.log(this.products.length);
+    this.pages = Math.ceil(this.allproducts.length/this.max);
+    console.log("pages + " + this.pages);
+    console.log(this.products);
+    this.products = this.allproducts.slice((this.pagenow-1)*this.max, (this.pagenow)*this.max);
+    console.log(this.products);
+  }
+
+  next()
+  {
+    this.pagenow = this.pagenow+ 1;
+    this.paginator();
+    console.log(this.pagenow);
+  }
+  previous()
+  {
+    this.pagenow = this.pagenow- 1;
+    this.paginator();
+    console.log(this.pagenow);
   }
 
   imgs: ProductImage[] = [];
@@ -109,7 +142,9 @@ export class ShowProductsComponent implements OnInit {
   createList() {
     if (this.seasonschecked.length == 0 && this.genderchecked.length == 0 && this.sizechecked.length == 0) 
     {
+      this.allproducts = this.getproducts;
       this.products = this.allproducts;
+      this.paginator();
     } 
     else 
     { 
@@ -173,6 +208,8 @@ export class ShowProductsComponent implements OnInit {
         this.productsshow = prodtemp;
       }
       this.products = this.productsshow;
+      this.allproducts = this.products;
+      this.paginator();
     }
   }
 

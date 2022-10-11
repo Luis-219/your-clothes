@@ -1,3 +1,5 @@
+import { OrdersComponent } from './components/orders/orders.component';
+import { PurchasePageComponent } from './components/purchase-page/purchase-page.component';
 import { ProductsFiltersComponent } from './components/products-filters/products-filters.component';
 import { UploadImageComponent } from './components/upload-image/upload-image.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
@@ -29,6 +31,8 @@ const routes: Routes = [
   {path: "product-edit/:shop/:id", component: ProductFormComponent},
   {path: "product-details/:shop/:idproduct/:id", component: ProductDetailsComponent},
   {path: "shopping-cart/:name/:id", component:ShoppingCartComponent},
+  {path: "purchase/:name/:idcarrito/:id", component:PurchasePageComponent},
+  {path: "orders/:token/:cart", component:OrdersComponent},
   {path: "upload-images", component:UploadImageComponent},
   {path: "**", component:LoginPageComponent},
 ];

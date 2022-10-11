@@ -24,6 +24,7 @@ export class ShoppingCartComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_id= this.activatedRouter.snapshot.params["id"];
+    this.user_name= this.activatedRouter.snapshot.params["name"];
     this.getimages();
     this.getUser();
   }

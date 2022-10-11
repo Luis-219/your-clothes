@@ -66,10 +66,8 @@
     position: relative;
     background-color: var(--principal);
     color: var(--wall);
-    font-weight: lighter;
+    font-weight: bold;
     border: 0;
-    padding: 12px 20px;
-    border-radius: 3px;
     overflow: hidden;
     margin-bottom: 1rem;
 }

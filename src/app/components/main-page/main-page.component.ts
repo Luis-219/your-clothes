@@ -1,7 +1,7 @@
 import { UsersService } from './../../services/users.service';
 import { User } from './../../models/User';
 import { ProductsService } from 'src/app/services/products.service';
-import { Product } from './../../models/Product';
+import { Product, ProductImage } from './../../models/Product';
 import { ShopsService } from './../../services/shops.service';
 import { HttpClient } from '@angular/common/http';
 import { Shop } from './../../models/Shop';
@@ -29,6 +29,7 @@ export class MainPageComponent implements OnInit {
     this.getShops();
     this.getProducts();
     this.getMyShop();
+    this.myImage();
   }
 
   usernow?:User;
@@ -63,6 +64,8 @@ export class MainPageComponent implements OnInit {
   products: Product[] = [];
   allproducts: Product[] = [];
   winterProd: Product[] = [];
+  offersprod: Product[] = [];
+  secondary: Product[] = [];
   getProducts()
   {
     this.productServices.getProducts().subscribe(
@@ -74,6 +77,20 @@ export class MainPageComponent implements OnInit {
         this.allproducts.forEach(winter => {
           if(winter.season == "Invierno") this.winterProd.push(winter);
         })
+        this.allproducts.forEach(offers => {
+          if(offers.pricetype == "Oferta") this.offersprod.push(offers);
+        })
+
+        let random:Product[] = [];
+        while(random.length < 3)
+        {
+          let rand = Math.floor(Math.random() * this.offersprod.length);
+
+          if (!random.includes(this.offersprod[rand])) {
+            random.push(this.offersprod[rand]);
+          }
+        }
+        this.offersprod = random;
       }
     );
   }
@@ -107,7 +124,10 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-
-  
-
+  images: ProductImage[] = [];
+  myImage() {
+    this.productServices.getImages().subscribe((data: ProductImage[]) => {
+      this.images = data;
+    });
+  }
 }

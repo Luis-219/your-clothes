@@ -42,3 +42,11 @@ body{
 .list .elements .specs .price{
     align-self: flex-end;
 }
+.purchase{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.purchase button{
+    background-color: var(--principal);
+    color: var(--wall);
+}
