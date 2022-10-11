@@ -83,11 +83,12 @@ export class OrdersComponent implements OnInit {
     );
   }
 
+  neworder: OrderProduct[] = [];
   saveproduct(){
 
     for(let prod of this.myproducts)
     {
-      console.log(prod);
+      console.log(this.myproducts);
       const orderprod: OrderProduct = {
         id: 0,
         id_order: this.myorder.id,
@@ -102,15 +103,21 @@ export class OrdersComponent implements OnInit {
           orderprod.totalprice = cart.quantity*prod.price;
         }
       });
-      let temporal = orderprod;
-      this.paymentsServices.addorderproduct(temporal).subscribe(
-         next=>
-        {
-          console.log(temporal);
-
-        });
+      this.neworder.push(orderprod);
     }
+    this.guardar();
+  }
 
+  guardar()
+  {
+    for(let i= 0; i<this.neworder.length; i++)
+    {
+      setTimeout(next=>
+      {
+        this.paymentsServices.addorderproduct(this.neworder[i]).subscribe();
+        console.log(this.neworder[i]);
+      },5000*i);
+    }
   }
 
 
