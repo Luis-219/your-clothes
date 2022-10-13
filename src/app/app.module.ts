@@ -25,6 +25,7 @@ import { UploadImageComponent } from './components/upload-image/upload-image.com
 import { ProductsFiltersComponent } from './components/products-filters/products-filters.component';
 import { PurchasePageComponent } from './components/purchase-page/purchase-page.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { MyordersComponent } from './components/myorders/myorders.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { OrdersComponent } from './components/orders/orders.component';
     ProductsFiltersComponent,
     PurchasePageComponent,
     OrdersComponent,
+    MyordersComponent,
   ],
   imports: [
     BrowserModule,

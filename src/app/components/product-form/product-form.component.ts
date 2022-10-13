@@ -226,7 +226,7 @@ export class ProductFormComponent implements OnInit {
 
     if(product.id != 0)
     {
-      if(product.quantity == 0)
+      if(product.quantity <= 0)
       {
         product.condition = "Agotado";
       }

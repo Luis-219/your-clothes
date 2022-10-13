@@ -15,10 +15,27 @@
                     {{method.name}}
                   </mat-radio-button>
                 </mat-radio-group>
+                <div *ngIf="shipping && shipping.name == 'Envío a domicilio'">
+                  <div *ngIf="user_adress">
+                    La dirección de envío actual es: {{user_adress}}
+                  </div>
+                  <div *ngIf="!user_adress">
+                    <p>El usuario no presenta dirección de envío en sus datos.</p>
+                  </div>
+                  <form [formGroup]="myForm" autocomplete="off">  
+                    <div class="adress">
+                      <mat-form-field appearance="legacy">
+                        <mat-label>Dirección de envío</mat-label>
+                        <input matInput formControlName="adress" placeholder="Dirección de envío">
+                      </mat-form-field> <br>
+                      <button mat-raised-button (click)="save_adress()">Guardar</button>
+                    </div>
+                </form>
+              </div>
                 <div *ngIf="shipping">Método de envío seleccionado: {{shipping.name}}</div>
                 <div>
                   <button  class="next" mat-raised-button matStepperNext>Next</button>
-                </div>
+              </div>
               </form>
             </mat-step>
             <mat-step [stepControl]="secondFormGroup">
@@ -41,7 +58,8 @@
               <p>Estarás realizando el pago.</p>
               <div>
                 <button class="back" mat-raised-button matStepperPrevious>Back</button>
-                <button  [disabled]="!payment || !shipping" class="next" mat-raised-button (click)="paymentorder()">Pagar</button>
+                <button  [disabled]="!payment || !shipping || !user_adress" class="next" mat-raised-button (click)="paymentorder()">Pagar</button>
+                <mat-spinner *ngIf="spinner"></mat-spinner>
               </div>
             </mat-step>
           </mat-stepper>

@@ -1,3 +1,4 @@
+import { MyordersComponent } from './components/myorders/myorders.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { PurchasePageComponent } from './components/purchase-page/purchase-page.component';
 import { ProductsFiltersComponent } from './components/products-filters/products-filters.component';
@@ -30,9 +31,10 @@ const routes: Routes = [
   {path: "product-form/:shop", component: ProductFormComponent},
   {path: "product-edit/:shop/:id", component: ProductFormComponent},
   {path: "product-details/:shop/:idproduct/:id", component: ProductDetailsComponent},
+  {path: "my-orders/:id", component:MyordersComponent},
   {path: "shopping-cart/:name/:id", component:ShoppingCartComponent},
   {path: "purchase/:name/:idcarrito/:id", component:PurchasePageComponent},
-  {path: "orders/:token/:cart", component:OrdersComponent},
+  {path: "orders/:idorder/:cart/:iduser", component:OrdersComponent},
   {path: "upload-images", component:UploadImageComponent},
   {path: "**", component:LoginPageComponent},
 ];

@@ -39,3 +39,14 @@ button {
   background-color: var(--wall);
   color: var(--principal);
 }
+.adress{
+  display: flex;
+  margin: 25px;
+}
+.adress button{
+  background-color: var(--principal);
+  color: var(--wall);
+}
+.adress mat-form-field{
+  font-size: 16px;
+}

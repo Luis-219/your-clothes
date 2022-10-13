@@ -1,10 +1,12 @@
+import { UsersService } from './../../services/users.service';
+import { User } from './../../models/User';
 import { ProductsService } from 'src/app/services/products.service';
 import { Product } from 'src/app/models/Product';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { CartxProduct, ShoppingCart } from './../../models/Shopping-Cart';
 import { PaymentsService } from './../../services/payments.service';
 import { Payment, Shipping, OrderProduct, Order } from './../../models/Payment';
-import { FormBuilder, FormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MatRadioButton, MatRadioChange } from '@angular/material/radio';
@@ -18,18 +20,24 @@ export class PurchasePageComponent implements OnInit {
   user_id!: number;
   user_name!: string;
   cart_id!: number;
+  spinner:boolean = false;;
 
   firstFormGroup = this._formBuilder.group({});
   secondFormGroup = this._formBuilder.group({});
   isLinear = true;
 
-  constructor(
+  
+  myForm!:FormGroup;
+
+  constructor( 
     private activatedRouter: ActivatedRoute,
     private _formBuilder: FormBuilder,
     private paymentsServices: PaymentsService,
     private cartServices: ShoppingCartService,
     private productServices: ProductsService,
     private route:Router,
+    private userservices:UsersService,
+    private formbuilder:FormBuilder
   ) {}
 
   ngOnInit(): void {
@@ -39,12 +47,58 @@ export class PurchasePageComponent implements OnInit {
     this.getshippings();
     this.getpayments();
     this.getmycart();
+    this.finduser();
+    this.formAdress();
   }
+
+  myuser!:User;
+  user_adress!:string;
+  finduser()
+  {
+    this.userservices.getUserId(this.user_id).subscribe(
+      (data:User)=>{
+
+        this.myuser = data;
+        this.user_adress = this.myuser.adress;
+        if(this.user_adress != undefined)
+        {
+          this.myForm.get("adress")!.setValue(this.myuser.adress);
+        }
+      }
+    );
+  }
+
+  formAdress()
+  {
+    this.myForm = this.formbuilder.group(
+      {
+        adress:[""],
+      }
+    )
+  }
+  save_adress()
+  {
+    let adress: string;
+    adress = this.myForm.get("adress")?.value;
+
+    this.user_adress = adress;
+    this.myuser.adress = adress;
+
+    this.userservices.editUser(this.myuser).subscribe();    
+  }
+
+
+
 
   value(e: MatRadioChange, radio: number) {
     if (radio == 1) {
       this.shipping = e.source.value;
     } else this.payment = e.source.value;
+
+    if(this.shipping.name == "Recojo en tienda")
+    {
+      this.user_adress = "No se seleccionó delivery";
+    }
   }
 
   shipmethods!: Shipping[];
@@ -54,8 +108,8 @@ export class PurchasePageComponent implements OnInit {
       this.shipmethods = data;
     });
   }
-  paymentsmethod!: Shipping[];
-  payment!: Shipping;
+  paymentsmethod!: Payment[];
+  payment!: Payment;
   getpayments() {
     this.paymentsServices.getpayments().subscribe((data: Payment[]) => {
       this.paymentsmethod = data;
@@ -75,6 +129,7 @@ export class PurchasePageComponent implements OnInit {
 
   ordersave!: Order;
   paymentorder() {
+    this.spinner = true;
     let date: Date = new Date();
     const order: Order = {
       id: 0,
@@ -82,6 +137,7 @@ export class PurchasePageComponent implements OnInit {
       user_name: this.user_name,
       code: this.generateToken(),
       shippingmethod: this.shipping.name,
+      adress_shipping: this.user_adress,
       paymentmethod: this.payment.name,
       quantityproducts: this.mycart.quantity_products,
       orderdate: date,
@@ -91,19 +147,54 @@ export class PurchasePageComponent implements OnInit {
     this.paymentsServices.addorder(order).subscribe(
       (data: Order) => {
         this.ordersave = data;
-        this.route.navigate(["/orders", this.ordersave.code, this.mycart.id]);
-      },
+        this.saveproduct(data.id);
+      }
     );
   }
 
-  saveproduct(){
+  update_quantities()
+  {
+    for(let prod of this.myproducts)
+    {
+      for(let i =0; i<this.productcart.length; i++)
+      {
+        if(prod.id == this.productcart[i].product_id)
+        {
+          prod.quantity = Number(prod.quantity)-this.productcart[i].quantity;
+          if(prod.quantity <=0)
+          {
+            prod.condition = "Agotado";
+          }
+          setTimeout(next => {
+            this.productServices.editProduct(prod).subscribe(
+              (data:Product)=>{
+                console.log(data);
+              }
+            );
+            if(i==this.productcart.length-1){
+              setTimeout(() => {
+                this.spinner = false;
+                this.route.navigate(["/orders", this.ordersave.id, this.mycart.id, this.user_id]);
+              }, 5000);
+            }
+          }, 5000*i);
+        }
+      }
+      
+    }
+  }
 
-    this.myproducts.forEach(prod=> {
+
+  neworder: OrderProduct[] = [];
+  saveproduct(idorder:number){
+
+    for(let prod of this.myproducts)
+    {
       console.log(prod);
-      let orderprod: OrderProduct = {
+      const orderprod: OrderProduct = {
         id: 0,
-        id_order: 0,
-        product:prod.name + ' ' + prod.brand + ' ' + prod.gender + ' ' + prod.size,
+        id_order: idorder,
+        product:prod.name + ' ' + prod.size + ' ' + prod.brand + ' ' + prod.gender,
         quantity: 0,
         totalprice: 0,
       };
@@ -114,17 +205,31 @@ export class PurchasePageComponent implements OnInit {
           orderprod.totalprice = cart.quantity*prod.price;
         }
       });
-      this.paymentsServices.addorderproduct(orderprod).subscribe(
-        next=>
-        {
-          console.log(orderprod);
-        }
-      );
-    })
-
-
+      this.neworder.push(orderprod);
+    }
+    console.log(this.neworder);
+    setTimeout(next => {
+      this.save();
+    }, 3000);
   }
-
+  save()
+  {
+    console.log("Proceso de pago");
+    for(let i= 0; i<this.neworder.length; i++)
+    {
+      setTimeout(next=>
+      {
+        this.paymentsServices.addorderproduct(this.neworder[i]).subscribe();
+        console.log(this.neworder[i]);
+        if(i== this.neworder.length-1)
+        {
+          setTimeout(() => {
+            this.update_quantities();
+          }, 5000);
+        }
+      },5000*i);
+    }
+  }
 
   productcart: CartxProduct[] = [];
   mycart!: ShoppingCart;
@@ -155,10 +260,14 @@ export class PurchasePageComponent implements OnInit {
       data.forEach((prod) => {
         this.productcart.forEach((cart) => {
           if (prod.id == cart.product_id) {
-            this.myproducts.push(prod);
+            if(prod.condition == "Disponible")
+            {
+              this.myproducts.push(prod);
+            }
           }
         });
       });
     });
   }
+
 }

@@ -4,6 +4,7 @@ export interface Order {
   user_name: string;
   code: string;
   shippingmethod: string;
+  adress_shipping: string;
   paymentmethod: string;
   quantityproducts: number;
   orderdate: Date;

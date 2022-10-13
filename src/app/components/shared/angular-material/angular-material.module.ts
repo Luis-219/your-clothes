@@ -14,6 +14,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -32,7 +33,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSelectModule,
     MatCheckboxModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ],
   exports:[
     CommonModule,
@@ -49,7 +51,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatSelectModule,
     MatCheckboxModule,
     MatStepperModule,
-    MatRadioModule
+    MatRadioModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AngularMaterialModule { }

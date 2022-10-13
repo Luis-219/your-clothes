@@ -74,6 +74,7 @@ export class ShoppingCartComponent implements OnInit {
 
   total:number = 0;
   products: Product[] =[];
+  soldout: Product[] = [];
   getProducts()
   {
     this.productService.getProducts().subscribe(
@@ -84,8 +85,15 @@ export class ShoppingCartComponent implements OnInit {
             {
               if(cart.product_id == prod.id)
               {
-                this.products.push(prod);
-                this.total = this.total + Number(prod.price);
+                if(prod.condition == "Disponible")
+                {
+                  this.products.push(prod);
+                  this.total = this.total + Number(prod.price);
+                }
+                else
+                {
+                  this.soldout.push(prod);
+                }
               }
             })
         })

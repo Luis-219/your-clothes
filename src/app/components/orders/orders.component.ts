@@ -1,3 +1,6 @@
+import { DataSource } from '@angular/cdk/collections';
+import { UsersService } from './../../services/users.service';
+import { User } from './../../models/User';
 import { Product } from './../../models/Product';
 import { HttpClient } from '@angular/common/http';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
@@ -15,110 +18,72 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrdersComponent implements OnInit {
 
-  token!:string;
+  idorder!:number;
   cart_id!:number;
+  iduser!:number;
   constructor(private activatedRouter:ActivatedRoute,
               private http:HttpClient,
               private route:Router,
               private productServices:ProductsService,
               private paymentsServices:PaymentsService,
-              private cartServices:ShoppingCartService) { }
+              private cartServices:ShoppingCartService,
+              private userservice:UsersService) { }
 
   ngOnInit(): void {
-    this.token = this.activatedRouter.snapshot.params['token'];
+    this.idorder = this.activatedRouter.snapshot.params['idorder'];
     this.cart_id = this.activatedRouter.snapshot.params['cart'];
+    this.iduser = this.activatedRouter.snapshot.params['iduser'];
+    this.myorder();
+    this.getUser();
     this.getorder();
-    this.getproductcart();
   }
 
-  myorder!: Order;
+  user!:User;
+  getUser()
+  {
+    this.userservice.getUserId(this.iduser).subscribe(
+      (data:User)=>{
+        this.user = data;
+      }
+    );
+  }
+
+  my_order!:Order;
+  date!:string;
   getorder()
   {
-    this.http.get<any>("http://localhost:3000/orderpayments").subscribe(
-      res=>{
-        const order = res.find((a:Order)=>{
-          return a.code == this.token;
-        });
-        if(order){
-          this.myorder = order;
-        }
+    this.paymentsServices.getorderid(this.idorder).subscribe(
+      (data:Order)=>
+      {
+        this.my_order = data;
+        this.date = data.orderdate.toString();
       }
     );
   }
 
-  cartproducts: CartxProduct[] = [];
 
-  getproductcart()
-  {
-    this.cartServices.getcartproduct().subscribe(
-      (data:CartxProduct[])=>
+  myallorder:OrderProduct[] = [];
+  myorder(){
+    this.paymentsServices.getorderproducts().subscribe(
+      (data:OrderProduct[])=>
       {
-        data.forEach(prod=>
+        data.forEach(order=>
           {
-            if(prod.shopcart_id == this.cart_id)
+            if(order.id_order == this.idorder)
             {
-              this.cartproducts.push(prod);
+              this.myallorder.push(order);
+              
             }
           });
-          this.getproducts();
       }
     );
-  }
-  myproducts:Product[] = [];
-  getproducts()
-  {
-    this.productServices.getProducts().subscribe(
-      (data:Product[])=>{
-        data.forEach(prod=>{
-          this.cartproducts.forEach(cart=>
-            {
-              if(cart.product_id == prod.id)
-              {
-                this.myproducts.push(prod);
-              }
-            });
-        })
-        this.saveproduct();
-      }
-    );
+
   }
 
-  neworder: OrderProduct[] = [];
-  saveproduct(){
 
-    for(let prod of this.myproducts)
-    {
-      console.log(this.myproducts);
-      const orderprod: OrderProduct = {
-        id: 0,
-        id_order: this.myorder.id,
-        product:prod.name + ' ' + prod.brand + ' ' + prod.gender + ' ' + prod.size,
-        quantity: 0,
-        totalprice: 0,
-      };
-      this.cartproducts.forEach(cart => {
-        if(cart.product_id == prod.id)
-        {
-          orderprod.quantity = cart.quantity;
-          orderprod.totalprice = cart.quantity*prod.price;
-        }
-      });
-      this.neworder.push(orderprod);
-    }
-    this.guardar();
-  }
 
-  guardar()
-  {
-    for(let i= 0; i<this.neworder.length; i++)
-    {
-      setTimeout(next=>
-      {
-        this.paymentsServices.addorderproduct(this.neworder[i]).subscribe();
-        console.log(this.neworder[i]);
-      },5000*i);
-    }
-  }
+
+  
 
 
 }
