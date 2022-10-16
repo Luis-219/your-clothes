@@ -1,7 +1,7 @@
+import { Product } from './../../models/Product';
 import { UsersService } from './../../services/users.service';
 import { User } from './../../models/User';
 import { ProductsService } from 'src/app/services/products.service';
-import { Product } from 'src/app/models/Product';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { CartxProduct, ShoppingCart } from './../../models/Shopping-Cart';
 import { PaymentsService } from './../../services/payments.service';
@@ -135,7 +135,6 @@ export class PurchasePageComponent implements OnInit {
       id: 0,
       id_user: this.user_id,
       user_name: this.user_name,
-      code: this.generateToken(),
       shippingmethod: this.shipping.name,
       adress_shipping: this.user_adress,
       paymentmethod: this.payment.name,
@@ -174,7 +173,7 @@ export class PurchasePageComponent implements OnInit {
             if(i==this.productcart.length-1){
               setTimeout(() => {
                 this.spinner = false;
-                this.route.navigate(["/orders", this.ordersave.id, this.mycart.id, this.user_id]);
+                this.route.navigate(["/orders", this.ordersave.id, this.user_id]);
               }, 5000);
             }
           }, 5000*i);
@@ -194,6 +193,8 @@ export class PurchasePageComponent implements OnInit {
       const orderprod: OrderProduct = {
         id: 0,
         id_order: idorder,
+        id_product: prod.id,
+        id_shop: prod.idShop,
         product:prod.name + ' ' + prod.size + ' ' + prod.brand + ' ' + prod.gender,
         quantity: 0,
         totalprice: 0,

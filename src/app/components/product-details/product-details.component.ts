@@ -156,7 +156,7 @@ export class ProductDetailsComponent implements OnInit {
       (data:CartxProduct[])=>
       {
         data.forEach(prod => {
-          if(prod.product_id == this.product.id)
+          if(prod.product_id == this.product.id && prod.shopcart_id == this.mycart.id)
           {
             this.added = true;
           }
@@ -189,10 +189,6 @@ export class ProductDetailsComponent implements OnInit {
       {
         data.forEach(prod=>
           {
-            console.log("prod product id : " + prod.product_id);
-            console.log("product id: " + this.product.id);
-            console.log("shopcart id: " + prod.shopcart_id);
-            console.log("prod shopcart id: " + this.mycart.id);
             if(prod.product_id == this.product.id && prod.shopcart_id == this.mycart.id)
             {
               this.shoppingService.deletecartproduct(prod.id).subscribe(
@@ -216,7 +212,7 @@ export class ProductDetailsComponent implements OnInit {
           {
             if(prod.product_id == this.product.id)
             {
-              this.shoppingService.deletecartproduct(prod.id);
+              this.shoppingService.deletecartproduct(prod.id).subscribe();
             }
           })
 

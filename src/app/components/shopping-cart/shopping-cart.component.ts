@@ -115,4 +115,27 @@ export class ShoppingCartComponent implements OnInit {
     );
   }
 
+  /*deletecart()
+  {
+    this.shoppingcartService.getcartproduct().subscribe(
+      (data:CartxProduct[])=>
+      {
+        data.forEach(prod=>
+          {
+            if(prod.product_id == this.product.id && prod.shopcart_id == this.mycart.id)
+            {
+              this.shoppingService.deletecartproduct(prod.id).subscribe(
+                next=>{
+                  this.router.navigate(["/shopping-cart/", this.usernow.name, this.usernow.id]);
+                }
+              );
+              
+            }
+          })
+      }
+    );
+  }*/
+
+
+
 }

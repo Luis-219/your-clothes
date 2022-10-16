@@ -19,7 +19,6 @@ import { Component, OnInit } from '@angular/core';
 export class OrdersComponent implements OnInit {
 
   idorder!:number;
-  cart_id!:number;
   iduser!:number;
   constructor(private activatedRouter:ActivatedRoute,
               private http:HttpClient,
@@ -31,7 +30,6 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.idorder = this.activatedRouter.snapshot.params['idorder'];
-    this.cart_id = this.activatedRouter.snapshot.params['cart'];
     this.iduser = this.activatedRouter.snapshot.params['iduser'];
     this.myorder();
     this.getUser();

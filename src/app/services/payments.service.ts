@@ -25,6 +25,10 @@ export class PaymentsService {
     return this.http.get<OrderProduct[]>("http://localhost:3000/orderproducts");
   }
 
+  getorders()
+  {
+    return this.http.get<Order[]>("http://localhost:3000/orderpayments");
+  }
   addorder(order:Order)
   {
     return this.http.post<Order>("http://localhost:3000/orderpayments", order);

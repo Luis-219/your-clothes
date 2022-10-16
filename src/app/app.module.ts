@@ -26,6 +26,7 @@ import { ProductsFiltersComponent } from './components/products-filters/products
 import { PurchasePageComponent } from './components/purchase-page/purchase-page.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { MyordersComponent } from './components/myorders/myorders.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { MyordersComponent } from './components/myorders/myorders.component';
     PurchasePageComponent,
     OrdersComponent,
     MyordersComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

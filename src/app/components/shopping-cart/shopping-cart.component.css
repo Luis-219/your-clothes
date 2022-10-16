@@ -1,5 +1,6 @@
-body{ 
+.body{ 
     margin: 3rem;
+    min-height: 100vh;
 }
 .header{
     margin-bottom: 20px;
@@ -47,4 +48,41 @@ body{
 .purchase button{
     background-color: var(--principal);
     color: var(--wall);
+}
+.prod{
+    display: flex;
+    justify-content: space-between;
+}
+.actions{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+.actions .quantity a{
+    cursor: pointer;
+    padding: 5px;
+    background-color: var(--principal);
+    border-radius: 3px;
+    color: var(--wall);
+}
+.actions .quantity
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.quantity p{
+    margin-top: 10px;
+    font-weight: bold;
+}
+.actions  a{
+    color: var(--principal);
+    font-size: 20px;
+    margin: 20px;
 }

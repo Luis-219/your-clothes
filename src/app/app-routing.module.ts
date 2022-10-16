@@ -34,7 +34,7 @@ const routes: Routes = [
   {path: "my-orders/:id", component:MyordersComponent},
   {path: "shopping-cart/:name/:id", component:ShoppingCartComponent},
   {path: "purchase/:name/:idcarrito/:id", component:PurchasePageComponent},
-  {path: "orders/:idorder/:cart/:iduser", component:OrdersComponent},
+  {path: "orders/:idorder/:iduser", component:OrdersComponent},
   {path: "upload-images", component:UploadImageComponent},
   {path: "**", component:LoginPageComponent},
 ];

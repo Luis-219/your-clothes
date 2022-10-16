@@ -6,6 +6,7 @@ import { User } from './../../models/User';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute} from '@angular/router';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-signup-page',
@@ -61,9 +62,11 @@ export class SignupPageComponent implements OnInit {
           total_purchase: 0,
           quantity_products: 0,
         }
-        this.shoppingcartService.createShoppingCart(cart).subscribe();
-        this.snackBar.open("La cuenta se creo correctamente.", "ok");
-        this.route.navigate(["/login"]);
+        setTimeout(() => {
+          this.shoppingcartService.createShoppingCart(cart).subscribe();
+          this.snackBar.open("La cuenta se creo correctamente.", "ok");
+          this.route.navigate(["/login"]);
+        }, 2000);
       }
     });
   }

@@ -1,4 +1,7 @@
-
+.body
+{
+    min-height: 100vh;
+}
 .heading h1{
     margin-bottom: 0rem;
 }

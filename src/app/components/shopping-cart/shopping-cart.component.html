@@ -1,5 +1,5 @@
 <app-global-navbar [userID] = "user_id"></app-global-navbar>
-<body>
+<div class="body">
     <div class="header" *ngIf="user && mycart">
         <div class="details">
             <div class="user">
@@ -32,28 +32,48 @@
             </div>
         </mat-card>
     </div>
+        
+    <div class="purchase" *ngIf="mycart">
+        <button *ngIf="products.length != 0" mat-raised-button routerLink="/purchase/{{user_name}}/{{mycart.id}}/{{user_id}}">Pagar productos</button>
+        <p *ngIf="products.length == 0">Agregue productos al carrito.</p>
+    </div>
+
     <div class="header">
-        <h1>Productos agotados</h1>
+        <h1>Mis productos agotados</h1>
     </div>
     <div class="list" *ngFor="let product of soldout">
         <mat-card class="product">
-            <div class="elements">
-                <div *ngFor="let img of images">
-                    <img *ngIf="img.id_product == product.id" src="{{img.img}}" alt="">
+            <div class="prod">
+                <div class="elements">
+                    <div *ngFor="let img of images">
+                        <img *ngIf="img.id_product == product.id" src="{{img.img}}" alt="">
+                    </div>
+                    <div class="specs">
+                        <mat-hint>{{product.brand}}</mat-hint>
+                        <p>{{product.name}}</p>
+                        <p>{{product.condition}}</p>
+                        <div class="price">
+                            <strong>S/.{{product.price}}</strong>
+                        </div>
+                    </div>
                 </div>
-                <div class="specs">
-                    <mat-hint>{{product.brand}}</mat-hint>
-                    <p>{{product.name}}</p>
-                    <p>{{product.condition}}</p>
-                    <div class="price">
-                        <strong>S/.{{product.price}}</strong>
+                <div class="actions">
+                    <div class="delete">
+                        <a class="fa fa-trash"></a>
+                    </div>
+                    <div *ngFor="let myprod of products_cart">
+                        <div *ngIf="myprod.product_id == product.id" class="quantity">
+                            <a class="fa-solid fa-minus"></a>
+                            <p>{{myprod.quantity}}</p>
+                            <a class="fa-solid fa-plus"></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </mat-card>
     </div>
-    
-    <div class="purchase">
-        <button *ngIf="mycart" mat-raised-button routerLink="/purchase/{{user_name}}/{{mycart.id}}/{{user_id}}">Pagar productos</button>
+    <div *ngIf="soldout.length == 0">
+        <p>No tiene productos agotados en su carrito.</p>
     </div>
-</body>
+</div>
+<app-footer></app-footer>
