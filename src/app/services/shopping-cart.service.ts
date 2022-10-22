@@ -1,8 +1,7 @@
-import { ShoppingCart } from './../models/Shopping-Cart';
+import { ShoppingCart, CartxProduct } from './../models/Shopping-Cart';
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CartxProduct } from '../models/Shopping-Cart';
 
 @Injectable({
   providedIn: 'root'
@@ -37,5 +36,8 @@ export class ShoppingCartService {
   deletecartproduct(id:number)
   {
     return this.http.delete("http://localhost:3000/cartxproduct/"+id.toString());
+  }
+  updatecartProduct(cartproduct:CartxProduct){
+    return this.http.put<CartxProduct>("http://localhost:3000/cartxproduct/" + cartproduct.id.toString(), cartproduct);
   }
 }

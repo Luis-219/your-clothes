@@ -62,12 +62,17 @@
     margin-top: 10px;
     margin-right: 20px;
 }
+.actions .delete
+{
+    cursor: pointer;
+}
 .actions .quantity a{
+    background-color: var(--principal);
     cursor: pointer;
     padding: 5px;
-    background-color: var(--principal);
     border-radius: 3px;
     color: var(--wall);
+    border: solid 2px var(--principal)
 }
 .actions .quantity
 {
@@ -81,7 +86,7 @@
     margin-top: 10px;
     font-weight: bold;
 }
-.actions  a{
+.actions a{
     color: var(--principal);
     font-size: 20px;
     margin: 20px;

@@ -74,29 +74,6 @@ export class ProductsFiltersComponent implements OnInit {
     );
   }
 
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   condition!:Condition[];
   genders!: Gender[];
   materials!: Material[];

@@ -1,9 +1,10 @@
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ProductsService } from 'src/app/services/products.service';
 import { CartxProduct, ShoppingCart } from './../../models/Shopping-Cart';
 import { ShoppingCartService } from './../../services/shopping-cart.service';
 import { UsersService } from './../../services/users.service';
 import { User } from './../../models/User';
-import { ActivatedRoute, ActivationStart } from '@angular/router';
+import { ActivatedRoute, ActivationStart, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Product, ProductImage } from 'src/app/models/Product';
 
@@ -18,9 +19,11 @@ export class ShoppingCartComponent implements OnInit {
   user_id!: number;
   user_name!:string;
   constructor(private activatedRouter:ActivatedRoute,
+              private router:Router,
               private userService:UsersService,
               private shoppingcartService: ShoppingCartService,
-              private productService: ProductsService) { }
+              private productService: ProductsService,
+              private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.user_id= this.activatedRouter.snapshot.params["id"];
@@ -115,18 +118,20 @@ export class ShoppingCartComponent implements OnInit {
     );
   }
 
-  /*deletecart()
+  deleteprod(prodid:number)
   {
     this.shoppingcartService.getcartproduct().subscribe(
       (data:CartxProduct[])=>
       {
         data.forEach(prod=>
           {
-            if(prod.product_id == this.product.id && prod.shopcart_id == this.mycart.id)
+            if(prod.product_id == prodid && prod.shopcart_id == this.mycart.id)
             {
-              this.shoppingService.deletecartproduct(prod.id).subscribe(
+              this.shoppingcartService.deletecartproduct(prod.id).subscribe(
                 next=>{
-                  this.router.navigate(["/shopping-cart/", this.usernow.name, this.usernow.id]);
+                  this.products = this.products.filter(filter => filter.id != prod.product_id);
+                  this.soldout = this.soldout.filter(filter => filter.id != prod.product_id);
+                  this.snackBar.open("Se eliminó el producto", "ok", {duration: 1000});
                 }
               );
               
@@ -134,7 +139,35 @@ export class ShoppingCartComponent implements OnInit {
           })
       }
     );
-  }*/
+  }
+
+  Reduce(idprod:number)
+  {
+    this.products_cart.forEach(cart =>
+      {
+        if(cart.id == idprod)
+        {
+          cart.quantity += 1;
+          console.log(cart);
+          console.log(this.products_cart);
+          this.shoppingcartService.updatecartProduct(cart).subscribe();
+        }
+      });
+  }
+  Increase(idprod:number)
+  {
+    this.products_cart.forEach(cart =>
+      {
+        if(cart.id == idprod)
+        {
+          cart.quantity -= 1;
+          console.log(cart);
+          console.log(this.products_cart);
+          this.shoppingcartService.updatecartProduct(cart).subscribe();
+        }
+      });
+  }
+
 
 
 

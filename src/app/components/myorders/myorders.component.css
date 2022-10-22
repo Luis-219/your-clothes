@@ -1,6 +1,6 @@
 .body{
-    margin: 30px;
-    height: 100vh;
+    padding: 30px;
+    min-height: 100vh;
 }
 .receipts{
     display: flex;
