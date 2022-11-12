@@ -49,7 +49,7 @@ export class ShopFormComponent implements OnInit {
           this.myForm.get("name")!.setValue(data.name);
           this.myForm.get("phone")!.setValue(data.phone);
           this.myForm.get("adress")!.setValue(data.adress);
-          this.myForm.get("description")!.setValue(data.Descripción);
+          this.myForm.get("description")!.setValue(data.descripción);
         }
       );
     }
@@ -67,9 +67,9 @@ export class ShopFormComponent implements OnInit {
       name: this.myForm.get("name")?.value,
       phone: this.myForm.get("phone")?.value,
       adress: this.myForm.get("adress")?.value,
-      Descripción: this.myForm.get("description")?.value,
+      descripción: this.myForm.get("description")?.value,
       amountProducts: 0,
-      Aceptación: 0
+      aceptación: 0
     }
     if(shop.id != 0)
     {

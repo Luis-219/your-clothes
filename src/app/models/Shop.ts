@@ -4,7 +4,7 @@ export interface Shop{
     name: string;
     phone: number;
     adress: string;
-    Descripción: string;
+    descripción: string;
     amountProducts: number;
-    Aceptación: number;
+    aceptación: number;
 }

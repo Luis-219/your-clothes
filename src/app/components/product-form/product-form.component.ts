@@ -1,3 +1,4 @@
+import { ShopsService } from 'src/app/services/shops.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UploadImageComponent } from './../upload-image/upload-image.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -31,7 +32,8 @@ export class ProductFormComponent implements OnInit {
               private http:HttpClient,
               private snackBar:MatSnackBar,
               private location: Location,
-              private sanitizer: DomSanitizer,) { }
+              private sanitizer: DomSanitizer,
+              private shopServices: ShopsService) { }
 
   ngOnInit(): void {
     this.shopname = this.activatedRouter.snapshot.params["shop"];
@@ -133,7 +135,7 @@ export class ProductFormComponent implements OnInit {
   shopfound!:Shop;
   findShop()
   {
-    this.http.get<any>("http://localhost:3000/shops").subscribe(
+    this.shopServices.getShopsAsAny().subscribe(
       res=>{
         const shop = res.find((a:Shop)=>{
           return a.name == this.shopname;
@@ -243,6 +245,7 @@ export class ProductFormComponent implements OnInit {
         next: (data)=>{
           this.saveImage(data.id);
           this.snackBar.open("El producto se agregó correctamente.", "ok");
+          this.location.back();
         }
       });
     }

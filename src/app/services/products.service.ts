@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment.prod';
 import { Product, Condition, Size, Material, Type, Season, ProductImage, Pricetype } from './../models/Product';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -11,21 +12,21 @@ export class ProductsService {
 
   addProduct(product:Product)
   {
-    return this.http.post<Product>("http://localhost:3000/products", product);
+    return this.http.post<Product>(environment.serverJSON+environment.resourceProducts + "/" + product.idShop, product);
   }
   getProducts(){
-    return this.http.get<Product[]>("http://localhost:3000/products");
+    return this.http.get<Product[]>(environment.serverJSON+environment.resourceProducts);
   }
   getProductId(id:number){
-    return this.http.get<Product>("http://localhost:3000/products/"+id.toString());
+    return this.http.get<Product>(environment.serverJSON+environment.resourceProducts+"/"+id.toString());
   }
   editProduct(product:Product)
   {
-    return this.http.put<Product>("http://localhost:3000/products/"+product.id.toString(), product);
+    return this.http.put<Product>(environment.serverJSON+environment.resourceProducts+"/"+product.id.toString(), product);
   }
   deleteProduct(id:number)
   {
-    return this.http.delete("http://localhost:3000/products/"+id.toString());
+    return this.http.delete(environment.serverJSON+environment.resourceProducts+"/"+id.toString());
   }
   addImage(productimg:ProductImage)
   {

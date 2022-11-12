@@ -21,14 +21,14 @@ export class MainPageComponent implements OnInit {
               private shopServices:ShopsService,
               private productServices:ProductsService,
               private userService:UsersService,
-              private router:Router) { }
+              private router:Router) {}
 
   ngOnInit(): void {
     this.id= this.activatedRouter.snapshot.params["id"];
     this.loadUser();
     this.getShops();
-    this.getProducts();
     this.getMyShop();
+    this.getProducts();
     this.myImage();
   }
 
@@ -42,6 +42,7 @@ export class MainPageComponent implements OnInit {
           this.usernow = data;
         }
       );
+      console.log("log");
     }
     else
     {
@@ -55,6 +56,8 @@ export class MainPageComponent implements OnInit {
     this.shopServices.getShops().subscribe(
       (data:Shop[]) => {
         this.shops = data;
+        console.log("shops");
+        
       }
     );
   }
@@ -71,18 +74,22 @@ export class MainPageComponent implements OnInit {
     this.productServices.getProducts().subscribe(
       (data:Product[]) => {
 
+        console.log("entry");
         this.allproducts = data;
         this.products = this.allproducts;
-
         this.allproducts.forEach(winter => {
           if(winter.season == "Invierno") this.winterProd.push(winter);
         })
         this.allproducts.forEach(offers => {
           if(offers.pricetype == "Oferta") this.offersprod.push(offers);
         })
-
         let random:Product[] = [];
-        while(random.length < 3)
+        let amount = 3;
+        if(this.offersprod.length < amount)
+        {
+          amount = this.offersprod.length;
+        }
+        while(random.length < amount)
         {
           let rand = Math.floor(Math.random() * this.offersprod.length);
 
@@ -90,36 +97,24 @@ export class MainPageComponent implements OnInit {
             random.push(this.offersprod[rand]);
           }
         }
+
         this.offersprod = random;
       }
     );
   }
 
-  ReceiveProduct(idproduct:number):boolean
-  {
-    if(this.shop){
-      if(this.shop.id != idproduct)
-      {
-        return false;
-      }
-      else return true;
-    }
-    else return false;
-  }
-
   shop!: Shop;
   getMyShop()
   {
-    this.http.get<any>("http://localhost:3000/shops").subscribe(
+    this.shopServices.getShopsAsAny().subscribe(
       res=>{
-        const shopfound = res.find((a:Shop)=>{
+        const shop = res.find((a:Shop)=>{
           return a.idUser == this.id;
         });
-        if(shopfound){
-          this.shop = shopfound;
-          console.log("tiene tienda");
+        if(shop){
+          this.shop= shop;
         }else{
-          console.log("Este usuario no tiene tienda");
+          console.log("No tiene tienda");
         }
     });
   }

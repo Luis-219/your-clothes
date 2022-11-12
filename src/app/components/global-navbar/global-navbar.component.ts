@@ -39,7 +39,7 @@ export class GlobalNavbarComponent implements OnInit {
   shopUser?:Shop;
   HaveAShop()
   {
-    this.http.get<any>("http://localhost:3000/shops").subscribe(
+    this.shopService.getShopsAsAny().subscribe(
       res=>{
         const shop = res.find((a:Shop)=>{
           return a.idUser == this.userID;

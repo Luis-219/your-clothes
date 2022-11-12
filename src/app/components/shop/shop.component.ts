@@ -1,3 +1,4 @@
+import { ShopsService } from 'src/app/services/shops.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Shop } from './../../models/Shop';
@@ -13,7 +14,8 @@ export class ShopComponent implements OnInit {
   @Input() UseriD!: number;
 
   constructor(private http:HttpClient,
-              private formBuilder:FormBuilder,) {}
+              private formBuilder:FormBuilder,
+              private shopService:ShopsService) {}
        
   ngOnInit(): void {
     this.HaveAShop();
@@ -22,7 +24,7 @@ export class ShopComponent implements OnInit {
   shopUser?:Shop;
   HaveAShop()
   {
-    this.http.get<any>("http://localhost:3000/shops").subscribe(
+     this.shopService.getShopsAsAny().subscribe(
       res=>{
         const shop = res.find((a:Shop)=>{
           return a.idUser == this.UseriD;

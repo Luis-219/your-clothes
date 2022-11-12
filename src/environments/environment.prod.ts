@@ -1,3 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  serverJSON: "http://localhost:8080",
+  resourceUsers: "/api/users",
+  resourceShops: "/api/shops",
+  resourceProducts: "/api/products"
 };

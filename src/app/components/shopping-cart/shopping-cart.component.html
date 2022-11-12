@@ -8,7 +8,7 @@
             </div>
             <div class="data">
                 <p>Cantidad de productos: <strong>{{mycart.quantity_products}}</strong></p>
-                <p>Total: <strong>S/.{{total}}</strong></p>
+                <p>Total: <strong>S/.{{mycart.total_purchase}}</strong></p>
             </div>
         </div>
     </div>
@@ -35,12 +35,12 @@
                     </div>
                     <div *ngFor="let myprod of products_cart">
                         <div *ngIf="myprod.product_id == product.id" class="quantity">
-                            <a *ngIf="myprod.quantity!=1; else Minus"  class="fa-solid fa-minus" (click)="Increase(myprod.id)"></a>
+                            <a *ngIf="myprod.quantity!=1; else Minus"  class="fa-solid fa-minus" (click)="Decrease(myprod.id)"></a>
                             <ng-template #Minus class="template">
                                 <a style="background-color: var(--wall); color: var(--principal); cursor:not-allowed; " class="fa-solid fa-minus"></a>
                             </ng-template>
                             <p>{{myprod.quantity}}</p>
-                            <a *ngIf="product.quantity > myprod.quantity; else Plus" class="fa-solid fa-plus" (click)="Reduce(myprod.id)"></a>
+                            <a *ngIf="product.quantity > myprod.quantity; else Plus" class="fa-solid fa-plus" (click)="Increase(myprod.id)"></a>
                             <ng-template #Plus class="template">
                                 <a style="background-color: var(--wall); color: var(--principal); cursor:not-allowed" class="fa-solid fa-plus"></a>
                             </ng-template>

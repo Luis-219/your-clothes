@@ -96,7 +96,7 @@ export class ProductDetailsComponent implements OnInit {
   shopiduser?:number;
   findShop()
   {
-    this.http.get<any>("http://localhost:3000/shops").subscribe(
+    this.shopService.getShopsAsAny().subscribe(
       res=>{
         const shopfound = res.find((a:Shop)=>{
           return a.name == this.shopname;
@@ -214,9 +214,12 @@ export class ProductDetailsComponent implements OnInit {
             {
               this.shoppingService.deletecartproduct(prod.id).subscribe();
             }
-          })
-
-          this.productService.deleteProduct(this.product.id).subscribe();
+          });
+      }
+    );
+    this.productService.deleteProduct(this.product.id).subscribe(
+      next=>{
+        this.location.back();
       }
     );
   }

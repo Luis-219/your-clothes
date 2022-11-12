@@ -76,6 +76,7 @@ export class ShoppingCartComponent implements OnInit {
 
 
   total:number = 0;
+  quantity: number = 0;
   products: Product[] =[];
   soldout: Product[] = [];
   getProducts()
@@ -91,7 +92,8 @@ export class ShoppingCartComponent implements OnInit {
                 if(prod.condition == "Disponible")
                 {
                   this.products.push(prod);
-                  this.total = this.total + Number(prod.price);
+                  this.quantity = this.quantity + Number(cart.quantity);
+                  this.total = this.total + Number(prod.price)*Number(cart.quantity);
                 }
                 else
                 {
@@ -100,7 +102,7 @@ export class ShoppingCartComponent implements OnInit {
               }
             })
         })
-        this.mycart.quantity_products = this.products.length;
+        this.mycart.quantity_products = this.quantity;
         this.mycart.total_purchase = this.total;
         this.shoppingcartService.updateShoppingcart(this.mycart).subscribe();
       }
@@ -141,20 +143,7 @@ export class ShoppingCartComponent implements OnInit {
     );
   }
 
-  Reduce(idprod:number)
-  {
-    this.products_cart.forEach(cart =>
-      {
-        if(cart.id == idprod)
-        {
-          cart.quantity += 1;
-          console.log(cart);
-          console.log(this.products_cart);
-          this.shoppingcartService.updatecartProduct(cart).subscribe();
-        }
-      });
-  }
-  Increase(idprod:number)
+  Decrease(idprod:number)
   {
     this.products_cart.forEach(cart =>
       {
@@ -163,12 +152,52 @@ export class ShoppingCartComponent implements OnInit {
           cart.quantity -= 1;
           console.log(cart);
           console.log(this.products_cart);
-          this.shoppingcartService.updatecartProduct(cart).subscribe();
+          this.shoppingcartService.updatecartProduct(cart).subscribe(
+            next=>{
+              this.products.forEach(prod => {
+                if(prod.id == cart.product_id){
+                  console.log(this.mycart.total_purchase);
+                  console.log(prod.price);
+                  this.mycart.total_purchase = this.mycart.total_purchase - Number(prod.price);
+                  console.log(this.mycart.total_purchase);
+                  setTimeout(() => {
+                    this.shoppingcartService.updateShoppingcart(this.mycart).subscribe();
+                  }, 2000);
+                }
+              })
+            }
+          );
         }
       });
+      this.mycart.quantity_products -=1;
   }
 
-
-
-
+  Increase(idprod:number)
+  {
+    this.products_cart.forEach(cart =>
+      {
+        if(cart.id == idprod)
+        {
+          cart.quantity += 1;
+          console.log(cart);
+          console.log(this.products_cart);
+          this.shoppingcartService.updatecartProduct(cart).subscribe(
+            next=>{
+              this.products.forEach(prod => {
+                if(prod.id == cart.product_id){
+                  console.log(this.mycart.total_purchase);
+                  console.log(prod.price);
+                  this.mycart.total_purchase = this.mycart.total_purchase + Number(prod.price);
+                  console.log(this.mycart.total_purchase);
+                  setTimeout(() => {
+                    this.shoppingcartService.updateShoppingcart(this.mycart).subscribe();
+                  }, 2000);
+                }
+              })
+            }
+          );
+        }
+      });
+      this.mycart.quantity_products +=1;
+  }
 }

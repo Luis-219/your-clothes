@@ -40,7 +40,7 @@ export class ShopPageComponent implements OnInit {
   shopfound!:Shop;
   loadShop()
   {
-    this.http.get<any>("http://localhost:3000/shops").subscribe(
+    this.shopService.getShopsAsAny().subscribe(
       res=>{
         const shop = res.find((a:Shop)=>{
           return a.name == this.shopname;

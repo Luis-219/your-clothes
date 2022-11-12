@@ -42,7 +42,7 @@ export class LoginPageComponent implements OnInit {
     email = this.myForm.get("email")?.value;
     password = this.myForm.get("password")?.value;
 
-    this.http.get<any>("http://localhost:3000/users").subscribe(
+    this.userService.getUserAsAny().subscribe(
       res=>{
         const user = res.find((a:User)=>{
           return a.email == email && a.password == password;
