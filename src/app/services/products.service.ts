@@ -1,5 +1,5 @@
 import { environment } from 'src/environments/environment.prod';
-import { Product, Condition, Size, Material, Type, Season, ProductImage, Pricetype } from './../models/Product';
+import { Product, Condition, Size, Material, Type, Season, ProductImage, Pricetype, Gender } from './../models/Product';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -48,30 +48,30 @@ export class ProductsService {
   }
   getGender()
   {
-    return this.http.get<Condition[]>("http://localhost:3000/genders");
+    return this.http.get<Gender[]>(environment.serverJSON + "/api/genders");
   }
   getConditions()
   {
-    return this.http.get<Condition[]>("http://localhost:3000/conditions");
+    return this.http.get<Condition[]>(environment.serverJSON + "/api/conditions");
   }
   getSizes()
   {
-    return this.http.get<Size[]>("http://localhost:3000/sizes");
+    return this.http.get<Size[]>(environment.serverJSON + "/api/sizes");
   }
   getMaterials()
   {
-    return this.http.get<Material[]>("http://localhost:3000/materials");
+    return this.http.get<Material[]>(environment.serverJSON + "/api/materials");
   }
   getTypes()
   {
-    return this.http.get<Type[]>("http://localhost:3000/types");
+    return this.http.get<Type[]>(environment.serverJSON + "/api/types");
   }
   getSeasons()
   {
-    return this.http.get<Season[]>("http://localhost:3000/seasons");
+    return this.http.get<Season[]>(environment.serverJSON + "/api/seasons");
   }
   getPricetype()
   {
-    return this.http.get<Pricetype[]>("http://localhost:3000/pricetype");
+    return this.http.get<Pricetype[]>(environment.serverJSON + "/api/pricetypes");
   }
 }

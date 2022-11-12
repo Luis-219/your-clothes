@@ -151,7 +151,7 @@ export class ProductFormComponent implements OnInit {
   getGenders()
   {
     this.productService.getGender().subscribe(
-      (data:Size[]) => {
+      (data:Gender[]) => {
         this.genders = data;
       }
     );

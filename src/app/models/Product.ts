@@ -47,5 +47,5 @@ export interface Season{
 }
 export interface Pricetype{
     id: number;
-    type: string;
+    name: string;
 }

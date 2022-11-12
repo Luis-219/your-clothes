@@ -32,8 +32,8 @@
                             <mat-form-field appearance = "legacy">
                                 <mat-label>Tipo de precio</mat-label>
                                 <mat-select formControlName = "pricetype">
-                                    <mat-option *ngFor="let pricetype of pricetypes" [value]="pricetype.type">
-                                        {{pricetype.type}}
+                                    <mat-option *ngFor="let pricetype of pricetypes" [value]="pricetype.name">
+                                        {{pricetype.name}}
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
