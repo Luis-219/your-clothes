@@ -45,6 +45,7 @@ export class ShopFormComponent implements OnInit {
     if((this.shopid != undefined && this.shopid != 0)){
       this.shopService.getShopId(this.shopid).subscribe(
         (data:Shop) =>{
+          console.log("shopid: " + this.shopid);
           this.id = data.idUser;
           this.myForm.get("name")!.setValue(data.name);
           this.myForm.get("phone")!.setValue(data.phone);

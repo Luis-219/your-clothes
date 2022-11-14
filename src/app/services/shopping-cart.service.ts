@@ -1,3 +1,4 @@
+import { environment } from 'src/environments/environment.prod';
 import { ShoppingCart, CartxProduct } from './../models/Shopping-Cart';
 
 import { HttpClient } from '@angular/common/http';
@@ -13,31 +14,32 @@ export class ShoppingCartService {
 
   createShoppingCart(shoppingcart:ShoppingCart)
   {
-    return this.http.post<ShoppingCart>("http://localhost:3000/shoppingcarts", shoppingcart);
+    return this.http.post<ShoppingCart>(environment.serverJSON + environment.resCart + "/user_id/"+shoppingcart.id_user, shoppingcart);
   }
   getShoppingcart(){
-    return this.http.get<ShoppingCart[]>("http://localhost:3000/shoppingcarts");
+    return this.http.get<ShoppingCart[]>(environment.serverJSON + environment.resCart);
   }
   updateShoppingcart(shoppingcart:ShoppingCart){
-    return this.http.put<ShoppingCart>("http://localhost:3000/shoppingcarts/" + shoppingcart.id.toString(), shoppingcart);
+    return this.http.put<ShoppingCart>(environment.serverJSON + environment.resCart + "/" + shoppingcart.id.toString(), shoppingcart);
   }
   getShoppingcartID(id:number){
-    return this.http.get<ShoppingCart>("http://localhost:3000/shoppingcarts/"+id.toString());
+    return this.http.get<ShoppingCart>(environment.serverJSON + environment.resCart + "/"+id.toString());
   }
 
 
 
   getcartproduct(){
-    return this.http.get<CartxProduct[]>("http://localhost:3000/cartxproduct");
+    return this.http.get<CartxProduct[]>(environment.serverJSON + environment.resCartProduct);
   }
   addcartproduct(cartproduct: CartxProduct){
-    return this.http.post<CartxProduct>("http://localhost:3000/cartxproduct", cartproduct);
+    return this.http.post<CartxProduct>(environment.serverJSON + environment.resCartProduct+ "/cart_id/" + cartproduct.shopcart_id + "/product_id/" + cartproduct.product_id, cartproduct);
   }
+  
   deletecartproduct(id:number)
   {
-    return this.http.delete("http://localhost:3000/cartxproduct/"+id.toString());
+    return this.http.delete(environment.serverJSON + environment.resCartProduct + "/"+id.toString());
   }
   updatecartProduct(cartproduct:CartxProduct){
-    return this.http.put<CartxProduct>("http://localhost:3000/cartxproduct/" + cartproduct.id.toString(), cartproduct);
+    return this.http.put<CartxProduct>(environment.serverJSON + environment.resCartProduct + "/"+ cartproduct.id.toString(), cartproduct);
   }
 }

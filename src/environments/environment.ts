@@ -5,7 +5,11 @@
 export const environment = {
   production: false,
   serverJSON: "http://localhost:8080",
-  resourceUsers: "/api/users"
+  resourceUsers: "/api/users",
+  resourceShops: "/api/shops",
+  resourceProducts: "/api/products",
+  resCart: "/api/carts",
+  resCartProduct: "/api/carts_products",
 };
 
 /*

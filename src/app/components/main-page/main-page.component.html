@@ -8,8 +8,6 @@
             <div class="offers">
                 <div *ngFor="let offer of offersprod" class="card" routerLink="/product-details/{{offer.shopname}}/{{offer.id}}/{{id}}">
                     <a class="container">
-                        <mat-hint>{{offer.brand}}</mat-hint> <br>
-                        <h4>{{offer.name}}</h4>
                         <div *ngFor="let image of images" class="image">
                             <div *ngIf="image.id_product == offer.id">
                                 <div class="description" style="background-image: url({{image.img}}); background-size: cover; background-position: center;">

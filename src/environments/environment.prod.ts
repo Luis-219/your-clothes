@@ -3,5 +3,7 @@ export const environment = {
   serverJSON: "http://localhost:8080",
   resourceUsers: "/api/users",
   resourceShops: "/api/shops",
-  resourceProducts: "/api/products"
+  resourceProducts: "/api/products",
+  resCart: "/api/carts",
+  resCartProduct: "/api/carts_products",
 };

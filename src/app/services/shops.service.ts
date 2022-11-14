@@ -30,6 +30,6 @@ export class ShopsService {
   }
   deleteShop(id:number)
   {
-    return this.http.delete(environment.serverJSON + environment.resourceShops + id.toString());
+    return this.http.delete(environment.serverJSON + environment.resourceShops + "/" + id.toString());
   }
 }
