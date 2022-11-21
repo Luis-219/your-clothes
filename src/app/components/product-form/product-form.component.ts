@@ -107,7 +107,7 @@ export class ProductFormComponent implements OnInit {
           this.myForm.get("season")!.setValue(data.season);
           this.myForm.get("pricetype")!.setValue(data.pricetype);
 
-          this.http.get<any>("http://localhost:3000/prodimages").subscribe(
+          this.productService.getImagesAsAny().subscribe(
             res=>{
               const img = res.find((a:ProductImage)=>{
                 return a.id_product == data.id;
@@ -290,7 +290,9 @@ export class ProductFormComponent implements OnInit {
         id_product: id,
         img: this.preview
       }
-      this.productService.editImage(imgProduct).subscribe();
+      this.productService.editImage(imgProduct).subscribe(
+        next=> {console.log("img edit");}
+      );
     }
     else
     {

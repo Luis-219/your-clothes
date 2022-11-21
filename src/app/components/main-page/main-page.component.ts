@@ -102,6 +102,13 @@ export class MainPageComponent implements OnInit {
       }
     );
   }
+  amountProducts(list: Product[]):number
+  {
+    if(list.length <5)
+    {
+      return list.length;
+    }else return 5;
+  }
 
   shop!: Shop;
   getMyShop()

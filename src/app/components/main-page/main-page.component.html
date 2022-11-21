@@ -30,13 +30,13 @@
             <div class="title">
                 <h1>Nuestros <span>Productos</span></h1>
             </div>
-            <app-show-products [productslist]="products" [quantity]="1" [iduser]="id"></app-show-products>
+            <app-show-products [productslist]="products" [quantity]=amountProducts(products) [iduser]="id"></app-show-products>
         </div>
         <div class="products">
             <div class="title">
                 <h1>Productos de <span>Invierno</span></h1>
             </div>
-            <app-show-products [productslist]="winterProd" [quantity]="1" [iduser]="id"></app-show-products>
+            <app-show-products [productslist]="winterProd" [quantity]=amountProducts(winterProd) [iduser]="id"></app-show-products>
         </div>
     </div>
     <app-footer></app-footer>

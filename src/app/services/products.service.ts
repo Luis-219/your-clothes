@@ -30,21 +30,24 @@ export class ProductsService {
   }
   addImage(productimg:ProductImage)
   {
-    return this.http.post<ProductImage>("http://localhost:3000/prodimages", productimg);
+    return this.http.post<ProductImage>(environment.serverJSON+environment.resImages+ "/" + productimg.id_product.toString(), productimg);
   }
   getImage(id:number){
-    return this.http.get<ProductImage>("http://localhost:3000/prodimages/"+id.toString());
+    return this.http.get<ProductImage>(environment.serverJSON+environment.resImages+ "/" + id.toString());
   }
   getImages(){
-    return this.http.get<ProductImage[]>("http://localhost:3000/prodimages");
+    return this.http.get<ProductImage[]>(environment.serverJSON+environment.resImages);
+  }
+  getImagesAsAny(){
+    return this.http.get<any>(environment.serverJSON+environment.resImages);
   }
   editImage(productimg:ProductImage)
   {
-    return this.http.put<ProductImage>("http://localhost:3000/prodimages/"+productimg.id.toString(), productimg);
+    return this.http.put<ProductImage>(environment.serverJSON+environment.resImages + "/"+ productimg.id.toString(), productimg);
   }
   deleteImg(id:number)
   {
-    return this.http.delete("http://localhost:3000/prodimages/"+id.toString());
+    return this.http.delete(environment.serverJSON+environment.resImages + "/" + id.toString());
   }
   getGender()
   {
