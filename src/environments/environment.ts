@@ -10,7 +10,9 @@ export const environment = {
   resourceProducts: "/api/products",
   resCart: "/api/carts",
   resCartProduct: "/api/carts_products",
-  resImages: "/api/products_images"
+  resImages: "/api/products_images",
+  resOrder: "/api/orders",
+  resOrderProduct: "/api/orders_products"
 };
 
 /*

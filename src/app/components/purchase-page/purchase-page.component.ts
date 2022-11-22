@@ -106,13 +106,15 @@ export class PurchasePageComponent implements OnInit {
   getshippings() {
     this.paymentsServices.getshippings().subscribe((data: Shipping[]) => {
       this.shipmethods = data;
-    });
+      console.log(data);
+      });
   }
   paymentsmethod!: Payment[];
   payment!: Payment;
   getpayments() {
     this.paymentsServices.getpayments().subscribe((data: Payment[]) => {
       this.paymentsmethod = data;
+      console.log(data);
     });
   }
 
