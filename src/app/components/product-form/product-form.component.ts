@@ -1,3 +1,5 @@
+import { UsersService } from './../../services/users.service';
+import { User } from './../../models/User';
 import { ShopsService } from 'src/app/services/shops.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { UploadImageComponent } from './../upload-image/upload-image.component';
@@ -33,7 +35,8 @@ export class ProductFormComponent implements OnInit {
               private snackBar:MatSnackBar,
               private location: Location,
               private sanitizer: DomSanitizer,
-              private shopServices: ShopsService) { }
+              private shopServices: ShopsService,
+              private userServices: UsersService) { }
 
   ngOnInit(): void {
     this.shopname = this.activatedRouter.snapshot.params["shop"];
@@ -132,6 +135,7 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  user!:User;
   shopfound!:Shop;
   findShop()
   {
@@ -143,6 +147,11 @@ export class ProductFormComponent implements OnInit {
         if(shop)
         {
           this.shopfound = shop;
+          this.userServices.getUserId(this.shopfound.idUser).subscribe(
+            (data: User) =>{
+              this.user = data;
+            }
+          );
         }
     });
   }

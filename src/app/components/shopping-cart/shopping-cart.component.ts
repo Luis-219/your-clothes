@@ -129,11 +129,24 @@ export class ShoppingCartComponent implements OnInit {
           {
             if(prod.product_id == prodid && prod.shopcart_id == this.mycart.id)
             {
+              this.mycart.quantity_products = this.mycart.quantity_products - prod.quantity;
+              
+              this.productService.getProductId(prodid).subscribe(
+                (data:Product)=>{
+                  this.mycart.total_purchase = Number(this.mycart.total_purchase) - Number(prod.quantity*data.price);
+                  console.log(this.mycart.total_purchase);
+                  this.shoppingcartService.updateShoppingcart(this.mycart).subscribe(
+                    next=>{
+                      console.log("Se actualizó el carrito");
+                    }
+                  );
+                  }
+              );
               this.shoppingcartService.deletecartproduct(prod.id).subscribe(
                 next=>{
                   this.products = this.products.filter(filter => filter.id != prod.product_id);
                   this.soldout = this.soldout.filter(filter => filter.id != prod.product_id);
-                  this.snackBar.open("Se eliminó el producto", "ok", {duration: 1000});
+                  this.snackBar.open("Se eliminó el producto", "ok", {duration: 500});
                 }
               );
               

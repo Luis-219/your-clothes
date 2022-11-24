@@ -20,7 +20,7 @@
             <h2>Productos Disponibles</h2>
             <app-show-products [productslist]="available" [quantity]="available.length" [iduser]="id" [shoppage]="true" ></app-show-products>
         </div> 
-        <div class="list">
+        <div class="list" *ngIf="soldout.length > 0">
             <h2>Productos Agotados</h2>
             <app-show-products [productslist]="soldout" [quantity]="soldout.length" [iduser]="id" [shoppage]="true"></app-show-products>
         </div>

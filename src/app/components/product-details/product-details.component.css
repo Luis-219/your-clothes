@@ -64,9 +64,34 @@
     display: flex;
     flex-direction: row-reverse;
 }
+.content{
+    margin-top: 2rem;
+    padding-left: 2rem;
+}
+.specs span{
+    margin-left: 0.25rem;
+    font-weight: normal; 
+    font-size: 15px;
+    text-transform: none;
+}
+.specs p{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.specs .price{
+    margin-top: 20px;
+}
+.specs .price span{
+    font-weight: bold;
+
+}
+.specs .price h1{
+    font-weight: normal;
+    font-size: 20px;
+}
 
 .product-page .content .details{
-    
     margin-top: 1rem;
 }
 .product-page .content .details{

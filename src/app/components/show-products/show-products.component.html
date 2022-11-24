@@ -1,6 +1,10 @@
 <body>
     <div class="all">
         <div class="filter" *ngIf="filters">
+            <h3>Precios</h3>
+            <div class="checkbox" *ngFor="let pricetype of pricetypes">
+                <mat-checkbox (change)="pricetypefilter($event)" value="{{pricetype.name}}">{{pricetype.name}}</mat-checkbox>
+            </div>
             <h3>Géneros</h3>
             <div class="checkbox" *ngFor="let gender of genders">
                 <mat-checkbox (change)="genderFilter($event)" value="{{gender.name}}">{{gender.name}}</mat-checkbox>
@@ -35,12 +39,14 @@
                     </div>
                 </div>
             </div>
-            <div class="paginator" *ngIf="filters || shoppage">
-                <button mat-raised-button class="previous" (click)="previous()" [disabled]="pagenow ==1">Anterior</button>
-                <div class="number">
-                    <h1>{{pagenow}}</h1>
+            <div *ngIf="products.length > 12">
+                <div class="paginator" *ngIf="filters || shoppage">
+                    <button mat-raised-button class="previous" (click)="previous()" [disabled]="pagenow ==1">Anterior</button>
+                    <div class="number">
+                        <h1>{{pagenow}}</h1>
+                    </div>
+                    <button mat-raised-button class="next" (click)="next()" [disabled]="pagenow ==pages || pages == 0">Siguiente</button>
                 </div>
-                <button mat-raised-button class="next" (click)="next()" [disabled]="pagenow ==pages || pages == 0">Siguiente</button>
             </div>
         </div>
     </div>

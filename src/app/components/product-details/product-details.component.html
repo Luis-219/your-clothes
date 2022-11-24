@@ -17,13 +17,12 @@
         </div>
         <div class="details" *ngIf="product">
             <div class="specs">
-                <div class="size" style="margin-top: 1rem;">
-                    <p style="font-weight: bold; font-size: 20px;"> Talla disponible <span style="font-size: 1.5rem;"> {{product.size}} </span></p>
-                    <div class="num">
-                        
-                    </div>
-                </div>
+                <p>Talla: <span>{{product.size}}</span> </p>
+                <p>Género: <span>{{product.gender}}</span> </p>
+                <p>Temporada: <span>{{product.season}}</span> </p>
+                <p>Material: <span>{{product.material}}</span> </p>
                 <div class="price">
+                    <span>{{product.pricetype}}</span>
                     <h1>S/.{{product.price}}</h1>
                 </div>
             </div>

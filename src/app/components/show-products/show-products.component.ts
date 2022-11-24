@@ -138,9 +138,23 @@ export class ShowProductsComponent implements OnInit {
     console.log(this.sizechecked);
     this.createList();
   }
+  pricetypechecked: string[] = [];
+  pricetypefilter(e: MatCheckboxChange) {
+    if (e.checked) {
+      this.pricetypechecked.push(e.source.value);
+    } else {
+      if (this.pricetypechecked.includes(e.source.value)) {
+        this.pricetypechecked = this.pricetypechecked.filter(
+          (pricetype) => pricetype != e.source.value
+        );
+      }
+    }
+    console.log(this.pricetypechecked);
+    this.createList();
+  }
 
   createList() {
-    if (this.seasonschecked.length == 0 && this.genderchecked.length == 0 && this.sizechecked.length == 0) 
+    if (this.seasonschecked.length == 0 && this.genderchecked.length == 0 && this.sizechecked.length == 0 && this.pricetypechecked.length == 0) 
     {
       this.allproducts = this.getproducts;
       this.products = this.allproducts;
@@ -149,6 +163,25 @@ export class ShowProductsComponent implements OnInit {
     else 
     { 
       this.productsshow = [];
+      if (this.pricetypechecked.length > 0) 
+      {
+        if(this.productsshow.length == 0)
+        {
+          this.productsshow = this.productsall;
+        }
+        let prodtemp: Product[] = [];
+        for (let pricetype of this.pricetypechecked) 
+        {
+          this.productsshow.forEach((prod) => 
+          {
+            if (prod.pricetype == pricetype) 
+            {
+              prodtemp.push(prod);
+            }
+          });
+        }
+        this.productsshow = prodtemp;
+      }
       if (this.seasonschecked.length > 0) 
       {
         if(this.productsshow.length == 0)
