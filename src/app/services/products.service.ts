@@ -10,6 +10,12 @@ export class ProductsService {
 
   constructor(private http:HttpClient) { }
 
+  exportProducts(id: number)
+  {
+    return this.http.get(environment.serverJSON+environment.resourceProducts + "/export/excel/" + id.toString(), {responseType: "blob"});
+  }
+
+
   addProduct(product:Product)
   {
     return this.http.post<Product>(environment.serverJSON+environment.resourceProducts + "/" + product.idShop, product);

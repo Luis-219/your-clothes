@@ -136,4 +136,22 @@ export class ShopPageComponent implements OnInit {
       );
     }
   }
+
+  export()
+  {
+    this.productService.exportProducts(this.shopfound.id).subscribe({
+      next:(data: any)=>{
+        let file = new Blob([data], {type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
+
+        let fileURL = URL.createObjectURL(file);
+
+        var anchor = document.createElement("a");
+        anchor.download = "product_report.xlsx";
+        anchor.href = fileURL;
+        anchor.click();
+
+      }
+    })
+  }
+
 }
