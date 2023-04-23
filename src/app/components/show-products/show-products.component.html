@@ -22,12 +22,11 @@
             <div class="list">
                 <div *ngFor="let product of products" class="card">
                     <div routerLink="/product-details/{{product.shopname}}/{{product.id}}/{{iduser}}">
-                        <a class="container">
+                        <div class="container">
                             <div *ngFor="let image of imgs" class="image">
                                 <img *ngIf="image.id_product == product.id" src="{{image.img}}" alt="">
                             </div>
                             <div class="description">
-        
                                 <mat-hint>{{product.brand}}</mat-hint> <br>
                                 <h4>{{product.name}}</h4>
                             </div>
@@ -35,17 +34,17 @@
                                 <p *ngIf="product.condition == 'Agotado'">{{product.condition}}</p> <br>
                                 <strong>S/.{{product.price}}</strong>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div *ngIf="products.length > 12">
+            <div *ngIf="allproducts.length > 12">
                 <div class="paginator" *ngIf="filters || shoppage">
-                    <button mat-raised-button class="previous" (click)="previous()" [disabled]="pagenow ==1">Anterior</button>
+                    <button mat-raised-button class="previous" (click)="previous()" [disabled]="pagenow == 1">Anterior</button>
                     <div class="number">
                         <h1>{{pagenow}}</h1>
                     </div>
-                    <button mat-raised-button class="next" (click)="next()" [disabled]="pagenow ==pages || pages == 0">Siguiente</button>
+                    <button mat-raised-button class="next" (click)="next()" [disabled]="pagenow == pages || pages == 0">Siguiente</button>
                 </div>
             </div>
         </div>

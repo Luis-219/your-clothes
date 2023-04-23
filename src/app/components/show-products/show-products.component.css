@@ -11,7 +11,7 @@ body{
     justify-content: space-around;
     margin: 1rem;
 }
-.card{
+.list .card{
     margin: 10px;
     width: 220px;
     height: 300px;
@@ -47,10 +47,6 @@ body{
 }
 .description{
     margin-left: 1rem;
-}
-.all{
-    display: flex;
-
 }
 .filter
 {
@@ -89,6 +85,9 @@ body{
 {
     background-color: var(--wall);
     color: var(--principal);
+}
+.all{
+    display: flex;
 }
 
 
