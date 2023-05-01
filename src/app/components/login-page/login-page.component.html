@@ -8,10 +8,15 @@
                     <mat-form-field appearance="legacy">
                         <mat-label>Email</mat-label>
                         <input matInput formControlName="email" placeholder="Email">
+                        <mat-error *ngIf="email.invalid">{{getErrorMessageEmail()}}</mat-error>
                     </mat-form-field> <br>
+                    <mat-hint *ngIf="myForm.get('email')?.hasError('email')">
+                        Utilizar un email válido
+                    </mat-hint>
                     <mat-form-field appearance="legacy">
                         <mat-label>Contraseña</mat-label>
                         <input matInput type="password" formControlName="password" placeholder="Contraseña">
+                        <mat-error *ngIf="password.invalid">{{getErrorMessageEmail()}}</mat-error>
                         <mat-hint>¿Olvidó la contraseña?</mat-hint>
                     </mat-form-field> <br>
                 </form>

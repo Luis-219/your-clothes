@@ -4,7 +4,7 @@ import { UsersService } from './../../services/users.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { RouterModule, ActivatedRoute, Router } from '@angular/router';
 
@@ -37,12 +37,12 @@ export class EditUserComponent implements OnInit {
 
     this.myForm = this.formBuilder.group(
       {
-        name:[""],
-        lastname:[""],
-        email:[""],
-        dni:[""],
-        phone:[""],
-        adress:[""]
+        name:["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+        lastname:["", [Validators.required, Validators.maxLength(30), Validators.minLength(10)]],
+        email:["", [Validators.required, Validators.maxLength(30), Validators.minLength(10), Validators.email]],
+        dni:["", [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern(/^([0-9])*$/)]],
+        phone:["", [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern(/^([0-9])*$/)]],
+        adress:["", [Validators.required, Validators.minLength(10), Validators.maxLength(50)]]
       }
     )
     this.userService.getUserId(this.id).subscribe(
@@ -58,6 +58,52 @@ export class EditUserComponent implements OnInit {
     );
   }
   
+  name = new FormControl('', [Validators.required, Validators.email]);
+  Errorname() {
+    if (this.name.hasError('required')) {
+      return 'Ingrese mínimo 3 y maximo 20 caracteres';
+    }
+    else return '';
+  }
+  lastname = new FormControl('', [Validators.required]);
+  ErrorLastname() {
+    if (this.lastname.hasError('required')) {
+      return 'Ingrese mínimo 10 y maximo 30 caracteres';
+    }
+    else return '';
+  }
+  email = new FormControl('', [Validators.required, ]);
+  ErrorEmail() {
+    if (this.email.hasError('required')) {
+      return 'Ingrese mínimo 10 y maximo 30 caracteres';
+    }
+    if(this.email.hasError('email')){
+      return 'Ingresa email'
+    }
+    else return '';
+  }
+  dni = new FormControl('', [Validators.required]);
+  ErrorDNI() {
+    if (this.dni.hasError('required')) {
+      return 'Solo se permite el ingreso de 8 números';
+    }
+    else return '';
+  }
+  phone = new FormControl('', [Validators.required]);
+  ErrorPhone() {
+    if (this.phone.hasError('required')) {
+      return 'Solo se permite el ingreso de 9 números';
+    }
+    else return '';
+  }
+  address = new FormControl('', [Validators.required]);
+  ErrorAddress() {
+    if (this.address.hasError('required')) {
+      return 'Solo se permite el ingreso de 10 a 50 caracteres';
+    }
+    else return '';
+  }
+
   editUser()
   {
     const user:User = {
@@ -71,17 +117,22 @@ export class EditUserComponent implements OnInit {
       password: this.password
     }
 
-    this.userService.editUser(user).subscribe(
-      {
-        next:(data) =>{
-          this.snackBar.open("El empleado se actualizó", "ok");
-          this.router.navigate(["/user", user.id]);
-        },
-        error:(err)=>{
-          console.log(err);
+    if(this.myForm.invalid){
+      this.snackBar.open("Llene los datos correctamente", "ok");
+    }
+    else{
+      this.userService.editUser(user).subscribe(
+        {
+          next:(data) =>{
+            this.snackBar.open("El usuario se actualizó", "ok");
+            this.router.navigate(["/user", user.id]);
+          },
+          error:(err)=>{
+            console.log(err);
+          }
         }
-      }
-    );
+      );
+    }
   }
 }
 

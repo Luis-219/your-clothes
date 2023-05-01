@@ -8,26 +8,32 @@
                     <mat-form-field appearance="legacy">
                         <mat-label>Name</mat-label>
                         <input matInput formControlName="name" placeholder="Name" color="secondary">
+                        <mat-error *ngIf="name.invalid">{{Errorname()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Apellido</mat-label>
                         <input matInput formControlName="lastname" placeholder="Apellido">
+                        <mat-error *ngIf="lastname.invalid">{{ErrorLastname()}}</mat-error>
                     </mat-form-field> <br> 
                     <mat-form-field appearance="legacy">
                         <mat-label>Email</mat-label>
                         <input matInput formControlName="email" placeholder="Email">
+                        <mat-error *ngIf="email.invalid">{{ErrorEmail()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>DNI</mat-label>
                         <input matInput formControlName="dni" placeholder="DNI">
+                        <mat-error *ngIf="dni.invalid">{{ErrorLastname()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Teléfono</mat-label>
                         <input matInput formControlName="phone" placeholder="Teléfono">
+                        <mat-error *ngIf="phone.invalid">{{ErrorPhone()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Dirección</mat-label>
                         <input matInput formControlName="adress" placeholder="Dirección">
+                        <mat-error *ngIf="address.invalid">{{ErrorAddress()}}</mat-error>
                     </mat-form-field> <br>
                 </form>
             </mat-card-content>

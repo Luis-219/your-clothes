@@ -9,22 +9,30 @@
                     <mat-form-field appearance="legacy">
                         <mat-label>Nombre</mat-label>
                         <input matInput formControlName="name" placeholder="Nombre">
+                        <mat-error *ngIf="name.invalid">{{getErrorMessageName()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Apellido</mat-label>
                         <input matInput formControlName="lastname" placeholder="Apellido">
+                        <mat-error *ngIf="lastname.invalid">{{getErrorMessageLastName()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Email</mat-label>
                         <input matInput formControlName="email" placeholder="Email">
+                        <mat-error *ngIf="lastname.invalid">{{getErrorMessageEmail()}}</mat-error>
                     </mat-form-field> <br>
+                    <mat-hint *ngIf="myForm.get('email')?.hasError('email')">
+                        Utilizar un email válido
+                    </mat-hint>
                     <mat-form-field appearance="legacy">
                         <mat-label>Contraseña</mat-label>
                         <input matInput type="password" formControlName="password" placeholder="Contraseña">
+                        <mat-error *ngIf="lastname.invalid">{{getErrorMessagePassword()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Confimar contraseña</mat-label>
                         <input matInput type="password" formControlName="confirmpassword" placeholder="Confirmar contraseña">
+                        <mat-error *ngIf="lastname.invalid">{{getErrorMessageConfirmPassword()}}</mat-error>
                     </mat-form-field> <br>
                 </form>
             

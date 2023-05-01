@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { UsersService } from './../../services/users.service';
 import { HttpClient } from '@angular/common/http';
 import { User } from './../../models/User';
-import { EmailValidator, FormBuilder, FormGroup } from '@angular/forms';
+import { EmailValidator, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { DataSource } from '@angular/cdk/collections';
 import { MatTableDataSource } from '@angular/material/table';
@@ -30,10 +30,25 @@ export class LoginPageComponent implements OnInit {
   {
     this.myForm = this.formBuilder.group(
       {
-        email:[""],
-        password:[""],
+        email:["", [Validators.required, Validators.maxLength(30), Validators.minLength(10), Validators.email]],
+        password:["", [Validators.required, Validators.maxLength(15), Validators.minLength(5)]],
       }
     )
+  }
+
+  email = new FormControl('', [Validators.required]);
+  getErrorMessageEmail() {
+    if (this.email.hasError('required')) {
+      return 'Ingrese mínimo 10 y maximo 30 caracteres';
+    }
+    else return '';
+  }
+  password = new FormControl('', [Validators.required]);
+  getErrorMessagePassword() {
+    if (this.password.hasError('required')) {
+      return 'Ingrese mínimo 5 y maximo 15 caracteres';
+    }
+    else return '';
   }
 
   loginUser()
