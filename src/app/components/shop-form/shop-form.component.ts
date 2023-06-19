@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ShopsService } from './../../services/shops.service';
 import { Shop } from './../../models/Shop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -36,10 +36,10 @@ export class ShopFormComponent implements OnInit {
   {
     this.myForm = this.formBuilder.group(
       {
-        name:["", Validators.required],
-        phone:["", Validators.required],
-        adress:["", Validators.required],
-        description:["", Validators.required]
+        name:["", Validators.required, Validators.minLength(3), Validators.maxLength(20)],
+        phone:["", [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern(/^([0-9])*$/)]],
+        adress:["", [Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
+        description:["", [Validators.required, Validators.minLength(10), Validators.maxLength(50)]]
       }
     )
     if((this.shopid != undefined && this.shopid != 0)){
@@ -59,6 +59,34 @@ export class ShopFormComponent implements OnInit {
     }
   }
 
+  name = new FormControl('', [Validators.required]);
+  Errorname() {
+    if (this.name.hasError('required')) {
+      return 'Ingrese mínimo 3 y maximo 20 caracteres';
+    }
+    else return '';
+  }
+  phone = new FormControl('', [Validators.required]);
+  ErrorPhone() {
+    if (this.phone.hasError('required')) {
+      return 'Solo se permite el ingreso de 9 números';
+    }
+    else return '';
+  }
+  address = new FormControl('', [Validators.required]);
+  ErrorAddress() {
+    if (this.address.hasError('required')) {
+      return 'Solo se permite el ingreso de 10 a 50 caracteres';
+    }
+    else return '';
+  }
+  description = new FormControl('', [Validators.required]);
+  ErrorDescription() {
+    if (this.address.hasError('required')) {
+      return 'Solo se permite el ingreso de 10 a 50 caracteres';
+    }
+    else return '';
+  }
 
   saveShop()
   {
@@ -72,7 +100,9 @@ export class ShopFormComponent implements OnInit {
       amountProducts: 0,
       aceptación: 0
     }
-    if(shop.id != 0)
+    if(!this.myForm.invalid)
+    {
+      if(shop.id != 0)
     {
       this.shopService.editShop(shop).subscribe({
         next: (data) =>{
@@ -107,6 +137,9 @@ export class ShopFormComponent implements OnInit {
           }
         }
       );
+    }
+    }else{
+      this.snackBar.open("Campos incorrectos", "Ok");
     }
   }
 }

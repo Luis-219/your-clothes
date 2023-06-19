@@ -8,7 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { HttpClient } from '@angular/common/http';
 import { Shop } from './../../models/Shop';
 import { Product, Size, Material, Type, Season, Gender, ProductImage, Pricetype } from './../../models/Product';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
@@ -82,17 +82,17 @@ export class ProductFormComponent implements OnInit {
   {
     this.myForm = this.formBuilder.group(
       {
-        name:[""],
-        quantity: [""],
-        price: [""],
-        size: [""],
-        gender:[""],
-        material: [""],
-        brand: [""],
-        type: [""],
-        season: [""],
-        year: [""],
-        pricetype: [""],
+        name:["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+        quantity: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(3), Validators.pattern(/^([0-9])*$/)]],
+        price: ["", [Validators.required, Validators.minLength(1), Validators.maxLength(5), Validators.pattern(/^([0-9])*$/)]],
+        size: ["", [Validators.required]],
+        gender:["", [Validators.required]],
+        material: ["", [Validators.required]],
+        brand: ["", [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+        type: ["", [Validators.required]],
+        season: ["",  [Validators.required]],
+        year: ["", [Validators.required, Validators.minLength(4), Validators.maxLength(4), Validators.pattern(/^([0-9])*$/)]],
+        pricetype: ["", [Validators.required]],
       }
     )
     if((this.idproduct != undefined && this.idproduct != 0)){
@@ -133,6 +133,84 @@ export class ProductFormComponent implements OnInit {
       this.idproduct = 0;
       this.idimg = 0;
     }
+  }
+
+  name = new FormControl('', [Validators.required]);
+  Errorname() {
+    if (this.name.hasError('required')) {
+      return 'Ingrese mínimo 3 y maximo 20 caracteres';
+    }
+    else return '';
+  }
+  quantity = new FormControl('', [Validators.required]);
+  ErrorQuantity() {
+    if (this.quantity.hasError('required')) {
+      return 'Solo se permiten números';
+    }
+    else return '';
+  }
+  price = new FormControl('', [Validators.required]);
+  ErrorPrice() {
+    if (this.price.hasError('required')) {
+      return 'Solo se permiten números';
+    }
+    else return '';
+  }
+  size = new FormControl('', [Validators.required]);
+  ErrorSize() {
+    if (this.size.hasError('required')) {
+      return 'Seleccione una talla';
+    }
+    else return '';
+  }
+  gender = new FormControl('', [Validators.required]);
+  ErrorGender() {
+    if (this.gender.hasError('required')) {
+      return 'Seleccione un género';
+    }
+    else return '';
+  }
+  pricetype = new FormControl('', [Validators.required]);
+  ErrorPricetype() {
+    if (this.pricetype.hasError('required')) {
+      return 'Seleccione un tipo de precio';
+    }
+    else return '';
+  }
+  brand = new FormControl('', [Validators.required]);
+  ErrorBrand() {
+    if (this.brand.hasError('required')) {
+      return 'Ingrese la marca correctamente (3 a 20 caracteres)';
+    }
+    else return '';
+  }
+  type = new FormControl('', [Validators.required]);
+  ErrorType() {
+    if (this.type.hasError('required')) {
+      return 'Seleccione el tipo de prenda';
+    }
+    else return '';
+  }
+  material = new FormControl('', [Validators.required]);
+  ErrorMaterial() {
+    if (this.material.hasError('required')) {
+      return 'Seleccione el material';
+    }
+    else return '';
+  }
+  season = new FormControl('', [Validators.required]);
+  ErrorSeason() {
+    if (this.season.hasError('required')) {
+      return 'Seleccione la temporada';
+    }
+    else return '';
+  }
+  year = new FormControl('', [Validators.required]);
+  ErrorYear() {
+    if (this.year.hasError('required')) {
+      return 'Ingrese el año';
+    }
+    else return '';
   }
 
   user!:User;

@@ -17,17 +17,20 @@
                         <mat-form-field appearance="legacy">
                             <mat-label>Nombre del producto</mat-label>
                             <input matInput formControlName="name" placeholder="Nombre del producto">
+                            <mat-error *ngIf="name.invalid">{{Errorname()}}</mat-error>
                         </mat-form-field>
         
                         <div class="model3">
                             <mat-form-field appearance="legacy">
                                 <mat-label>Cantidad</mat-label>
                                 <input matInput formControlName="quantity" placeholder="Cantidad">
+                                <mat-error *ngIf="quantity.invalid">{{ErrorQuantity()}}</mat-error>
                             </mat-form-field>
         
                             <mat-form-field appearance="legacy">
                                 <mat-label>Precio</mat-label>
                                 <input matInput formControlName="price" placeholder="Precio">
+                                <mat-error *ngIf="price.invalid">{{ErrorPrice()}}</mat-error>
                             </mat-form-field>
                             <mat-form-field appearance = "legacy">
                                 <mat-label>Tipo de precio</mat-label>
@@ -36,12 +39,14 @@
                                         {{pricetype.name}}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="pricetype.invalid">{{ErrorPricetype()}}</mat-error>
                             </mat-form-field>
                         </div>
 
                         <mat-form-field appearance="legacy">
                             <mat-label>Marca</mat-label>
                             <input matInput formControlName="brand" placeholder="Marca">
+                            <mat-error *ngIf="brand.invalid">{{ErrorBrand()}}</mat-error>
                         </mat-form-field> <br>
 
                         <div class="model2">
@@ -52,6 +57,7 @@
                                         {{gender.name}}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="gender.invalid">{{ErrorGender()}}</mat-error>
                             </mat-form-field>
                     
                             <mat-form-field appearance = "legacy">
@@ -61,6 +67,7 @@
                                         {{type.name}}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="type.invalid">{{ErrorType()}}</mat-error>
                             </mat-form-field>
                         </div>
                 
@@ -72,6 +79,7 @@
                                         {{material.name}}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="material.invalid">{{ErrorMaterial()}}</mat-error>
                             </mat-form-field>
                     
                             <mat-form-field appearance = "legacy">
@@ -81,6 +89,7 @@
                                         {{size.name}}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="size.invalid">{{ErrorSize()}}</mat-error>
                             </mat-form-field>
                         </div>
                 
@@ -92,11 +101,13 @@
                                         {{season.name}}
                                     </mat-option>
                                 </mat-select>
+                                <mat-error *ngIf="season.invalid">{{ErrorSeason()}}</mat-error>
                             </mat-form-field>
-                    
+                            
                             <mat-form-field appearance="legacy">
                                 <mat-label>Año</mat-label>
                                 <input matInput formControlName="year" placeholder="Año">
+                                <mat-error *ngIf="year.invalid">{{ErrorYear()}}</mat-error>
                             </mat-form-field>
                         </div>
                     </form>

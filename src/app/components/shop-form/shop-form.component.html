@@ -9,18 +9,22 @@
                     <mat-form-field appearance="legacy">
                         <mat-label>Nombre</mat-label>
                         <input matInput formControlName="name" placeholder="Nombre">
+                        <mat-error *ngIf="name.invalid">{{Errorname()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Teléfono</mat-label>
                         <input matInput formControlName="phone" placeholder="Teléfono">
+                        <mat-error *ngIf="phone.invalid">{{ErrorPhone()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Dirección</mat-label>
                         <input matInput formControlName="adress" placeholder="Dirección">
+                        <mat-error *ngIf="address.invalid">{{ErrorAddress()}}</mat-error>
                     </mat-form-field> <br>
                     <mat-form-field appearance="legacy">
                         <mat-label>Descripción de la tienda</mat-label>
                         <textarea matInput formControlName="description"></textarea>
+                        <mat-error *ngIf="description.invalid">{{ErrorDescription()}}</mat-error>
                       </mat-form-field>
                 </form>
                 <div class="actions">

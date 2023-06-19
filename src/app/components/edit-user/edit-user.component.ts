@@ -58,7 +58,7 @@ export class EditUserComponent implements OnInit {
     );
   }
   
-  name = new FormControl('', [Validators.required, Validators.email]);
+  name = new FormControl('', [Validators.required]);
   Errorname() {
     if (this.name.hasError('required')) {
       return 'Ingrese mínimo 3 y maximo 20 caracteres';
